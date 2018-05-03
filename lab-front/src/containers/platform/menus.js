@@ -47,7 +47,7 @@ export default class SiderMenu extends React.Component {
   render () {
     return (
       <Spin tip={'加载中...'} spinning={CommonStore.getNodeSpin.menuSpin} size="small" style={{marginTop: '50px'}}>
-        <Menu theme="dark" mode="inline" onSelect={handleOnMenuSelect}>
+        <Menu theme="dark" mode="inline" defaultOpenKeys={['01', '02', '04', '05', '06']} onSelect={handleOnMenuSelect}>
           {MenuStore.getMenuList.map(menu =>
             <SubMenu key={menu.id} title={<span><Icon key={menu.id + menu.icon} type={menu.icon}/>{menu.title}</span>}>
               {menu.items.map(menu =>
@@ -59,6 +59,7 @@ export default class SiderMenu extends React.Component {
               )}
             </SubMenu>
           )}
-        </Menu></Spin>)
+        </Menu></Spin>
+    )
   }
 }
