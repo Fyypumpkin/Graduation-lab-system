@@ -6,4 +6,4 @@ import {observable, action} from 'mobx'
 class IndexStore {
 }
 
-export default new IndexStore()
+export default IndexStore

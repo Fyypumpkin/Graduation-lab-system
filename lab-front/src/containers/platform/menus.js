@@ -12,6 +12,7 @@ import '../../themes/menu.css'
 import MenuStore from '../../stores/store/menu/menu-store'
 import CommonStore from '../../stores/store/common/common-store'
 
+const menuStore = new MenuStore()
 const {SubMenu} = Menu
 const menusMap = {}
 
@@ -41,14 +42,15 @@ export default class SiderMenu extends React.Component {
     CommonStore.setNodeSpin({
       menuSpin: false
     })
-    MenuStore.setMenuList(menusList)
+    menuStore.setMenuList(menusList)
   }
 
   render () {
+    console.log(CommonStore.getNodeSpin)
     return (
       <Spin tip={'加载中...'} spinning={CommonStore.getNodeSpin.menuSpin} size="small" style={{marginTop: '50px'}}>
         <Menu theme="dark" mode="inline" defaultOpenKeys={['01', '02', '04', '05', '06']} onSelect={handleOnMenuSelect}>
-          {MenuStore.getMenuList.map(menu =>
+          {menuStore.getMenuList.map(menu =>
             <SubMenu key={menu.id} title={<span><Icon key={menu.id + menu.icon} type={menu.icon}/>{menu.title}</span>}>
               {menu.items.map(menu =>
                 (menusMap[menu.id] = menu) &&

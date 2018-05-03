@@ -3,7 +3,7 @@
  */
 import {observable, action} from 'mobx'
 
-class GlobalStore {
+class RoleStore {
   /**
    * SA CP CA 超级管理员，普通人员，普通管理员
    * @type {string}
@@ -20,4 +20,4 @@ class GlobalStore {
   }
 }
 
-export default new GlobalStore()
+export default new RoleStore()

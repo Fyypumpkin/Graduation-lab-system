@@ -4,9 +4,7 @@
 import {observable, action} from 'mobx'
 
 class CommonStore {
-  @observable nodeSpin = {
-
-  }
+  @observable nodeSpin = {}
 
   @action.bound
   setNodeSpin (spin) {
@@ -18,6 +16,16 @@ class CommonStore {
 
   get getNodeSpin () {
     return this.nodeSpin
+  }
+
+  @action.bound
+  reset () {
+    let temp = {}
+    Object.keys(this.nodeSpin).map(keys => {
+      temp[keys] = false
+      console.log(keys, false)
+    })
+    this.nodeSpin = temp
   }
 }
 
