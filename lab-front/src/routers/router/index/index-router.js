@@ -2,12 +2,12 @@
  * @author fyypumpkin on 2018/5/1.
  */
 import React from 'react'
-import Index from '../../../App'
+import Test from '../../../pages/test/test'
 import { Route } from 'mobx-router'
 
 export default {
   Index: new Route({
     path: '/',
-    components: <Index />
+    component: <Test />
   })
 }

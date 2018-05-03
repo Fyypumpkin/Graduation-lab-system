@@ -11,6 +11,7 @@ import OpFooter from './containers/platform/footer'
 import './App.css'
 
 import LoginIndexStore from './stores/store/login/login-store'
+import loginbg from './images/login-bg.jpg'
 
 const {Content, Sider} = Layout
 startRouter(router, store)
@@ -22,7 +23,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     console.log('login')
-    localStorage.getItem('status') === true && LoginIndexStore.setLoginStatus(true)
+    localStorage.getItem('status') === 'true' && LoginIndexStore.setLoginStatus(true)
   }
   changeUsername (e) {
     LoginIndexStore.setUserInfo({
@@ -34,12 +35,13 @@ class App extends Component {
       passWd: e.target.value
     })
   }
-  submitFun () {
+  login () {
+      // TODO 服务器登陆
     console.log(LoginIndexStore.getUserInfo)
+    console.log(localStorage.getItem('status'))
     if (LoginIndexStore.getUserInfo.username === 'fuyaoyao') {
-      localStorage.setItem('status', true)
+      localStorage.setItem('status', 'true')
       LoginIndexStore.setLoginStatus(true)
-      console.log('haha')
     } else {
       message.error('用户名和密码不匹配')
     }
@@ -47,40 +49,11 @@ class App extends Component {
     render () {
       return (
         <Provider store={store}>
-          {/* {!LoginIndexStore.getLoginStatus || !localStorage.getItem('status') */}
-          { parseInt(1) === 2
-            ? <div className="login">
-            <Row>
-              <Col span={10} offset={6}>
-                <br/>
-                <br/>
-                <br/>
-                <Form>
-                  <h2>用户登录</h2>
-                  <br/>
-                  <p>
-                    <Input type="text" name="username" className="username" placeholder="请输入用户名" value={LoginIndexStore.getUserInfo.username} onChange={this.changeUsername.bind(this)} />
-                  </p>
-                  <br/>
-                  <p>
-                    <Input type="password" name="password" className="password" placeholder="请输入用户名" value={LoginIndexStore.getUserInfo.passWd} onChange={this.changePassword.bind(this)} />
-                  </p>
-                  <br/>
-                  <p>
-                    <Checkbox name="rememeber" className="remember"/> <a>记住密码</a>
-                  </p>
-                  <br/>
-                  <p>
-                    <Button type="primary" name="submit" onClick={this.submitFun.bind(this)}>提交</Button>
-                  </p>
-                </Form>
-              </Col>
-            </Row>
-          </div>
-            : <Layout className="layout">
+           {LoginIndexStore.getLoginStatus
+            ? <Layout className="layout">
 
               {/* 主页头部导航 */}
-              <OpHeader userName={this.username}/>
+              <OpHeader username={this.username}/>
 
               <Layout style={{minHeight: '100vh'}}>
                 {/* 主页左侧 menu 菜单 */}
@@ -101,7 +74,37 @@ class App extends Component {
                   <Layout><OpFooter/></Layout>
                 </Content>
               </Layout>
-            </Layout>}
+            </Layout>
+             : <div>
+               <img className="login-bg" src={loginbg}/>
+                <div className="login">
+               <Row>
+                 <Col span={10} offset={6}>
+                   <br/>
+                   <br/>
+                   <br/>
+                   <Form>
+                     <h2>用户登录</h2>
+                     <br/>
+                     <p style={{display: 'flex'}}>
+                       <span style={{width: '90px'}}>用户名：</span>
+                       <Input type="text" name="username" className="username" placeholder="请输入用户名" value={LoginIndexStore.getUserInfo.username} onChange={this.changeUsername.bind(this)} />
+                     </p>
+                     <br/>
+                     <p style={{display: 'flex'}}>
+                       <span style={{width: '90px'}}>密码：</span>
+                       <Input type="password" name="password" className="password" placeholder="请输入用户名" value={LoginIndexStore.getUserInfo.passWd} onChange={this.changePassword.bind(this)} />
+                     </p>
+                     <br/>
+                     <p style={{display: 'flex'}}>
+                       <Button style={{marginLeft: '198px'}} type="primary" name="submit" onClick={this.login.bind(this)}>登陆</Button>
+                     </p>
+                   </Form>
+                 </Col>
+               </Row>
+               </div>
+             </div>
+           }
         </Provider>
       )
   }

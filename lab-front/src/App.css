@@ -38,7 +38,7 @@
 .tail-logo {
     position: absolute;
     right: 2px;
-    width: 70px;
+    width: 135px;
     height: 50px;
     background: transparent;
     align-content: center;
@@ -52,4 +52,36 @@
     border-radius: 6px;
     margin-top: 12px;
     float: left;
+}
+
+.login{
+    position:relative;
+    z-index:100;
+    margin: 200px auto auto;
+    width:700px;
+    height:320px;
+    background:url(./images/login.png) center top no-repeat;
+}
+
+body{
+    position:fixed;
+    z-index:100;
+}
+
+html,body{
+    height: 100%;
+}
+
+.login-bg{
+    width: 100%;
+    height: 100%;
+    margin-top: -200px;
+    position: fixed;
+    z-index: -1;
+}
+
+
+.ant-form-horizontal{
+    margin-top: -45px;
+    margin-left: 30px;
 }
