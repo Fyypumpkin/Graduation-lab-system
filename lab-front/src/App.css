@@ -30,7 +30,8 @@
 
 .content-layout {
     padding: 24px;
-    background: rgb(255, 255, 255);
+    background: hsl(220, 25%, 95%);
+    /*background: rgb(255, 255, 255);*/
     min-height: 80%;
     overflow: auto;
 }

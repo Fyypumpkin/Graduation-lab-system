@@ -7,7 +7,7 @@ import { Route } from 'mobx-router'
 
 export default {
   PersonalInfo: new Route({
-    path: 'page/personalInfo',
+    path: '/page/personalInfo',
     component: <PersonalInfo />
   })
 }

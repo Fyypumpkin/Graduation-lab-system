@@ -70,7 +70,7 @@ class OpHeader extends React.Component {
             style={{lineHeight: '64px'}}
           >
             <Menu.Item key="payDash">
-              <a href="/" target="_self" style={{fontSize: '20px', color: '#E6A534'}}>实验室科研管理系统</a>
+              <a href="/" target="_self" style={{fontSize: '20px', color: '#E6A534'}}>test</a>
             </Menu.Item>
 
             <Dropdown overlay={menu}>
