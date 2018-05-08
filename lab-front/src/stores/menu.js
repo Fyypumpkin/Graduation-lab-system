@@ -31,7 +31,7 @@ const MenuList = [{
   items: [
     {id: '0501', title: '论文信息', icon: 'file-pdf', router: 'ThesisInfo'},
     {id: '0505', title: '论文管理', icon: 'file-pdf', router: 'ThesisInfo'},
-    {id: '0502', title: '著作权信息', icon: 'copyright', router: 'ThesisDisplay'},
+    {id: '0502', title: '著作权信息', icon: 'copyright', router: 'CopyrightInfo'},
     {id: '0503', title: '专利信息', icon: 'solution', router: 'Test'},
     {id: '0504', title: '获奖信息', icon: 'file-text', router: 'Test2'}
   ]

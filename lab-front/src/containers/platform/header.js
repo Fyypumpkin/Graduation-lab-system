@@ -61,7 +61,7 @@ class OpHeader extends React.Component {
       <Header className="header">
         <div className="header-div">
           <div className="logo" style={{display: 'flex'}}>
-            <img style={{width: '30px', height: '30px'}} src={image}/>
+            <img style={{width: '30px', height: '30px', borderRadius: '16px', background: 'white', marginTop: '4px'}} src={image}/>
           </div>
 
           <Menu

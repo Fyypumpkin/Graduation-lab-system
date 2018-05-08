@@ -3,6 +3,7 @@ import TestRouter from './test/test-router'
 import PersonalInfoRouter from './pages/personal-info-router.js'
 import AcademicRouter from './pages/academic-router'
 import ResultRouter from './pages/result-mng-router'
+import CopyrightRouter from './pages/copyright-info'
 
 export default Object.assign({}
-, IndexRouter, TestRouter, PersonalInfoRouter, AcademicRouter, ResultRouter)
+, IndexRouter, TestRouter, PersonalInfoRouter, AcademicRouter, ResultRouter, CopyrightRouter)

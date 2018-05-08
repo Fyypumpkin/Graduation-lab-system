@@ -9,6 +9,7 @@ import store from '../routers/store'
 import router from '../routers/router/router-all'
 import '../themes/pages/thesis-info.css'
 import DataStore from '../stores/store/result/thesis-info-store'
+import RoleStore from '../stores/store/common/role-store'
 
 const ThesisStore = new DataStore()
 
@@ -96,7 +97,7 @@ class ThesisInfo extends React.Component {
         renderItem={item => (
           <List.Item
             key={item.id}
-            // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+            actions={[RoleStore.getRoleType > 1 && <IconText type="setting" text="管理" />, RoleStore.getRoleType > 1 && <IconText type="delete" text="删除" />]}
             extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
           >
             <List.Item.Meta
