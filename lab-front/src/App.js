@@ -9,9 +9,10 @@ import OpHeader from './containers/platform/header'
 import OpMenus from './containers/platform/menus'
 import OpFooter from './containers/platform/footer'
 import './App.css'
-
-import LoginIndexStore from './stores/store/login/login-store'
+import Request from './util/request'
 import loginbg from './images/login-bg.jpg'
+import LoginIndexStore from './stores/store/login/login-store'
+import RoleStore from './stores/store/common/role-store'
 
 const {Content, Sider} = Layout
 startRouter(router, store)
@@ -24,6 +25,20 @@ class App extends Component {
     super(props)
     console.log('login')
     localStorage.getItem('status') === 'true' && LoginIndexStore.setLoginStatus(true)
+    Request.fetch({
+      url: '/check',
+      sentData: {},
+      handleSelf: true,
+      successFn (response) {
+        if (response.data === true) {
+          LoginIndexStore.setLoginStatus(true)
+          localStorage.setItem('status', 'true')
+        } else {
+          LoginIndexStore.setLoginStatus(false)
+          localStorage.setItem('status', 'false')
+        }
+      }
+    })
   }
   changeUsername (e) {
     LoginIndexStore.setUserInfo({
@@ -37,14 +52,26 @@ class App extends Component {
   }
   login () {
       // TODO 服务器登陆
+    Request.fetch({
+      url: '/login',
+      sentData: {
+        username: LoginIndexStore.getUserInfo.username,
+        passWd: LoginIndexStore.getUserInfo.passWd
+      },
+      handleSelf: true,
+      successFn (response) {
+        if (response.data instanceof Object && response.data.success) {
+          LoginIndexStore.setLoginStatus(true)
+          RoleStore.setRoleType(response.data.data.role)
+          localStorage.setItem('status', 'true')
+        } else {
+          LoginIndexStore.setLoginStatus(false)
+          message.error('登陆异常')
+        }
+      }
+    })
     console.log(LoginIndexStore.getUserInfo)
     console.log(localStorage.getItem('status'))
-    if (LoginIndexStore.getUserInfo.username === 'fuyaoyao') {
-      localStorage.setItem('status', 'true')
-      LoginIndexStore.setLoginStatus(true)
-    } else {
-      message.error('用户名和密码不匹配')
-    }
   }
     render () {
       return (

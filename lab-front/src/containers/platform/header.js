@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Dropdown, Icon, Input, Modal, Button, Form } from 'antd'
+import { Layout, Menu, Dropdown, Icon, Input, Modal, Button, Form, message } from 'antd'
 import {observer} from 'mobx-react'
 
 import '../../App.css'
@@ -9,6 +9,8 @@ import PersonalStore from '../../stores/store/personal/personal-info-store'
 import CommonStore from '../../stores/store/common/common-store'
 import store from '../../routers/store'
 import router from '../../routers/router/router-all'
+import Request from '../../util/request'
+import LoginIndexStore from '../../stores/store/login/login-store'
 
 const {Header} = Layout
 
@@ -41,8 +43,20 @@ const menu = (
 )
 
 function logout (name) {
-  localStorage.clear()
-  window.location.href = '/'
+  Request.fetch({
+    url: '/logout',
+    sentData: {},
+    handleSelf: true,
+    successFn (response) {
+      if (response.data instanceof Object && response.data.success) {
+        LoginIndexStore.setLoginStatus(false)
+        localStorage.clear()
+        window.location.href = '/'
+      } else {
+        message.error('退出异常')
+      }
+    }
+  })
   // TODO 服务器登出
 }
 
