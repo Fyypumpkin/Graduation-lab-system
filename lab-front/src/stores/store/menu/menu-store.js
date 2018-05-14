@@ -16,4 +16,4 @@ class MenuStore {
   }
 }
 
-export default MenuStore
+export default new MenuStore()

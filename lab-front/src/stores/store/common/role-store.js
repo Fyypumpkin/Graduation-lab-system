@@ -8,7 +8,7 @@ class RoleStore {
    * 3 2 1 超级管理员，普通管理员，普通人员
    * @type {string}
    */
-  @observable roleType = 2
+  @observable roleType = 0
 
   @action.bound
   setRoleType (type) {

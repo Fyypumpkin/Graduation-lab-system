@@ -37,17 +37,15 @@ public class ViewController {
             if (user.getLocked()) {
                 return ResultUtils.wrapFailure(500, "用户被锁定");
             }
-            DataResult<LoginDTO> dataResult = new DataResult<>();
-            dataResult.setData(new LoginDTO() {{
-                setUsername("username");
-                setRole(1);
-            }});
             session.setAttribute("username", username);
             session.setAttribute("user", user);
 
             UsernamePasswordToken token = new UsernamePasswordToken(username, passWd);
             subject.login(token);
-            return ResultUtils.wrapSuccess(dataResult);
+            return ResultUtils.wrapSuccess(new LoginDTO() {{
+                setUsername(username);
+                setRole(2);
+            }});
         } else {
             return ResultUtils.wrapFailure(500, "用户未注册");
         }

@@ -19,8 +19,7 @@ export default class Request {
       if (response.data.code === 110110) {
         LoginIndexStore.setLoginStatus(false)
         localStorage.setItem('status', 'false')
-        RoleStore.setRoleType('')
-        window.location.href = '/'
+        RoleStore.setRoleType(0)
       } else {
         if (handleSelf) {
           successFn(response)

@@ -9,10 +9,9 @@ import menusList from '../../stores/menu'
 import store from '../../routers/store'
 import router from '../../routers/router/router-all'
 import '../../themes/menu.css'
-import MenuStore from '../../stores/store/menu/menu-store'
+import menuStore from '../../stores/store/menu/menu-store'
 import CommonStore from '../../stores/store/common/common-store'
 
-const menuStore = new MenuStore()
 const {SubMenu} = Menu
 const menusMap = {}
 
@@ -22,7 +21,6 @@ const menusMap = {}
  */
 function handleOnMenuSelect ({key}) {
   let menu = menusMap[key]
-  console.log('select menu')
 
   menu &&
   store.router.goTo(

@@ -13,6 +13,7 @@ import Request from './util/request'
 import loginbg from './images/login-bg.jpg'
 import LoginIndexStore from './stores/store/login/login-store'
 import RoleStore from './stores/store/common/role-store'
+import menuStore from './stores/store/menu/menu-store'
 
 const {Content, Sider} = Layout
 startRouter(router, store)
@@ -50,7 +51,16 @@ class App extends Component {
       passWd: e.target.value
     })
   }
+  handleMenu (value) {
+    switch (value) {
+      case 2:
+            let menu = menuStore.getMenuList.slice()
+            menu[1].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'PersonalInfo'}
+            menuStore.setMenuList(menu)
+    }
+  }
   login () {
+      const that = this
       // TODO 服务器登陆
     Request.fetch({
       url: '/login',
@@ -63,7 +73,9 @@ class App extends Component {
         if (response.data instanceof Object && response.data.success) {
           LoginIndexStore.setLoginStatus(true)
           RoleStore.setRoleType(response.data.data.role)
+          that.handleMenu(response.data.data.role)
           localStorage.setItem('status', 'true')
+          console.log(RoleStore.getRoleType)
         } else {
           LoginIndexStore.setLoginStatus(false)
           message.error('登陆异常')
