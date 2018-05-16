@@ -10,6 +10,28 @@ class RoleStore {
    */
   @observable roleType = 0
 
+  @observable username = ''
+
+  @observable realname = ''
+
+  @action.bound
+  setRealname (realname) {
+    this.realname = realname
+  }
+
+  get getRealname () {
+    return this.realname
+  }
+
+  @action.bound
+  setUsername (username) {
+    this.username = username
+  }
+
+  get getUsername () {
+    return this.username
+  }
+
   @action.bound
   setRoleType (type) {
     this.roleType = type

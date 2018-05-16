@@ -38,12 +38,14 @@ public class ViewController {
                 return ResultUtils.wrapFailure(500, "用户被锁定");
             }
             session.setAttribute("username", username);
+            session.setAttribute("role", 2);
             session.setAttribute("user", user);
 
             UsernamePasswordToken token = new UsernamePasswordToken(username, passWd);
             subject.login(token);
             return ResultUtils.wrapSuccess(new LoginDTO() {{
                 setUsername(username);
+                setRealname("傅垚尧");
                 setRole(2);
             }});
         } else {
@@ -67,7 +69,14 @@ public class ViewController {
 
     @PostMapping("/check")
     @ResponseBody
-    public Boolean checkLogin() {
-        return SecurityUtils.getSubject().getSession().getAttribute("user") != null;
+    public DataResult checkLogin() {
+        if(SecurityUtils.getSubject().getSession().getAttribute("user") != null){
+            return ResultUtils.wrapSuccess(new LoginDTO(){{
+                setRealname("傅垚尧");
+                setUsername((String) (SecurityUtils.getSubject().getSession().getAttribute("username")));
+                setRole((Integer) (SecurityUtils.getSubject().getSession().getAttribute("role")));
+            }});
+        }
+        return ResultUtils.wrapFailure(500, "登陆检查失败");
     }
 }

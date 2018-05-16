@@ -20,20 +20,23 @@ startRouter(router, store)
 
 @observer
 class App extends Component {
-    username = '测试'
-    userId = 'test'
   constructor (props) {
     super(props)
-    console.log('login')
+    const that = this
     localStorage.getItem('status') === 'true' && LoginIndexStore.setLoginStatus(true)
     Request.fetch({
       url: '/check',
       sentData: {},
       handleSelf: true,
       successFn (response) {
-        if (response.data === true) {
+        if (response.data.success && response.data.data) {
           LoginIndexStore.setLoginStatus(true)
+          RoleStore.setRoleType(response.data.data.role)
+          RoleStore.setUsername(response.data.data.username)
+          RoleStore.setRealname(response.data.data.realname)
+          that.handleMenu(response.data.data.role)
           localStorage.setItem('status', 'true')
+          localStorage.setItem('username', response.data.data.username)
         } else {
           LoginIndexStore.setLoginStatus(false)
           localStorage.setItem('status', 'false')
@@ -55,7 +58,8 @@ class App extends Component {
     switch (value) {
       case 2:
             let menu = menuStore.getMenuList.slice()
-            menu[1].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'PersonalInfo'}
+            menu[0].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'PersonalInfo'}
+            menu[1].items[menu[1].items.length] = {id: '0499', title: '项目组信息管理', icon: 'copy', router: 'PersonalInfo'}
             menuStore.setMenuList(menu)
     }
   }
@@ -73,6 +77,9 @@ class App extends Component {
         if (response.data instanceof Object && response.data.success) {
           LoginIndexStore.setLoginStatus(true)
           RoleStore.setRoleType(response.data.data.role)
+          RoleStore.setUsername(response.data.data.username)
+          RoleStore.setRealname(response.data.data.realname)
+          localStorage.setItem('username', response.data.data.username)
           that.handleMenu(response.data.data.role)
           localStorage.setItem('status', 'true')
           console.log(RoleStore.getRoleType)
@@ -92,16 +99,15 @@ class App extends Component {
             ? <Layout className="layout">
 
               {/* 主页头部导航 */}
-              <OpHeader username={this.username}/>
+              <OpHeader username={RoleStore.getRealname}/>
 
               <Layout style={{minHeight: '100vh'}}>
                 {/* 主页左侧 menu 菜单 */}
                 <Sider
                   collapsible
                   collapsedWidth="0"
-                >{
-                  this.userId.length > 0 && <OpMenus userId={this.userId}/>
-                }
+                >
+                  <OpMenus/>
                 </Sider>
 
                 {/* 主页右侧内容 */}

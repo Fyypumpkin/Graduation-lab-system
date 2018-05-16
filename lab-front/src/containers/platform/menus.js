@@ -47,7 +47,7 @@ export default class SiderMenu extends React.Component {
     console.log(CommonStore.getNodeSpin)
     return (
       <Spin tip={'加载中...'} spinning={CommonStore.getNodeSpin.menuSpin} size="small" style={{marginTop: '50px'}}>
-        <Menu theme="dark" mode="inline" defaultOpenKeys={['01', '02', '04', '05', '06']} onSelect={handleOnMenuSelect}>
+        <Menu theme="dark" mode="inline" defaultOpenKeys={['02', '04', '05', '06']} onSelect={handleOnMenuSelect}>
           {menuStore.getMenuList.map(menu =>
             <SubMenu key={menu.id} title={<span><Icon key={menu.id + menu.icon} type={menu.icon}/>{menu.title}</span>}>
               {menu.items.map(menu =>

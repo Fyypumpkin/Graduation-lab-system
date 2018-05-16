@@ -10,6 +10,16 @@ public class LoginDTO {
     // 目前只有3种（超级管理员 3，管理员 3，普通用户 1）
     Integer role;
 
+    String realname;
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
     public String getUsername() {
         return username;
     }

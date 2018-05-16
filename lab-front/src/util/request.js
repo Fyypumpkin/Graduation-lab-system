@@ -10,6 +10,7 @@ export default class Request {
   static fetch (fetchObj) {
     let {successFn, sentData, url, handleSelf} = fetchObj
     url = 'http://' + window.location.host + url + '/'
+    console.log(url)
     return axios.post(
       url,
       sentData,

@@ -5,16 +5,37 @@ import React from 'react'
 import '../themes/pages/personal-info.css'
 import {Button, Input, Alert} from 'antd'
 import {observer} from 'mobx-react'
+import store from '../routers/store'
 import RoleStore from '../stores/store/common/role-store'
 
 import PersonalStore from '../stores/store/personal/personal-info-store'
+import Request from '../util/request'
 
 @observer
 class PersonalInfo extends React.Component {
   constructor () {
     super()
+    console.log('constructor')
+  }
+  componentDidMount () {
+    console.log('mount')
+    const params = {...store.router.params}
+    const username = params.username ? params.username : RoleStore.getUsername ? RoleStore.getUsername : localStorage.getItem('username')
+    console.log(username)
+    Request.fetch({
+      url: '/getPersonalInfo',
+      sentData: {
+        current: RoleStore.getUsername,
+        username: username,
+        role: RoleStore.getRoleType
+      },
+      successFn (response) {
+      // TODO 处理用户数据
+      }
+})
   }
   render () {
+    console.log(RoleStore.getUsername)
     return (<div>
       <Alert
         style={{marginLeft: 'auto', marginRight: 'auto', width: '800px', marginBottom: '20px'}}
