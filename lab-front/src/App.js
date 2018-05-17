@@ -58,9 +58,18 @@ class App extends Component {
     switch (value) {
       case 2:
             let menu = menuStore.getMenuList.slice()
-            menu[0].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'PersonalInfo'}
-            menu[1].items[menu[1].items.length] = {id: '0499', title: '项目组信息管理', icon: 'copy', router: 'PersonalInfo'}
+            menu[0].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'UserMng'}
+            menu[1].items[menu[1].items.length] = {id: '0498', title: '立项', icon: 'plus-circle-o', router: 'ProjectSetup'}
+            menu[1].items[menu[1].items.length] = {id: '0499', title: '项目组信息管理', icon: 'copy', router: 'ProjectGroupInfo'}
             menuStore.setMenuList(menu)
+            break
+      case 1:
+            let menu2 = menuStore.getMenuList.slice()
+            menu2[0].items[1] = {id: '0202', title: '成员信息管理', icon: 'user', router: 'UserMng'}
+            menu[1].items[menu[1].items.length] = {id: '0498', title: '立项', icon: 'plus-circle-o', router: 'ProjectSetup'}
+            menu2[1].items[menu[1].items.length] = {id: '0499', title: '项目组信息管理', icon: 'copy', router: 'ProjectGroupInfo'}
+            menuStore.setMenuList(menu)
+            break
     }
   }
   login () {

@@ -5,6 +5,8 @@ import React from 'react'
 import ThesisInfo from '../../../pages/thesis-info'
 import { Route } from 'mobx-router'
 import ThesisDisplay from '../../../pages/thesis-display'
+import PatentInfo from "../../../pages/patent-info";
+import WinningInfo from "../../../pages/winning-info";
 
 export default {
   ThesisInfo: new Route({
@@ -14,5 +16,13 @@ export default {
   ThesisDisplay: new Route({
     path: '/page/thesisDisplay',
     component: <ThesisDisplay/>
+  }),
+  PatentInfo: new Route({
+    path: '/page/patentInfo',
+    component: <PatentInfo/>
+  }),
+  WinningInfo: new Route({
+    path: '/page/winningInfo',
+    component: <WinningInfo/>
   })
 }

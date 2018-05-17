@@ -45,6 +45,7 @@ class ThesisInfo extends React.Component {
           ThesisStore.setArrowDir(ThesisStore.getArrowDir === 'down' ? 'up' : 'down')
           ThesisStore.setShowRetrieve(ThesisStore.getArrowDir === 'up')
         }}>高级检索 <Icon type={ThesisStore.getArrowDir} /></a>
+        <Button icon='plus-circle-o' style={{float: 'right'}}>论文录入</Button>
       </div>
       {ThesisStore.getShowRetrieve && <span>
         <Checkbox checked={ThesisStore.getAdvancedRetrieve.all} onChange={(e) => {

@@ -15,27 +15,37 @@ import Request from '../util/request'
 class PersonalInfo extends React.Component {
   constructor () {
     super()
-    console.log('constructor')
   }
   componentDidMount () {
-    console.log('mount')
     const params = {...store.router.params}
     const username = params.username ? params.username : RoleStore.getUsername ? RoleStore.getUsername : localStorage.getItem('username')
-    console.log(username)
-    Request.fetch({
-      url: '/getPersonalInfo',
-      sentData: {
-        current: RoleStore.getUsername,
-        username: username,
-        role: RoleStore.getRoleType
-      },
-      successFn (response) {
-      // TODO 处理用户数据
-      }
-})
+    console.log(username, RoleStore.getUsername, localStorage.getItem('username'), RoleStore.getRoleType)
+    if (params.username !== RoleStore.getUsername) {
+      RoleStore.getRoleType >= 1 && Request.fetch({
+        url: '/getPersonalInfo',
+        sentData: {
+          current: RoleStore.getUsername,
+          username: username,
+          role: RoleStore.getRoleType
+        },
+        successFn (response) {
+          // TODO 处理用户数据
+        }
+      })
+      RoleStore.getRoleType < 1 && Request.fetch({
+        url: '/getPersonalInfo',
+        sentData: {
+          current: RoleStore.getUsername,
+          username: RoleStore.getUsername,
+          role: RoleStore.getRoleType
+        },
+        successFn (response) {
+          // TODO 处理用户数据
+        }
+      })
+    }
   }
   render () {
-    console.log(RoleStore.getUsername)
     return (<div>
       <Alert
         style={{marginLeft: 'auto', marginRight: 'auto', width: '800px', marginBottom: '20px'}}
