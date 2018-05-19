@@ -24,14 +24,4 @@
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
 
-    <plugins>
-        <plugin interceptor="com.youzan.nova.framework.ibatis.SqlMonitorManager">
-            <property name="sql_monitor" value="true"/>
-            <!--&lt;!&ndash; sql完整是否打印 &ndash;&gt;-->
-            <property name="sql_show" value="true"/>
-            <!--&lt;!&ndash; sql时延的阈值,超过会打印error日志数据 &ndash;&gt;-->
-            <property name="overtime_print_error" value="300"/>
-        </plugin>
-    </plugins>
-
 </configuration>

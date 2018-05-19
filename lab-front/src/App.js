@@ -14,6 +14,7 @@ import loginbg from './images/login-bg.jpg'
 import LoginIndexStore from './stores/store/login/login-store'
 import RoleStore from './stores/store/common/role-store'
 import menuStore from './stores/store/menu/menu-store'
+import CommonStore from './stores/store/common/common-store'
 
 const {Content, Sider} = Layout
 startRouter(router, store)
@@ -33,10 +34,11 @@ class App extends Component {
           LoginIndexStore.setLoginStatus(true)
           RoleStore.setRoleType(response.data.data.role)
           RoleStore.setUsername(response.data.data.username)
-          RoleStore.setRealname(response.data.data.realname)
+          RoleStore.setRealname(response.data.data.realName)
           that.handleMenu(response.data.data.role)
           localStorage.setItem('status', 'true')
           localStorage.setItem('username', response.data.data.username)
+          localStorage.setItem('role', response.data.data.role)
         } else {
           LoginIndexStore.setLoginStatus(false)
           localStorage.setItem('status', 'false')
@@ -74,7 +76,9 @@ class App extends Component {
   }
   login () {
       const that = this
-      // TODO 服务器登陆
+    CommonStore.setNodeSpin({
+      login: true
+    })
     Request.fetch({
       url: '/login',
       sentData: {
@@ -87,15 +91,19 @@ class App extends Component {
           LoginIndexStore.setLoginStatus(true)
           RoleStore.setRoleType(response.data.data.role)
           RoleStore.setUsername(response.data.data.username)
-          RoleStore.setRealname(response.data.data.realname)
+          RoleStore.setRealname(response.data.data.realName)
           localStorage.setItem('username', response.data.data.username)
+          localStorage.setItem('role', response.data.data.role)
           that.handleMenu(response.data.data.role)
           localStorage.setItem('status', 'true')
           console.log(RoleStore.getRoleType)
         } else {
           LoginIndexStore.setLoginStatus(false)
-          message.error('登陆异常')
+          message.error(response.data.message ? response.data.message : '登录异常')
         }
+        CommonStore.setNodeSpin({
+          login: false
+        })
       }
     })
     console.log(LoginIndexStore.getUserInfo)
@@ -151,7 +159,7 @@ class App extends Component {
                      </p>
                      <br/>
                      <p style={{display: 'flex'}}>
-                       <Button style={{marginLeft: '198px'}} type="primary" name="submit" onClick={this.login.bind(this)}>登陆</Button>
+                       <Button style={{marginLeft: '198px'}} type="primary" name="submit" onClick={this.login.bind(this)} loading={CommonStore.getNodeSpin.login}>登陆</Button>
                      </p>
                    </Form>
                  </Col>

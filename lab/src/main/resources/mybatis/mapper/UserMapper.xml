@@ -23,8 +23,16 @@
         (username,sex,real_name,college,phone,locked,role,pass_wd)
     </sql>
 
-    <insert id="insertUser" parameterType="cn.fyypumpkin.manage.lab.entity.User"
-            useGeneratedKeys="true" keyProperty="id">
+
+    <sql id="allCols">
+        id, username,sex,real_name,college,phone,locked,role,pass_wd
+    </sql>
+
+
+    <!--返回插入记录id-->
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+
+    <insert id="insertUser" parameterType="cn.fyypumpkin.manage.lab.entity.User">
         INSERT INTO
         <include refid="table"/>
         <include refid="insertCol"/>
@@ -40,6 +48,49 @@
         )
 
     </insert>
+
+    <select id="getUserByUsername" resultMap="BaseResultMap">
+        SELECT
+        <include refid="allCols"/>
+        from
+        <include refid="table"/>
+        WHERE 1=1 AND username=#{username}
+    </select>
+
+    <update id="changePassWd">
+        UPDATE
+        <include refid="table"/>
+        set pass_wd=#{passWd}
+        where username=#{username}
+    </update>
+
+    <select id="getUserList" resultMap="BaseResultMap">
+        select
+        <include refid="allCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="realName != null">
+            and real_name LIKE CONCAT(CONCAT('%', #{realName}), '%')
+        </if>
+        order by id DESC limit #{offset},#{pageSize}
+    </select>
+
+    <select id="userListCount" resultType="int">
+        select count(*) from
+        <include refid="table"/>
+        where 1=1
+        <if test="realName != null">
+            and real_name=#{realName}
+        </if>
+    </select>
+
+    <update id="modifyUser">
+        UPDATE
+        <include refid="table"/>
+        set real_name=#{user.realName},college=#{user.college},sex=#{user.sex},phone=#{user.phone}
+        where username=#{user.username}
+    </update>
 
 
 </mapper>

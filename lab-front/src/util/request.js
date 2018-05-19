@@ -5,12 +5,14 @@ import axios from 'axios'
 import Reminder from './notification'
 import LoginIndexStore from '../stores/store/login/login-store'
 import RoleStore from '../stores/store/common/role-store'
+import CommonStore from '../stores/store/common/common-store'
 
 export default class Request {
   static fetch (fetchObj) {
     let {successFn, sentData, url, handleSelf} = fetchObj
     url = 'http://' + window.location.host + url + '/'
     console.log(url)
+    console.log(sentData)
     return axios.post(
       url,
       sentData,
@@ -42,6 +44,7 @@ export default class Request {
             break
         }
       }
+      CommonStore.reset()
       Reminder.openNotification('内部错误', errorMsg, false, 'error')
     })
   }

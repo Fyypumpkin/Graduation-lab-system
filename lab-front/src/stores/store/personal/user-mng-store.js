@@ -3,13 +3,6 @@
  */
 import {observable, action} from 'mobx'
 
-const listData = []
-for (let i = 0; i < 5; i++) {
-  listData.push({
-    title: `ant design part ${i}`,
-    username: `fuyaoyao ${i}`
-  })
-}
 class UserMngStore {
   @observable modalData = {
     visible: false,
@@ -25,7 +18,13 @@ class UserMngStore {
 
   @observable searchValue = {}
 
-  @observable data = listData
+  @observable pageInfo = {
+    page: 1,
+    pageSize: 10,
+    total: 0
+  }
+
+  @observable data = []
 
   @action.bound
   setUserInfo (userInfo) {
@@ -58,6 +57,18 @@ class UserMngStore {
 
   get getSearchValue () {
     return this.searchValue
+  }
+
+  @action.bound
+  setPageInfo (pageInfo) {
+    this.pageInfo = {
+      ...this.pageInfo,
+      ...pageInfo
+    }
+  }
+
+  get getPageInfo () {
+    return this.pageInfo
   }
 
   @action.bound

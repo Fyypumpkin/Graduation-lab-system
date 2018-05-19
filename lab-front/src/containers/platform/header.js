@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Dropdown, Icon, Input, Modal, Button, Form, message } from 'antd'
+import {Layout, Menu, Dropdown, Icon, Input, Modal, Button, Form, message} from 'antd'
 import {observer} from 'mobx-react'
 
 import '../../App.css'
@@ -23,7 +23,7 @@ const menu = (
     <Menu.Item key="1">
       <Icon type="setting" style={{marginRight: '10px', marginLeft: '10px'}}/>
       <a onClick={() => {
-      PersonalStore.setModalVisible(true)
+        PersonalStore.setModalVisible(true)
       }} style={{display: 'inline-block'}}>密码修改</a>
     </Menu.Item>
     <Menu.Item key="2">
@@ -32,7 +32,7 @@ const menu = (
         store.router.goTo(router.PersonalInfo)
       }} style={{display: 'inline-block'}}>个人信息</a>
     </Menu.Item>
-    <Menu.Divider />
+    <Menu.Divider/>
     <Menu.Item key="3">
       <Icon type="logout" style={{marginRight: '10px', marginLeft: '10px'}}/>
       <a onClick={() => {
@@ -42,12 +42,12 @@ const menu = (
   </Menu>
 )
 
-function logout (name) {
+function logout(name) {
   Request.fetch({
     url: '/logout',
     sentData: {},
     handleSelf: true,
-    successFn (response) {
+    successFn(response) {
       if (response.data instanceof Object && response.data.success) {
         LoginIndexStore.setLoginStatus(false)
         localStorage.clear()
@@ -60,9 +60,31 @@ function logout (name) {
   // TODO 服务器登出
 }
 
+function changePassWd () {
+  Request.fetch({
+    url: '/changePassWd',
+    sentData: {
+      oldPassWd: PersonalStore.getModalData.oldPassWd,
+      newPassWd: PersonalStore.getModalData.newPassWd
+    },
+    handleSelf: true,
+    successFn (response) {
+      if (!response.data.success) {
+        message.error(response.data.message)
+      } else {
+        message.success('修改成功')
+        PersonalStore.setModalVisible(false)
+      }
+      CommonStore.setNodeSpin({
+        personalBtn: false
+      })
+    }
+  })
+}
+
 @observer
 class OpHeader extends React.Component {
-  render () {
+  render() {
     const formItemLayout = {
       labelCol: {
         span: 5
@@ -75,7 +97,8 @@ class OpHeader extends React.Component {
       <Header className="header">
         <div className="header-div">
           <div className="logo" style={{display: 'flex'}}>
-            <img style={{width: '30px', height: '30px', borderRadius: '16px', background: 'white', marginTop: '4px'}} src={image}/>
+            <img style={{width: '30px', height: '30px', borderRadius: '16px', background: 'white', marginTop: '4px'}}
+                 src={image}/>
           </div>
 
           <Menu
@@ -91,7 +114,7 @@ class OpHeader extends React.Component {
               <div className="tail-logo">
                 <span style={{fontSize: '16px'}}>
                   欢迎 &nbsp;{this.props.username}
-                    <Icon type="setting" style={{marginLeft: '10px', cursor: 'pointer'}}/>
+                  <Icon type="setting" style={{marginLeft: '10px', cursor: 'pointer'}}/>
                 </span>
               </div>
             </Dropdown>
@@ -113,9 +136,10 @@ class OpHeader extends React.Component {
             }}>取消</Button>,
             <Button loading={CommonStore.getNodeSpin.personalBtn} key="submit"
                     type="primary" size="large" onClick={() => {
-                      CommonStore.setNodeSpin({
-                        personalBtn: true
-                      })
+              CommonStore.setNodeSpin({
+                personalBtn: true
+              })
+              changePassWd()
             }}>
               确认修改
             </Button>
@@ -124,10 +148,18 @@ class OpHeader extends React.Component {
 
           <Form style={{marginTop: '20px'}}>
             <Form.Item label="当前密码" {...formItemLayout}>
-              <Input placeholder='当前密码'/>
+              <Input type="password" value={PersonalStore.getModalData.oldPassWd} onChange={(e) => {
+                PersonalStore.setModalData({
+                  oldPassWd: e.target.value
+                })
+              }} placeholder='当前密码'/>
             </Form.Item>
             <Form.Item label="新密码" {...formItemLayout}>
-              <Input placeholder='新密码'/>
+              <Input type="password" value={PersonalStore.getModalData.newPassWd} onChange={(e) => {
+                PersonalStore.setModalData({
+                  newPassWd: e.target.value
+                })
+              }} placeholder='新密码'/>
             </Form.Item>
           </Form>
 

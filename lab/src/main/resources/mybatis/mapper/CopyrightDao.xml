@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.CopyrightDao">
+
+
+    <resultMap id="CopyrightList" type="cn.fyypumpkin.manage.lab.dto.CopyrightListDTO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="all_name" property="allName"/>
+        <result column="usage" property="usage"/>
+    </resultMap>
+
+    <resultMap id="Origin" type="cn.fyypumpkin.manage.lab.entity.Origin">
+        <id column="id" property="id"/>
+        <result column="origin_key" property="originKey"/>
+        <result column="real_name" property="realName"/>
+        <result column="country" property="country"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <resultMap id="Extend" type="cn.fyypumpkin.manage.lab.entity.Extend">
+        <id column="id" property="id"/>
+        <result column="origin_key" property="originKey"/>
+        <result column="real_name" property="realName"/>
+        <result column="country" property="country"/>
+        <result column="address" property="address"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <resultMap id="CopyrightInfo" type="cn.fyypumpkin.manage.lab.entity.Copyright">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="all_name" property="allName"/>
+        <result column="usage" property="usage"/>
+        <result column="range" property="range"/>
+        <result column="version" property="version"/>
+        <result column="simple_name" property="simpleName"/>
+        <result column="sort_no" property="sortNo"/>
+        <result column="complete_time" property="completeTime"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="dev_type" property="devType"/>
+        <result column="origin_key" property="originKey"/>
+        <result column="extend_key" property="extendKey"/>
+        <result column="apply_username" property="applyUsername"/>
+        <result column="apply_phone" property="applyPhone"/>
+        <result column="apply_address" property="applyAddress"/>
+        <result column="apply_postcode" property="applyPostcode"/>
+        <result column="apply_id_no" property="applyIdNo"/>
+        <result column="apply_mail" property="applyMail"/>
+        <result column="apply_fax" property="applyFax"/>
+        <result column="extend_username" property="extendUsername"/>
+        <result column="extend_phone" property="extendPhone"/>
+        <result column="extend_address" property="extendAddress"/>
+        <result column="extend_postcode" property="extendPostcode"/>
+        <result column="extend_id_no" property="extendIdNo"/>
+        <result column="extend_mail" property="extendMail"/>
+        <result column="extend_fax" property="extendFax"/>
+    </resultMap>
+
+
+    <sql id="CopyrightListCols">
+        `id`,`username`,`all_name`, `usage`
+    </sql>
+
+    <sql id="copyright">
+        copyright
+    </sql>
+    <sql id="origin">
+        origin
+    </sql>
+    <sql id="extend">
+        extend
+    </sql>
+
+    <select id="getCopyrightList" resultMap="CopyrightList">
+        select
+        <include refid="CopyrightListCols"/>
+        from
+        <include refid="copyright"/>
+        where 1=1
+        <if test="request.username != null">
+            and username=#{request.username}
+        </if>
+        <if test="request.allName != null">
+            and all_name=#{request.allName}
+        </if>
+        order by id desc limit #{offset}, #{pageSize}
+
+    </select>
+
+    <select id="copyrightListCount" resultType="int">
+        select count(*) from
+        <include refid="copyright"/>
+        where 1=1
+        <if test="request.username != null">
+            and username=#{request.username}
+        </if>
+        <if test="request.username != null">
+            and all_name=#{request.allName}
+        </if>
+    </select>
+
+    <select id="getCopyrightById" resultMap="CopyrightInfo">
+        select * from
+        <include refid="copyright"/>
+        where id=#{id}
+    </select>
+
+    <select id="getOriginsByKey" resultMap="Origin">
+        select * from
+        <include refid="origin"/>
+        where origin_key=#{key}
+    </select>
+
+    <select id="getExtendsByKey" resultMap="Extend">
+        select * from
+        <include refid="extend"/>
+        where extend_key=#{key}
+    </select>
+</mapper>

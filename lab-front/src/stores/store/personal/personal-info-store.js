@@ -5,19 +5,19 @@ import { observable, action } from 'mobx'
 
 class PersonalStore {
   @observable modalVisible = false
-  @observable modalData = []
+  @observable modalData = {}
   @observable editable = {
     info1: false,
     info2: false
   }
   @observable personalInfo = {
-    name: '1',
-    sex: '2',
-    phone: '3',
-    college: '4',
-    team: 'team',
-    direction: 'direction',
-    userGroup: 'user-group'
+    name: '',
+    sex: '',
+    phone: '',
+    college: '',
+    team: '默认团队',
+    direction: '无',
+    userGroup: '无'
   }
 
   @action.bound
@@ -55,7 +55,10 @@ class PersonalStore {
 
   @action.bound
   setModalData (modalData) {
-    this.modalData = modalData
+    this.modalData = {
+      ...this.modalData,
+      ...modalData
+    }
   }
 
   get getModalData () {

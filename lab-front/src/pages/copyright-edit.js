@@ -40,8 +40,10 @@ class CopyrightEdit extends React.Component {
     localStorage.setItem('copyEditstatus', status)
     console.log(status, copyEditId)
     Request.fetch({
-      url: '',
-      sentData: {},
+      url: '/getCopyrightInfo',
+      sentData: {
+        id: copyEditId
+      },
       successFn (response) {}
     })
   }

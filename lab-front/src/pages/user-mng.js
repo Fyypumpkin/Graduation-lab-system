@@ -2,7 +2,7 @@
  * @author fyypumpkin on 2018/5/16.
  */
 import React from 'react'
-import {Input, Button, Modal, List, Row, Col, Select, Alert} from 'antd'
+import {Input, Button, Modal, List, Row, Col, Select, Alert, message} from 'antd'
 import {observer} from 'mobx-react'
 
 import RoleStore from '../stores/store/common/role-store'
@@ -17,17 +17,59 @@ const UserStore = new DataStore()
 
 @observer
 class UserMng extends React.Component {
-  handleCancel () {
+  constructor() {
+    super()
+    UserMng.doQuery(UserStore.getSearchValue, UserStore.getPageInfo)
+  }
+
+  handleCancel() {
     console.log('处理modal关闭取消')
     UserStore.resetModalData()
   }
-  render () {
+
+  static doQuery(searchValue, pageInfo) {
+    CommonStore.setNodeSpin({
+      userList: true
+    })
+    Request.fetch({
+      url: '/getUserList',
+      sentData: {
+        page: pageInfo.page,
+        pageSize: pageInfo.pageSize,
+        realName: searchValue.name
+      },
+      successFn(response) {
+        let data = []
+        response.data.data instanceof Array && response.data.data.map(item => {
+          data.push({
+            title: item.realName,
+            phone: item.phone,
+            college: item.college,
+            username: item.username
+          })
+        })
+        UserStore.setPageInfo({
+          page: response.data.pageInfo.page,
+          total: response.data.pageInfo.totalNum
+        })
+        UserStore.setData(data)
+        CommonStore.setNodeSpin({
+          userList: false
+        })
+      }
+    })
+  }
+
+  render() {
     return (<div className='user-mng'>
       {RoleStore.getRoleType >= 1 ? <div>
-        <Input.Search style={{width: '300px', marginBottom: '20px'}} value={UserStore.getSearchValue.name} onChange={(e) => {
-          UserStore.setSearchValue({
-            name: e.target.value
-          })
+        <Input.Search style={{width: '300px', marginBottom: '20px'}} value={UserStore.getSearchValue.name}
+                      onChange={(e) => {
+                        UserStore.setSearchValue({
+                          name: e.target.value
+                        })
+                      }} onSearch={() => {
+          UserMng.doQuery(UserStore.getSearchValue, UserStore.getPageInfo)
         }} placeholder='输入成员信息，回车检索'/>
         <Button icon='upload' style={{float: 'right'}} onClick={() => {
           UserStore.setModalData({
@@ -35,6 +77,17 @@ class UserMng extends React.Component {
           })
         }}>新增成员</Button>
         <List
+          pagination={{
+            pageSize: UserStore.getPageInfo.pageSize,
+            total: UserStore.getPageInfo.total,
+            currentPage: UserStore.getPageInfo.page,
+            onChange: (page) => {
+              UserStore.setPageInfo({
+                page: page
+              })
+              UserMng.doQuery(UserStore.getSearchValue, UserStore.getPageInfo)
+            }
+          }}
           className="demo-loadmore-list"
           loading={CommonStore.getNodeSpin.userList}
           itemLayout="horizontal"
@@ -47,9 +100,9 @@ class UserMng extends React.Component {
                 title={<a onClick={() => {
                   store.router.goTo(router.PersonalInfo, {username: item.username})
                 }}>{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                description={'学院：' + item.college}
               />
-              <div>content</div>
+              <div>{'联系方式：' + item.phone}</div>
             </List.Item>
           )}
         />
@@ -81,7 +134,20 @@ class UserMng extends React.Component {
                       Request.fetch({
                         url: '/register',
                         sentData: sentData,
-                        successFn (response) {}
+                        handleSelf: true,
+                        successFn(response) {
+                          CommonStore.setNodeSpin({
+                            userAddBtn: false
+                          })
+                          if (response.data.success) {
+                            message.success('添加成功')
+                            UserStore.setModalData({
+                              visible: false
+                            })
+                          } else {
+                            message.error(response.data.message)
+                          }
+                        }
                       })
                     }}>
               保存
@@ -101,7 +167,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-              <h4>姓名</h4>
+                <h4>姓名</h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.realName} onChange={(e) => {
@@ -111,20 +177,20 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-              <h4>性别</h4>
+                <h4>性别</h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
-               <Select value={UserStore.getModalData.sex} onSelect={(value) => {
-                 UserStore.setModalData({
-                   sex: value
-                 })
-               }}>
-                 <Select.Option value={'1'}>男</Select.Option>
-                 <Select.Option value={'2'}>女</Select.Option>
-               </Select>
+                <Select value={UserStore.getModalData.sex} onSelect={(value) => {
+                  UserStore.setModalData({
+                    sex: value
+                  })
+                }}>
+                  <Select.Option value={'1'}>男</Select.Option>
+                  <Select.Option value={'2'}>女</Select.Option>
+                </Select>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-              <h4>所在学院</h4>
+                <h4>所在学院</h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.college} onChange={(e) => {
@@ -134,7 +200,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-              <h4>联系电话</h4>
+                <h4>联系电话</h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.phone} onChange={(e) => {
@@ -152,9 +218,9 @@ class UserMng extends React.Component {
                     userType: value
                   })
                 }}>
-                  <Select.Option value={'1'}>普通成员</Select.Option>
-                  <Select.Option value={'2'}>普通管理员</Select.Option>
-                  <Select.Option value={'3'}>超级管理员</Select.Option>
+                  <Select.Option value={'0'}>普通成员</Select.Option>
+                  <Select.Option value={'1'}>普通管理员</Select.Option>
+                  <Select.Option value={'2'}>超级管理员</Select.Option>
                 </Select>
               </Col>
               <Col span={20}>
