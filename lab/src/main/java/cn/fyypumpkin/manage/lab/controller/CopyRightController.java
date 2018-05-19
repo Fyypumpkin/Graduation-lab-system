@@ -60,7 +60,6 @@ public class CopyRightController {
             dataResult.setSuccess(false);
             dataResult.setMessage("读取信息失败");
         }
-
         return dataResult;
     }
 }
