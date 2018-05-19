@@ -13,11 +13,12 @@ for (let i = 0; i < 5; i++) {
 class UserMngStore {
   @observable modalData = {
     visible: false,
-    sex: 'M',
+    sex: '1',
     phone: '',
     username: '',
     realName: '',
-    college: ''
+    college: '',
+    userType: '1'
   }
 
   @observable userInfo = {}

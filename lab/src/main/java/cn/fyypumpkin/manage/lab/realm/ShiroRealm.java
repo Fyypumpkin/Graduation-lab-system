@@ -7,6 +7,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import java.util.Collections;
+
 /**
  * @author fyypumpkin on 2018/5/14.
  */
@@ -17,9 +19,8 @@ public class ShiroRealm extends AuthorizingRealm {
         String username = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         // TODO 数据库获取用户权限角色信息
-        User<String> user = new User<>();
-        authorizationInfo.setRoles(user.getRoles());
-        authorizationInfo.setStringPermissions(user.getPermissions());
+        User user = new User();
+        authorizationInfo.setRoles(Collections.singleton(String.valueOf(user.getRole())));
         System.out.println("Shiro授权");
         return authorizationInfo;
     }

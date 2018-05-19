@@ -10,15 +10,7 @@ public class LoginDTO {
     // 目前只有3种（超级管理员 3，管理员 3，普通用户 1）
     Integer role;
 
-    String realname;
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
+    String realName;
 
     public String getUsername() {
         return username;
@@ -34,5 +26,13 @@ public class LoginDTO {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }

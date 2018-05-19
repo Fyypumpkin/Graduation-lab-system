@@ -11,6 +11,7 @@ import router from '../routers/router/router-all'
 import store from '../routers/store'
 import CommonStore from '../stores/store/common/common-store'
 import DataStore from '../stores/store/personal/user-mng-store'
+import Request from '../util/request'
 
 const UserStore = new DataStore()
 
@@ -69,6 +70,19 @@ class UserMng extends React.Component {
                       CommonStore.setNodeSpin({
                         userAddBtn: true
                       })
+                      const sentData = {
+                        username: UserStore.getModalData.username,
+                        realName: UserStore.getModalData.realName,
+                        sex: parseInt(UserStore.getModalData.sex),
+                        college: UserStore.getModalData.college,
+                        phone: UserStore.getModalData.phone,
+                        userType: parseInt(UserStore.getModalData.userType)
+                      }
+                      Request.fetch({
+                        url: '/register',
+                        sentData: sentData,
+                        successFn (response) {}
+                      })
                     }}>
               保存
             </Button>
@@ -105,8 +119,8 @@ class UserMng extends React.Component {
                    sex: value
                  })
                }}>
-                 <Select.Option value={'M'}>男</Select.Option>
-                 <Select.Option value={'F'}>女</Select.Option>
+                 <Select.Option value={'1'}>男</Select.Option>
+                 <Select.Option value={'2'}>女</Select.Option>
                </Select>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
@@ -128,6 +142,20 @@ class UserMng extends React.Component {
                     phone: e.target.value
                   })
                 }}/>
+              </Col>
+              <Col span={8} style={{textAlign: 'right'}}>
+                <h4>成员类型</h4>
+              </Col>
+              <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+                <Select value={UserStore.getModalData.userType} onSelect={(value) => {
+                  UserStore.setModalData({
+                    userType: value
+                  })
+                }}>
+                  <Select.Option value={'1'}>普通成员</Select.Option>
+                  <Select.Option value={'2'}>普通管理员</Select.Option>
+                  <Select.Option value={'3'}>超级管理员</Select.Option>
+                </Select>
               </Col>
               <Col span={20}>
                 <Alert

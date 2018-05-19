@@ -28,7 +28,7 @@ public class ViewController {
         String passWd = request.getPassWd();
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
-        User<String> user = new User<>();
+        User user = new User();
         user.setUsername(username);
         user.setPassWd(passWd);
         user.setLocked(false);
@@ -45,7 +45,7 @@ public class ViewController {
             subject.login(token);
             return ResultUtils.wrapSuccess(new LoginDTO() {{
                 setUsername(username);
-                setRealname("傅垚尧");
+                setRealName("傅垚尧");
                 setRole(2);
             }});
         } else {
@@ -72,7 +72,7 @@ public class ViewController {
     public DataResult checkLogin() {
         if(SecurityUtils.getSubject().getSession().getAttribute("user") != null){
             return ResultUtils.wrapSuccess(new LoginDTO(){{
-                setRealname("傅垚尧");
+                setRealName("傅垚尧");
                 setUsername((String) (SecurityUtils.getSubject().getSession().getAttribute("username")));
                 setRole((Integer) (SecurityUtils.getSubject().getSession().getAttribute("role")));
             }});
