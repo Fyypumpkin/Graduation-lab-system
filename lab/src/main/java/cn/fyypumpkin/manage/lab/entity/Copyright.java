@@ -3,6 +3,7 @@ package cn.fyypumpkin.manage.lab.entity;
 public class Copyright {
     private Integer id;
     private String range;
+    private String power;
     private String allName;
     private String username;
     private String simpleName;
@@ -28,6 +29,23 @@ public class Copyright {
     private String extendIdNo;
     private String extendMail;
     private String extendFax;
+    private String attUrl;
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
+    public String getAttUrl() {
+        return attUrl;
+    }
+
+    public void setAttUrl(String attUrl) {
+        this.attUrl = attUrl;
+    }
 
     public Integer getId() {
         return id;

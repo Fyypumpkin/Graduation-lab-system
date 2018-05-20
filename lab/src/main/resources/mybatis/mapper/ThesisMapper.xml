@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.ThesisDao">
+
+    <resultMap id="BaseResultMap" type="cn.fyypumpkin.manage.lab.entity.Thesis">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="first_author" property="firstAuthor"/>
+        <result column="tele_author" property="teleAuthor"/>
+        <result column="journal_name" property="journalName"/>
+        <result column="journal_type" property="journalType"/>
+        <result column="journal_from" property="journalFrom"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="prove" property="prove"/>
+        <result column="journal_source" property="journalSource"/>
+    </resultMap>
+
+    <sql id="table">
+        thesis
+    </sql>
+
+    <sql id="insertCol">
+        (username,sex,real_name,college,phone,locked,role,pass_wd)
+    </sql>
+
+
+    <sql id="allCols">
+        id, username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source
+    </sql>
+
+
+    <!--返回插入记录id-->
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+
+    <select id="getThesisList" resultMap="BaseResultMap">
+        select
+        <include refid="allCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.username != null">
+            and username=#{request.username}
+        </if>
+        <if test="request.name != null">
+            and name LIKE CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.journalType != null">
+            and journal_type=#{request.journalType}
+        </if>
+        <if test="request.journalFrom != null">
+            and journal_from in
+            <foreach collection="request.journalFrom" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </if>
+        order by id desc limit #{offset},#{pageSize}
+    </select>
+
+    <select id="thesisListCount" resultType="int">
+        select count(*) from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.username != null">
+            and username=#{request.username}
+        </if>
+        <if test="request.name != null">
+            and name LIKE CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.journalType != null">
+            and journal_type=#{request.journalType}
+        </if>
+        <if test="request.journalFrom != null">
+            and journal_from in
+            <foreach collection="request.journalFrom" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getThesisInfo" resultMap="BaseResultMap">
+        select * from
+        <include refid="table"/>
+        where id=#{id}
+    </select>
+
+    <update id="modifyThesisInfo">
+        update <include refid="table"/>
+        set username=#{request.username},
+        name=#{request.name},
+        first_author=#{request.firstAuthor},
+        tele_author=#{request.teleAuthor},
+        journal_name=#{request.journalName},
+        publish_time=#{request.publishTime},
+        journal_type=#{request.journalType},
+        journal_from=#{request.journalFrom},
+        prove=#{request.prove},
+        journal_source=#{request.journalSource}
+        where id=#{request.id}
+    </update>
+
+</mapper>

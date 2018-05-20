@@ -2,7 +2,7 @@ package cn.fyypumpkin.manage.lab.entity;
 
 public class Extend {
     private Integer id;
-    private String originKey;
+    private String extendKey;
     private String realName;
     private String country;
     private String address;
@@ -16,12 +16,12 @@ public class Extend {
         this.id = id;
     }
 
-    public String getOriginKey() {
-        return originKey;
+    public String getExtendKey() {
+        return extendKey;
     }
 
-    public void setOriginKey(String originKey) {
-        this.originKey = originKey;
+    public void setExtendKey(String extendKey) {
+        this.extendKey = extendKey;
     }
 
     public String getRealName() {

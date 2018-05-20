@@ -35,9 +35,10 @@ public class CopyrightRepository {
 
         return new CopyrightDTO(){{
             setId(copyright.getId());
-            setUsage(copyright.getUsername());
+            setUsername(copyright.getUsername());
             setAllName(copyright.getAllName());
             setRange(copyright.getRange());
+            setPower(copyright.getPower());
             setSimpleName(copyright.getSimpleName());
             setSortNo(copyright.getSortNo());
             setCompleteTime(copyright.getCompleteTime());
@@ -61,6 +62,7 @@ public class CopyrightRepository {
             setExtendIdNo(copyright.getExtendIdNo());
             setExtendMail(copyright.getExtendMail());
             setExtendFax(copyright.getExtendFax());
+            setAttUrl(copyright.getAttUrl());
         }};
     }
 }

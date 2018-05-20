@@ -1,7 +1,6 @@
 package cn.fyypumpkin.manage.lab.controller;
 
 import cn.fyypumpkin.manage.lab.dto.CopyrightListDTO;
-import cn.fyypumpkin.manage.lab.dto.UserDTO;
 import cn.fyypumpkin.manage.lab.lib.result.DataResult;
 import cn.fyypumpkin.manage.lab.lib.result.PageInfo;
 import cn.fyypumpkin.manage.lab.lib.result.PageResult;

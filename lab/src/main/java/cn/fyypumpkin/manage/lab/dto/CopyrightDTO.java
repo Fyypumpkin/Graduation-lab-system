@@ -10,6 +10,7 @@ public class CopyrightDTO {
     private String username;
     private String allName;
     private String range;
+    private String power;
     private String simpleName;
     private String sortNo;
     private String completeTime;
@@ -33,6 +34,23 @@ public class CopyrightDTO {
     private String extendIdNo;
     private String extendMail;
     private String extendFax;
+    private String attUrl;
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
+    public String getAttUrl() {
+        return attUrl;
+    }
+
+    public void setAttUrl(String attUrl) {
+        this.attUrl = attUrl;
+    }
 
     public Integer getId() {
         return id;

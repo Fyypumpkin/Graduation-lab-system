@@ -157,7 +157,7 @@ class UserMng extends React.Component {
           <div>
             <Row>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>用户名(用于登陆)</h4>
+                <h4>用户名(用于登陆)<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.username} onChange={(e) => {
@@ -167,7 +167,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>姓名</h4>
+                <h4>姓名<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.realName} onChange={(e) => {
@@ -177,7 +177,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>性别</h4>
+                <h4>性别<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Select value={UserStore.getModalData.sex} onSelect={(value) => {
@@ -190,7 +190,7 @@ class UserMng extends React.Component {
                 </Select>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>所在学院</h4>
+                <h4>所在学院<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.college} onChange={(e) => {
@@ -200,7 +200,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>联系电话</h4>
+                <h4>联系电话<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Input value={UserStore.getModalData.phone} onChange={(e) => {
@@ -210,7 +210,7 @@ class UserMng extends React.Component {
                 }}/>
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                <h4>成员类型</h4>
+                <h4>成员类型<span style={{color: 'red'}}> *</span></h4>
               </Col>
               <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 <Select value={UserStore.getModalData.userType} onSelect={(value) => {

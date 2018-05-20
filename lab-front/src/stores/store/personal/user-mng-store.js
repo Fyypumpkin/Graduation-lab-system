@@ -87,7 +87,7 @@ class UserMngStore {
   resetModalData () {
     this.modalData = {
       visible: false,
-      sex: 'M',
+      sex: '1',
       phone: '',
       username: '',
       realName: '',

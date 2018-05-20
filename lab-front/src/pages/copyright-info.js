@@ -105,11 +105,11 @@ class CopyrightInfo extends React.Component {
         dataSource={Store.getData.slice()}
         renderItem={item => (
           <List.Item
-            actions={[<a disabled={(RoleStore.getRoleType < 1 || item.username !== localStorage.getItem('username'))}
+            actions={[<a disabled={(RoleStore.getRoleType < 1 && item.username !== localStorage.getItem('username'))}
                          onClick={() => {
                            console.log('删除')
                          }}>删除</a>,
-              <a disabled={(RoleStore.getRoleType < 1 || item.username !== localStorage.getItem('username'))}
+              <a disabled={(RoleStore.getRoleType < 1 && item.username !== localStorage.getItem('username'))}
                  onClick={() => {
                    store.router.goTo(router.CopyrightEdit, {copyEditId: item.id, status: 'modify'})
                  }}>编辑</a>, <a onClick={() => {

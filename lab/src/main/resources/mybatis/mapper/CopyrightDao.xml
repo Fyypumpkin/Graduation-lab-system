@@ -21,7 +21,7 @@
 
     <resultMap id="Extend" type="cn.fyypumpkin.manage.lab.entity.Extend">
         <id column="id" property="id"/>
-        <result column="origin_key" property="originKey"/>
+        <result column="extend_key" property="extendKey"/>
         <result column="real_name" property="realName"/>
         <result column="country" property="country"/>
         <result column="address" property="address"/>
@@ -34,6 +34,7 @@
         <result column="all_name" property="allName"/>
         <result column="usage" property="usage"/>
         <result column="range" property="range"/>
+        <result column="power" property="power"/>
         <result column="version" property="version"/>
         <result column="simple_name" property="simpleName"/>
         <result column="sort_no" property="sortNo"/>
@@ -56,6 +57,7 @@
         <result column="extend_id_no" property="extendIdNo"/>
         <result column="extend_mail" property="extendMail"/>
         <result column="extend_fax" property="extendFax"/>
+        <result column="att_url" property="attUrl"/>
     </resultMap>
 
 
