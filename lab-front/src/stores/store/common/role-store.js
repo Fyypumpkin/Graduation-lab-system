@@ -14,30 +14,52 @@ class RoleStore {
 
   @observable realname = ''
 
+  @observable users = []
+
+  @observable userMap = {}
+
   @action.bound
-  setRealname (realname) {
+  setUserMap(userMap) {
+    this.userMap = userMap
+  }
+
+  get getUserMap() {
+    return this.userMap
+  }
+
+  @action.bound
+  setUsers(users) {
+    this.users = users
+  }
+
+  get getUsers() {
+    return this.users
+  }
+
+  @action.bound
+  setRealname(realname) {
     this.realname = realname
   }
 
-  get getRealname () {
+  get getRealname() {
     return this.realname
   }
 
   @action.bound
-  setUsername (username) {
+  setUsername(username) {
     this.username = username
   }
 
-  get getUsername () {
+  get getUsername() {
     return this.username
   }
 
   @action.bound
-  setRoleType (type) {
+  setRoleType(type) {
     this.roleType = type
   }
 
-  get getRoleType () {
+  get getRoleType() {
     return this.roleType
   }
 }

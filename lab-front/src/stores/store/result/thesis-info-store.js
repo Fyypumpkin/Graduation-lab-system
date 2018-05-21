@@ -14,7 +14,7 @@ class ThesisInfoStore {
     teleAuthor: '',
     journalName: '',
     publishTime: '',
-    journalType: '',
+    journalType: 'core',
     journalFrom: 'none',
     prove: ''
   }
@@ -129,6 +129,24 @@ class ThesisInfoStore {
 
   get getArrowDir() {
     return this.arrowDir
+  }
+
+  @action.bound
+  resetModal() {
+    this.modalAttr = {
+      visible: false,
+      status: ''
+    }
+    this.modalData = {
+      name: '',
+      firstAuthor: '',
+      teleAuthor: '',
+      journalName: '',
+      publishTime: '',
+      journalType: 'core',
+      journalFrom: 'none',
+      prove: ''
+    }
   }
 }
 

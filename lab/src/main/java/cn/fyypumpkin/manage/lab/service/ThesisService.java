@@ -30,4 +30,12 @@ public class ThesisService {
     public Boolean modifyThesisInfo(ModifyThesisInfoRequest request) {
         return thesisRepository.modifyThesisInfo(request);
     }
+
+    public Boolean createThesisInfo(ModifyThesisInfoRequest request) {
+        return thesisRepository.createThesisInfo(request);
+    }
+
+    public Boolean delThesisInfo(Integer id){
+        return thesisRepository.delThesisInfo(id);
+    }
 }

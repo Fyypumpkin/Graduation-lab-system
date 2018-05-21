@@ -9,6 +9,7 @@ import cn.fyypumpkin.manage.lab.request.GetThesisListRequest;
 import cn.fyypumpkin.manage.lab.request.ModifyThesisInfoRequest;
 import cn.fyypumpkin.manage.lab.service.ThesisService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,12 +38,13 @@ public class ThesisController {
         return dataResult;
     }
 
-    @PostMapping("/getThesisInfo")
+    @PostMapping("/getThesisInfo/{id}")
     @ResponseBody
-    public DataResult getThesisInfo(@RequestBody Integer id) {
+    public DataResult getThesisInfo(@PathVariable("id") Integer id) {
         DataResult dataResult = new DataResult();
         Thesis thesis = thesisService.getThesisInfo(id);
-
+        dataResult.setData(thesis);
+        dataResult.setSuccess(true);
         return dataResult;
     }
 
@@ -58,10 +60,43 @@ public class ThesisController {
             dataResult.setSuccess(false);
         }
         if (!update) {
-            dataResult.setMessage("");
+            dataResult.setMessage("更新失败");
         }
         return dataResult;
     }
 
+    @PostMapping("/delThesisInfo/{id}")
+    @ResponseBody
+    public DataResult delThesisInfo(@PathVariable("id") Integer id) {
+        DataResult dataResult = new DataResult();
+        Boolean del = false;
+        try {
+            del = thesisService.delThesisInfo(id);
+            dataResult.setSuccess(del);
+        } catch (Exception e) {
+            dataResult.setSuccess(false);
+        }
+        if (!del) {
+            dataResult.setMessage("删除失败");
+        }
+        return dataResult;
+    }
+
+    @PostMapping("/createThesisInfo")
+    @ResponseBody
+    public DataResult createThesisInfo(@RequestBody ModifyThesisInfoRequest request) {
+        DataResult dataResult = new DataResult();
+        Boolean insert = false;
+        try {
+            insert = thesisService.createThesisInfo(request);
+            dataResult.setSuccess(insert);
+        } catch (Exception e) {
+            dataResult.setSuccess(false);
+        }
+        if (!insert) {
+            dataResult.setMessage("新增失败");
+        }
+        return dataResult;
+    }
 
 }

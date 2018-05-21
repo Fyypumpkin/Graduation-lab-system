@@ -2,46 +2,52 @@
  * @author fyypumpkin on 2018/5/17.
  */
 import React from 'react'
-import {Tabs, Row, Col, Button, Input, Select, Upload} from 'antd'
+import {Tabs, Row, Col, Button, Input, Select, Upload, message} from 'antd'
 import {observer} from 'mobx-react'
 import axios from 'axios'
 
 import DataStore from '../stores/store/project/project-setup-store'
+import RoleStore from '../stores/store/common/role-store'
 import '../themes/pages/project.css'
+import Request from '../util/request'
+import store from "../routers/store";
 
 const SetupStore = new DataStore()
-let timeout
-let currentValue
+
 @observer
 class ProjectSetupInfo extends React.Component {
-   fetch (value) {
-     SetupStore.setSetupInfo({
-       peopleSelected: value
-     })
-    if (timeout) {
-      clearTimeout(timeout)
-      timeout = null
-    }
-    currentValue = value
-    function fake () {
-      if (currentValue === value) {
-            let data = {
-              key: value,
-              value: value
-            }
-            SetupStore.setPeopleSelect([...SetupStore.getPeopleSelect, data])
-         }
+  constructor() {
+    super()
+    SetupStore.setActiveKey('1')
+    const params = {...store.router.params}
+    if (params.prjId && params.type === 'edit') {
+      const prjId = params.prjId
+      this.status = 'edit'
+      Request.fetch({
+        url: '/getPrjInfo/' + prjId,
+        successFn(response) {
+          const data = response.data.data
+          SetupStore.setData({
+            id: data.id,
+            name: data.name,
+            username: data.usage,
+            intro: data.intro,
+            headPeople: data.headPeople,
+            labType: data.labType,
+            money: data.money,
+            moneyFrom: data.moneyFrom,
+            dev: JSON.parse(data.dev),
+            test: JSON.parse(data.test),
+            file: data.file,
+            completeTime: data.completeTime,
+            status: data.status
+          })
         }
-
-    timeout = setTimeout(fake, 500)
+      })
+    }
   }
 
-  handleChange = (value) => {
-    this.fetch(value)
-    console.log('jj')
-  }
-
-  handleUpload () {
+  handleUpload() {
     const fileList = SetupStore.getUploadFileList.slice()
     const formData = new FormData()
     fileList.forEach((file) => {
@@ -55,7 +61,7 @@ class ProjectSetupInfo extends React.Component {
           const downUrl = response.data.data.attachmentPath
           console.log(downUrl)
           if (downUrl !== undefined) {
-        // 拿到了上传七牛云后的链接
+            // 拿到了上传七牛云后的链接
           }
         } else {
           // 失败
@@ -64,7 +70,8 @@ class ProjectSetupInfo extends React.Component {
       .catch(function () {
       })
   }
-  render () {
+
+  render() {
     const props = {
       action: '',
       headers: {
@@ -91,34 +98,66 @@ class ProjectSetupInfo extends React.Component {
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目名称</h4>
               </Col>
-              <Col><Input style={{width: '200px'}}/></Col>
+              <Col><Input value={SetupStore.getData.name} onChange={(e) => {
+                SetupStore.setData({
+                  name: e.target.value
+                })
+              }} style={{width: '200px'}}/></Col>
             </Row>
 
             <Row style={{marginBottom: '30px', marginTop: '30px'}}>
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目简介</h4>
               </Col>
-              <Col><Input.TextArea rows={3} style={{width: '400px'}}/></Col>
+              <Col><Input.TextArea value={SetupStore.getData.intro} onChange={(e) => {
+                SetupStore.setData({
+                  intro: e.target.value
+                })
+              }} rows={3} style={{width: '400px'}}/></Col>
+            </Row>
+
+            <Row style={{marginBottom: '30px'}}>
+              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>项目状态</h4>
+              </Col>
+              <Col>
+                <Select
+                  value={SetupStore.getData.status}
+                  onSelect={(value) => {
+                    SetupStore.setData({
+                      status: value
+                    })
+                  }}
+                >
+                  <Select.Option value={'start'}>{'启动'}</Select.Option>
+                  <Select.Option value={'stop'}>{'停止'}</Select.Option>
+                  <Select.Option value={'hang'}>{'挂起'}</Select.Option>
+                </Select>
+              </Col>
             </Row>
 
             <Row style={{marginBottom: '30px'}}>
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目负责人</h4>
               </Col>
-              <Col>  <Select
-                mode="combobox"
-                value={SetupStore.getSetupInfo.peopleSelected}
-                placeholder={'负责人'}
-                defaultActiveFirstOption={false}
-                style={{width: '150px'}}
-                showArrow={false}
-                filterOption={false}
-                onChange={this.handleChange}
-              >
-                {SetupStore.getPeopleSelect.slice().map((item) => {
-                  return (<Select.Option key={item.key} >{item.value}</Select.Option>)
-                })}
-              </Select></Col>
+              <Col>
+                <Select
+                  showSearch
+                  placeholder={'负责人'}
+                  style={{width: '150px'}}
+                  showArrow={false}
+                  filterOption={true}
+                  value={SetupStore.getData.headPeople}
+                  onSelect={(value) => {
+                    SetupStore.setData({
+                      headPeople: value
+                    })
+                  }}
+                >
+                  {RoleStore.getUsers.slice().map((item) => {
+                    return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
+                  })}
+                </Select></Col>
             </Row>
 
             <Row style={{marginBottom: '30px'}}>
@@ -126,7 +165,11 @@ class ProjectSetupInfo extends React.Component {
                 <h4>实验室类型</h4>
               </Col>
               <Col>
-                <Select defaultValue={'basic'}>
+                <Select value={SetupStore.getData.labType} onChange={(e) => {
+                  SetupStore.setData({
+                    labType: e
+                  })
+                }}>
                   <Select.Option value={'basic'}>基础</Select.Option>
                   <Select.Option value={'proBasic'}>专业基础</Select.Option>
                   <Select.Option value={'pro'}>专业</Select.Option>
@@ -140,7 +183,11 @@ class ProjectSetupInfo extends React.Component {
                 <h4>预估项目经费</h4>
               </Col>
               <Col>
-                <Input style={{width: '100px'}}/>
+                <Input value={SetupStore.getData.money} onChange={(e) => {
+                  SetupStore.setData({
+                    money: e.target.value
+                  })
+                }} style={{width: '100px'}}/>
               </Col>
             </Row>
 
@@ -149,13 +196,29 @@ class ProjectSetupInfo extends React.Component {
                 <h4>经费来源</h4>
               </Col>
               <Col>
-                <Input style={{width: '150px'}}/>
+                <Input value={SetupStore.getData.moneyFrom} onChange={(e) => {
+                  SetupStore.setData({
+                    moneyFrom: e.target.value
+                  })
+                }} style={{width: '150px'}}/>
               </Col>
             </Row>
 
+            <Row style={{marginBottom: '30px'}}>
+              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>交付时间</h4>
+              </Col>
+              <Col>
+                <Input value={SetupStore.getData.completeTime} onChange={(e) => {
+                  SetupStore.setData({
+                    completeTime: e.target.value
+                  })
+                }} style={{width: '150px'}}/>
+              </Col>
+            </Row>
             <Row>
               <Button style={{float: 'right'}} onClick={() => {
-                  SetupStore.setActiveKey('2')
+                SetupStore.setActiveKey('2')
               }}>下一步</Button>
             </Row>
           </div>
@@ -163,76 +226,137 @@ class ProjectSetupInfo extends React.Component {
 
         <Tabs.TabPane tab={'项目成员'} key='2' disabled={SetupStore.getActiveKey !== '2'}>
           <div>
-          <Row style={{marginBottom: '30px', marginTop: '30px'}}>
-            <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
-              <h4>开发</h4>
-            </Col>
-            <Col>
-              <Select
-                mode="tags"
-                style={{ width: '80%' }}
-                placeholder="开发人员"
-                onChange={(value) => {
-                  console.log(value)
-                 SetupStore.setSetupInfo({
-                   dev: value
-                 })
-                }}
-              >
-                {SetupStore.getPrjMember.dev.slice().map(item => {
-                  return <Select.Option key={item.username}>{item.name}</Select.Option>
-                })}
-              </Select>
-            </Col>
-          </Row>
-          <Row style={{marginBottom: '30px'}}>
-            <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
-              <h4>测试</h4>
-            </Col>
-            <Col>
-              <Select
-                mode="tags"
-                style={{width: '60%'}}
-                placeholder="测试人员"
-                onChange={(value) => {
-                  SetupStore.setSetupInfo({
-                    dev: value
-                  })
-                }}
-              >
-                {SetupStore.getPrjMember.test.slice().map(item => {
-                  return <Select.Option key={item.username}>{item.name}</Select.Option>
-                })}
-              </Select>
-            </Col>
-          </Row>
-          <Row>
+            <Row style={{marginBottom: '30px', marginTop: '30px'}}>
+              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>开发</h4>
+              </Col>
+              <Col>
+                <Select
+                  mode="tags"
+                  style={{width: '80%'}}
+                  filterOption={true}
+                  placeholder="开发人员"
+                  value={SetupStore.getData.dev.slice()}
+                  onChange={(value) => {
+                    console.log(value)
+                    SetupStore.setData({
+                      dev: value
+                    })
+                  }}
+                >
+                  {RoleStore.getUsers.slice().map((item) => {
+                    return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
+                  })}
+                </Select>
+              </Col>
+            </Row>
+            <Row style={{marginBottom: '30px'}}>
+              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>测试</h4>
+              </Col>
+              <Col>
+                <Select
+                  mode="tags"
+                  style={{width: '60%'}}
+                  placeholder="测试人员"
+                  value={SetupStore.getData.test.slice()}
+                  filterOption={true}
+                  onChange={(value) => {
+                    SetupStore.setData({
+                      test: value
+                    })
+                    console.log(value)
+                  }}
+                >
+                  {RoleStore.getUsers.slice().map((item) => {
+                    return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
+                  })}
+                </Select>
+              </Col>
+            </Row>
+            <Row>
               <Button onClick={() => {
                 SetupStore.setActiveKey('1')
               }}>上一步</Button>
-            <Button style={{float: 'right'}} onClick={() => {
-              SetupStore.setActiveKey('3')
-            }}>下一步</Button>
-          </Row>
+              <Button style={{float: 'right'}} onClick={() => {
+                SetupStore.setActiveKey('3')
+              }}>下一步</Button>
+            </Row>
           </div>
         </Tabs.TabPane>
 
-        <Tabs.TabPane tab={'上传立项申请书'} key='3' disabled={SetupStore.getActiveKey !== '3'}>
-          <Row>
+        <Tabs.TabPane tab={'上传立项申请书(可为空)'} key='3' disabled={SetupStore.getActiveKey !== '3'}>
+          <Row style={{display: 'flex'}}>
             <Upload {...props}>
-              <Button>选择文件</Button>
+              <Button style={{marginBottom: '20px', marginRght: '20px'}}>选择文件</Button>
             </Upload>
-              <Button style={{marginTop: '20px', marginBottom: '20px'}}type='primary'>上传</Button>
           </Row>
+          {SetupStore.getData.file && <Row style={{marginBottom: '20px'}}>
+            <a onClick={() => {
+              window.location.href = SetupStore.getData.file
+            }}>下载原申请书</a>
+          </Row>}
           <Row>
             <Button onClick={() => {
               SetupStore.setActiveKey('2')
             }}>上一步</Button>
-          <Button style={{float: 'right'}} onClick={() => {
-
-          }}>
-            完成提交
-          </Button>
+            <Button style={{float: 'right'}} onClick={() => {
+              !SetupStore.getData.username && SetupStore.setData({
+                username: localStorage.getItem('username')
+              })
+              const data = SetupStore.getData
+              const today = new Date()
+              const startTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+              !(this.status === 'edit') && Request.fetch({
+                url: '/createPrj',
+                sentData: {
+                  labType: data.labType,
+                  name: data.name,
+                  status: data.status,
+                  username: data.username,
+                  intro: data.intro,
+                  completeTime: data.completeTime,
+                  startTime: startTime,
+                  headPeople: data.headPeople,
+                  dev: JSON.stringify(data.dev),
+                  test: JSON.stringify(data.test),
+                  file: data.file,
+                  money: data.money,
+                  moneyFrom: data.moneyFrom
+                },
+                successFn(response) {
+                  message.success('新增完成')
+                  SetupStore.setActiveKey('1')
+                  SetupStore.reset()
+                }
+              })
+              this.status === 'edit' && Request.fetch({
+                url: '/modifyPrj',
+                sentData: {
+                  id: data.id,
+                  labType: data.labType,
+                  name: data.name,
+                  status: data.status,
+                  username: data.username,
+                  intro: data.intro,
+                  completeTime: data.completeTime,
+                  startTime: startTime,
+                  headPeople: data.headPeople,
+                  dev: JSON.stringify(data.dev),
+                  test: JSON.stringify(data.test),
+                  file: data.file,
+                  money: data.money,
+                  moneyFrom: data.moneyFrom
+                },
+                successFn(response) {
+                  message.success('修改成功')
+                  SetupStore.setActiveKey('1')
+                  SetupStore.reset()
+                }
+              })
+            }}>
+              完成提交
+            </Button>
           </Row>
         </Tabs.TabPane>
       </Tabs>

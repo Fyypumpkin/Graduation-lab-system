@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.ProjectDao">
+
+    <resultMap id="BaseResultMap" type="cn.fyypumpkin.manage.lab.entity.Project">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="intro" property="intro"/>
+        <result column="complete_time" property="completeTime"/>
+        <result column="start_time" property="startTime"/>
+        <result column="status" property="status"/>
+        <result column="head_people" property="headPeople"/>
+        <result column="dev" property="dev"/>
+        <result column="test" property="test"/>
+        <result column="file" property="file"/>
+        <result column="money" property="money"/>
+        <result column="lab_type" property="labType"/>
+        <result column="money_from" property="moneyFrom"/>
+    </resultMap>
+
+    <resultMap id="dtoMap" type="cn.fyypumpkin.manage.lab.dto.PrjDTO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="start_time" property="startTime"/>
+        <result column="status" property="status"/>
+        <result column="head_people" property="headPeople"/>
+    </resultMap>
+
+
+    <sql id="table">
+        project
+    </sql>
+
+    <sql id="insertCol">
+        (username, name, intro, complete_time, start_time, status, head_people, dev, test, file, money, money_from, lab_type)
+    </sql>
+
+
+    <sql id="allCols">
+        id, username, name, intro, complete_time, start_time, status, head_people, dev, test
+    </sql>
+
+    <sql id="dtoCols">
+        id,username,name,start_time,status,head_people
+    </sql>
+
+
+    <!--返回插入记录id-->
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="createPrj">
+        insert into
+        <include refid="table"/>
+        <include refid="insertCol"/>
+        values (
+        #{request.username},
+        #{request.name},
+        #{request.intro},
+        #{request.completeTime},
+        #{request.startTime},
+        #{request.status},
+        #{request.headPeople},
+        #{request.dev},
+        #{request.test},
+        #{request.file},
+        #{request.money},
+        #{request.moneyFrom},
+        #{request.labType}
+        );
+    </insert>
+
+    <update id="modifyPrj">
+        update
+        <include refid="table"/>
+        set
+        username=#{request.username},
+        name=#{request.name},
+        intro=#{request.intro},
+        complete_time=#{request.completeTime},
+        start_time=#{request.startTime},
+        status=#{request.status},
+        head_people=#{request.headPeople},
+        dev=#{request.dev},
+        test=#{request.test},
+        file=#{request.file},
+        money=#{request.money},
+        money_from=#{request.moneyFrom},
+        lab_type=#{request.labType}
+        where id=#{request.id}
+    </update>
+
+    <select id="getPrjList" resultMap="dtoMap">
+        select
+        <include refid="dtoCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.username != null">
+            or dev like CONCAT(CONCAT('%', #{request.username}), '%')
+            or test like CONCAT(CONCAT('%', #{request.username}), '%')
+            or username=#{request.username}
+        </if>
+        <if test="request.name != null">
+            and name like CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.status != null">
+            and status=#{request.status}
+        </if>
+        <if test="request.headPeople != null">
+            and head_people=#{request.headPeople}
+        </if>
+        order by id desc limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="prjListCount" resultType="int">
+        select count(*)
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.username != null">
+            or dev like CONCAT(CONCAT('%', #{request.username}), '%')
+            or test like CONCAT(CONCAT('%', #{request.username}), '%')
+            or username=#{request.username}
+        </if>
+        <if test="request.name != null">
+            and name like CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.status != null">
+            and status=#{request.status}
+        </if>
+        <if test="request.headPeople != null">
+            and head_people=#{request.headPeople}
+        </if>
+    </select>
+
+    <select id="getPrjInfoById" resultMap="BaseResultMap">
+        select * from
+        <include refid="table"/>
+        where id=#{id}
+    </select>
+
+    <delete id="delPrjInfoById">
+        delete from
+        <include refid="table"/>
+        where id=#{id}
+    </delete>
+
+</mapper>

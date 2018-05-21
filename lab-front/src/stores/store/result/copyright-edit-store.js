@@ -44,6 +44,17 @@ class CopyrightEditStore {
   @observable originMax = -1
   @observable extendMax = -1
 
+  @observable url
+
+  @action.bound
+  setUrl(url) {
+    this.url = url
+  }
+
+  get getUrl() {
+    return this.url
+  }
+
   @action.bound
   setBasicInfo(basicInfo) {
     this.basicInfo = {

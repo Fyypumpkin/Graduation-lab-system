@@ -24,4 +24,6 @@ public interface UserDao {
     int userListCount(@Param("realName") String realName);
 
     int modifyUser(@Param("user") ModifyUserRequest request);
+
+    List<UserDTO> getAllUserList();
 }

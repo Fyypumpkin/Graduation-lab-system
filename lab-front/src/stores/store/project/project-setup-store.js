@@ -6,23 +6,19 @@ import {observable, action} from 'mobx'
 class ProjectSetupStore {
   @observable activeKey = '1'
 
-  @observable peopleSelect = []
-
-  @observable setupInfo = {
-    peopleSelected: '',
+  @observable data = {
+    name: '',
+    username: '',
+    intro: '',
+    headPeople: '',
+    labType: 'basic',
+    money: '',
+    moneyFrom: '',
     dev: [],
-    test: []
-  }
-
-  @observable prjMember = {
-    dev: [{
-      username: 1,
-      name: '福哟啊要'
-    }, {
-      username: 2,
-      name: 'dshaiu'
-    }],
-    test: []
+    test: [],
+    file: '',
+    completeTime: '',
+    status: 'start'
   }
 
   @observable uploadFileList = []
@@ -30,61 +26,63 @@ class ProjectSetupStore {
   @observable uploadToken = ''
 
   @action.bound
-  setUploadToken (token) {
+  setData(data) {
+    this.data = {
+      ...this.data,
+      ...data
+    }
+  }
+
+  get getData() {
+    return this.data
+  }
+
+
+  @action.bound
+  setUploadToken(token) {
     this.uploadToken = token
   }
 
-  get getUploadToken () {
+  get getUploadToken() {
     return this.uploadToken
   }
 
   @action.bound
-  setUploadFileList (list) {
+  setUploadFileList(list) {
     this.uploadFileList = list
   }
 
-  get getUploadFileList () {
+  get getUploadFileList() {
     return this.uploadFileList
   }
 
   @action.bound
-  setPrjMember (prjMember) {
-    this.prjMember = prjMember
-  }
-
-  get getPrjMember () {
-    return this.prjMember
-  }
-
-  @action.bound
-  setActiveKey (activeKey) {
+  setActiveKey(activeKey) {
     this.activeKey = activeKey
   }
 
-  get getActiveKey () {
+  get getActiveKey() {
     return this.activeKey
   }
 
- @action.bound
-  setPeopleSelect (select) {
-    this.peopleSelect = select
-  }
-
-  get getPeopleSelect () {
-    return this.peopleSelect
-  }
-
   @action.bound
-  setSetupInfo (select) {
-    this.setupInfo = {
-      ...this.setupInfo,
-      ...select
+  reset() {
+    this.data = {
+      name: '',
+      username: '',
+      intro: '',
+      headPeople: '',
+      labType: 'basic',
+      money: '',
+      moneyFrom: '',
+      dev: [],
+      test: [],
+      file: '',
+      completeTime: '',
+      status: 'start'
     }
   }
 
-  get getSetupInfo () {
-    return this.setupInfo
-  }
 }
 
 export default ProjectSetupStore

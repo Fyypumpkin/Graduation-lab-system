@@ -56,6 +56,16 @@ public class UserController {
         return dataResult;
     }
 
+    @PostMapping("/getAllUserList")
+    @ResponseBody
+    public DataResult getAllUserList() {
+        DataResult dataResult = new DataResult();
+        List<UserDTO> result = userService.getAllUserList();
+        dataResult.setSuccess(true);
+        dataResult.setData(result);
+        return dataResult;
+    }
+
     @PostMapping("/modifyUser")
     @ResponseBody
     public DataResult modifyUser(@RequestBody ModifyUserRequest request) {

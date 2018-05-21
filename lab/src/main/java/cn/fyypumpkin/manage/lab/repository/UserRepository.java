@@ -56,8 +56,12 @@ public class UserRepository {
         return userDao.userListCount(request.getRealName());
     }
 
-    public int modifyUser(ModifyUserRequest request){
+    public int modifyUser(ModifyUserRequest request) {
         return userDao.modifyUser(request);
+    }
+
+    public List<UserDTO> getAllUserList() {
+        return userDao.getAllUserList();
     }
 
 }

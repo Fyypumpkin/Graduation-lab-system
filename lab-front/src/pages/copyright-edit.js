@@ -2,7 +2,7 @@
  * @author fyypumpkin on 2018/5/15.
  */
 import React from 'react'
-import {Collapse, Row, Col, Button, Radio, Input, Select, Spin} from 'antd'
+import {Collapse, Row, Col, Button, Radio, Input, Select, Spin, Upload} from 'antd'
 import {observer} from 'mobx-react'
 
 import DataStore from '../stores/store/result/copyright-edit-store'
@@ -78,6 +78,10 @@ class CopyrightEdit extends React.Component {
           phone: data.extendPhone,
           fax: data.extendFax
         })
+        EditStore.setPowerRangeInfo({
+          range: data.range,
+          power: data.power
+        })
         EditStore.setBasicInfo({
           allName: data.allName,
           simpleName: data.simpleName,
@@ -95,6 +99,7 @@ class CopyrightEdit extends React.Component {
         EditStore.setExtendPowerInfoAll(data.extend)
         EditStore.setExtendMax(data.extend.length - 1)
         EditStore.setOriginMax(data.origin.length - 1)
+        EditStore.setUrl(data.attUrl)
         CommonStore.setNodeSpin({
           copyrightEdit: false
         })
@@ -392,7 +397,7 @@ class CopyrightEdit extends React.Component {
                 </Col>
                 <Col span={15}>
                   {(this.status === 'watch' || this.status === 'null') &&
-                  <span>{powerRangeEnum[EditStore.getPowerRangeInfo.range]}</span>}
+                  <span>{powerRangeEnum[EditStore.getPowerRangeInfo.range]}{EditStore.getPowerRangeInfo.range === 'part' && '->' + EditStore.getPowerRangeInfo.power}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <div style={{display: 'flex'}}><RadioGroup value={EditStore.getPowerRangeInfo.range}
                                                              onChange={(e) => {
@@ -403,7 +408,7 @@ class CopyrightEdit extends React.Component {
                     <Radio value={'all'}>全部</Radio>
                     <Radio value={'part'}>部分</Radio>
                   </RadioGroup>
-                    {EditStore.getPowerRangeInfo.range !== 1 &&
+                    {EditStore.getPowerRangeInfo.range !== 'all' &&
                     <Input disabled={EditStore.getPowerRangeInfo.range === 1} placeholder='部分权利'
                            value={EditStore.getPowerRangeInfo.power} onChange={(e) => {
                       EditStore.setPowerRangeInfo({
@@ -619,9 +624,13 @@ class CopyrightEdit extends React.Component {
               </Row> </Collapse.Panel>
           </Collapse>
           <div style={{textAlign: 'right', marginBottom: '20px', marginTop: '20px'}}>
-            {(this.status === 'modify') && <Button icon="upload">重新上传著作权附件</Button>}
+            {(this.status === 'modify') && <Upload><Button icon="upload" style={{marginTop: '20px'}}>重新上传著作权附件</Button></Upload>}
+            {(this.status === 'create') && <Upload><Button icon="upload" style={{marginTop: '20px'}}>上传著作权附件</Button></Upload>}
             {(this.status === 'watch' || this.status === 'modify') &&
-            <Button icon="file-text" style={{marginLeft: '10px'}}>下载原始著作权附件</Button>}
+            <Button icon="file-text" style={{marginLeft: '10px'}} onClick={() => {
+              window.location.href = EditStore.getUrl
+            }}>下载原始附件</Button>}
+            {(this.status === 'create' || this.status === 'modify') && <Button type={'primary'} style={{marginLeft: '20px', marginTop: '20px'}}>提交</Button>}
           </div>
         </div>
       </Spin>

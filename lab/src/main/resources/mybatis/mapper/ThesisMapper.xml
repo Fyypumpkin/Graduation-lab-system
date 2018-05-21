@@ -22,7 +22,7 @@
     </sql>
 
     <sql id="insertCol">
-        (username,sex,real_name,college,phone,locked,role,pass_wd)
+        (username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source)
     </sql>
 
 
@@ -86,7 +86,8 @@
     </select>
 
     <update id="modifyThesisInfo">
-        update <include refid="table"/>
+        update
+        <include refid="table"/>
         set username=#{request.username},
         name=#{request.name},
         first_author=#{request.firstAuthor},
@@ -99,5 +100,29 @@
         journal_source=#{request.journalSource}
         where id=#{request.id}
     </update>
+
+    <insert id="createThesisInfo">
+        insert into
+        <include refid="table"/>
+        <include refid="insertCol"/>
+        values (
+        #{request.username},
+        #{request.name},
+        #{request.firstAuthor},
+        #{request.teleAuthor},
+        #{request.journalName},
+        #{request.journalType},
+        #{request.journalFrom},
+        #{request.publishTime},
+        #{request.prove},
+        #{request.journalSource}
+        )
+    </insert>
+
+    <delete id="delThesisInfo">
+        delete from
+        <include refid="table"/>
+        where id=#{id}
+    </delete>
 
 </mapper>

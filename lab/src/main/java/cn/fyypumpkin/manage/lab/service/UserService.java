@@ -45,4 +45,8 @@ public class UserService {
     public Boolean modifyUser(ModifyUserRequest request){
         return userRepository.modifyUser(request) >= 1;
     }
+
+    public List<UserDTO> getAllUserList(){
+        return userRepository.getAllUserList();
+    }
 }

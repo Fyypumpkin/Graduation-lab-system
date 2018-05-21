@@ -17,4 +17,8 @@ public interface ThesisDao {
     Thesis getThesisInfo(@Param("id") Integer id);
 
     int modifyThesisInfo(@Param("request")ModifyThesisInfoRequest request);
+
+    int createThesisInfo(@Param("request")ModifyThesisInfoRequest request);
+
+    int delThesisInfo(@Param("id") Integer id);
 }

@@ -48,4 +48,12 @@ public class ThesisRepository {
     public Boolean modifyThesisInfo(ModifyThesisInfoRequest request){
         return thesisDao.modifyThesisInfo(request) >= 1;
     }
+
+    public Boolean createThesisInfo(ModifyThesisInfoRequest request){
+        return thesisDao.createThesisInfo(request) >= 1;
+    }
+
+    public Boolean delThesisInfo(Integer request){
+        return thesisDao.delThesisInfo(request) >= 1;
+    }
 }

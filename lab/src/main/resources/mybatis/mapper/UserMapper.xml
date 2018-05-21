@@ -15,6 +15,14 @@
         <result column="pass_wd" property="passWd"/>
     </resultMap>
 
+    <resultMap id="dto" type="cn.fyypumpkin.manage.lab.dto.UserDTO">
+        <result column="username" property="username"/>
+        <result column="sex" property="sex"/>
+        <result column="real_name" property="realName"/>
+        <result column="college" property="college"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
     <sql id="table">
         user
     </sql>
@@ -26,6 +34,10 @@
 
     <sql id="allCols">
         id, username,sex,real_name,college,phone,locked,role,pass_wd
+    </sql>
+
+    <sql id="dtoCols">
+        username, sex,real_name,college,phone
     </sql>
 
 
@@ -92,5 +104,12 @@
         where username=#{user.username}
     </update>
 
+    <select id="getAllUserList" resultMap="dto">
+        select
+        <include refid="dtoCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+    </select>
 
 </mapper>
