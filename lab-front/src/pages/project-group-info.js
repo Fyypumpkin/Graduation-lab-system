@@ -54,6 +54,7 @@ class ProjectGroupInfo extends React.Component {
           Request.fetch({
             url: '/delPrjInfo/' + record.id,
             successFn() {
+              ProjectGroupInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
             }
           })
         }}>删除</a>

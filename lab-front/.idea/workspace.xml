@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c04b5be3-ea77-4d90-a929-65a9bc1cf48b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/copyright-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/copyright-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/my-project-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-project-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-detail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/project-group-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-group-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project-setup-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-setup-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/test.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/thesis-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/thesis-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/common/role-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/common/role-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/project/project-detail-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/project/project-detail-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/project/project-setup-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/project/project-setup-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/result/copyright-edit-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/result/copyright-edit-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ThesisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ThesisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dao/ThesisDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dao/ThesisDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/repository/ThesisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/repository/ThesisRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/service/ThesisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/service/ThesisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/ThesisMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/ThesisMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user-mng.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user-mng.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,7 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="project-setup-info.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="project-setup-info.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/project-setup-info.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -49,10 +33,22 @@
       <file leaf-file-name="my-project-info.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/my-project-info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="92" selection-end-column="22" />
+            <state relative-caret-position="205">
+              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
               <folding>
                 <element signature="e#44#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="personal-info.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/personal-info.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="635">
+              <caret line="100" selection-start-line="100" selection-end-line="101" />
+              <folding>
+                <element signature="e#43#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +57,8 @@
       <file leaf-file-name="project-group-info.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/project-group-info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+            <state relative-caret-position="452">
+              <caret line="89" column="39" lean-forward="true" selection-start-line="89" selection-start-column="39" selection-end-line="89" selection-end-column="39" />
               <folding>
                 <element signature="e#44#69#0" expanded="true" />
               </folding>
@@ -70,20 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="project-info.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routers/router/pages/project-info.js">
+      <file leaf-file-name="user-mng.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/user-mng.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project-detail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/project-detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="40" column="34" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="34" />
+            <state relative-caret-position="185">
+              <caret line="216" column="50" lean-forward="true" selection-start-line="216" selection-start-column="50" selection-end-line="216" selection-end-column="50" />
               <folding>
                 <element signature="e#44#69#0" expanded="true" />
               </folding>
@@ -91,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thesis-info-store.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js">
+      <file leaf-file-name="user-mng-store.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="120" column="6" selection-start-line="120" selection-start-column="6" selection-end-line="120" selection-end-column="6" />
+            <state relative-caret-position="478">
+              <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -158,6 +145,7 @@
       <find>props</find>
       <find>avatar</find>
       <find>websocket</find>
+      <find>prjOwner</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,21 +190,21 @@
         <option value="$PROJECT_DIR$/src/pages/personal-info.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/copyright-info-store.js" />
         <option value="$PROJECT_DIR$/src/pages/copyright-info.js" />
-        <option value="$PROJECT_DIR$/src/pages/user-mng.js" />
-        <option value="$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/project/project-info-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/common/role-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/project/project-detail-store.js" />
         <option value="$PROJECT_DIR$/src/pages/project-detail.js" />
-        <option value="$PROJECT_DIR$/src/pages/my-project-info.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/pages/project-group-info.js" />
         <option value="$PROJECT_DIR$/src/stores/store/project/project-setup-store.js" />
         <option value="$PROJECT_DIR$/src/pages/thesis-info.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/copyright-edit-store.js" />
         <option value="$PROJECT_DIR$/src/pages/copyright-edit.js" />
         <option value="$PROJECT_DIR$/src/pages/project-setup-info.js" />
+        <option value="$PROJECT_DIR$/src/pages/my-project-info.js" />
+        <option value="$PROJECT_DIR$/src/pages/project-group-info.js" />
+        <option value="$PROJECT_DIR$/src/pages/user-mng.js" />
+        <option value="$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js" />
       </list>
     </option>
   </component>
@@ -463,12 +451,12 @@
       <workItem from="1526367405553" duration="37596000" />
       <workItem from="1526549494294" duration="3841000" />
       <workItem from="1526721670765" duration="7000" />
-      <workItem from="1526724159164" duration="34382000" />
+      <workItem from="1526724159164" duration="34953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135312000" />
+    <option name="totallyTimeSpent" value="135883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -675,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="74" column="2" selection-start-line="74" selection-start-column="2" selection-end-line="74" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stores/store/result/copyright-info-store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -727,16 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/user-mng.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/patent-info.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -758,16 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/personal-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="100" selection-start-line="100" selection-end-line="101" />
-          <folding>
-            <element signature="e#43#68#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -798,16 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/my-project-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="92" selection-end-column="22" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routers/router/pages/project-info.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -819,16 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="40" column="34" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="34" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/project-group-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
           </folding>
@@ -883,6 +824,53 @@
           <folding>
             <element signature="e#44#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/my-project-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+          <folding>
+            <element signature="e#44#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/project-group-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="89" column="39" lean-forward="true" selection-start-line="89" selection-start-column="39" selection-end-line="89" selection-end-column="39" />
+          <folding>
+            <element signature="e#44#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/personal-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="100" selection-start-line="100" selection-end-line="101" />
+          <folding>
+            <element signature="e#43#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/user-mng.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="216" column="50" lean-forward="true" selection-start-line="216" selection-start-column="50" selection-end-line="216" selection-end-column="50" />
+          <folding>
+            <element signature="e#44#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stores/store/personal/user-mng-store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
         </state>
       </provider>
     </entry>

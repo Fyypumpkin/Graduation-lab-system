@@ -144,6 +144,7 @@ class UserMng extends React.Component {
                             UserStore.setModalData({
                               visible: false
                             })
+                            UserMng.doQuery(UserStore.getSearchValue, UserStore.getPageInfo)
                           } else {
                             message.error(response.data.message)
                           }

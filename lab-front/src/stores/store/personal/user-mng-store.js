@@ -11,7 +11,7 @@ class UserMngStore {
     username: '',
     realName: '',
     college: '',
-    userType: '1'
+    userType: '0'
   }
 
   @observable userInfo = {}
@@ -91,7 +91,8 @@ class UserMngStore {
       phone: '',
       username: '',
       realName: '',
-      college: ''
+      college: '',
+      userType: '0'
     }
   }
 }
