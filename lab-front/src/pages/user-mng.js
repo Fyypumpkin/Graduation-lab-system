@@ -220,8 +220,7 @@ class UserMng extends React.Component {
                   })
                 }}>
                   <Select.Option value={'0'}>普通成员</Select.Option>
-                  <Select.Option value={'1'}>普通管理员</Select.Option>
-                  <Select.Option value={'2'}>超级管理员</Select.Option>
+                  {RoleStore.getRoleType >= 2 && <Select.Option value={'1'}>普通管理员</Select.Option>}
                 </Select>
               </Col>
               <Col span={20}>

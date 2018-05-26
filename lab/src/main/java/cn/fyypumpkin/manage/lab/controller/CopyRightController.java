@@ -5,6 +5,7 @@ import cn.fyypumpkin.manage.lab.lib.result.DataResult;
 import cn.fyypumpkin.manage.lab.lib.result.PageInfo;
 import cn.fyypumpkin.manage.lab.lib.result.PageResult;
 import cn.fyypumpkin.manage.lab.lib.result.ResultUtils;
+import cn.fyypumpkin.manage.lab.request.CreateCopyrightRequest;
 import cn.fyypumpkin.manage.lab.request.DelCopyrightRequest;
 import cn.fyypumpkin.manage.lab.request.GetCopyrightInfoRequest;
 import cn.fyypumpkin.manage.lab.request.GetCopyrightListRequest;
@@ -43,7 +44,7 @@ public class CopyRightController {
     public DataResult delCopyright(@RequestBody DelCopyrightRequest request) {
         if (request.getDeleteable() >= 1) {
             DataResult result = new DataResult();
-            // TODO 删除著作权信息
+            result.setSuccess(copyrightService.delCopyright(request.getId()) >= 1);
             return result;
         }
         return ResultUtils.wrapFailure(400, "无权删除");
@@ -59,6 +60,15 @@ public class CopyRightController {
             dataResult.setSuccess(false);
             dataResult.setMessage("读取信息失败");
         }
+        return dataResult;
+    }
+
+    @PostMapping("/createCopyrightInfo")
+    @ResponseBody
+    public DataResult createCopyrightInfo(@RequestBody CreateCopyrightRequest request){
+        DataResult dataResult = new DataResult();
+        copyrightService.createCopyrightInfo(request);
+
         return dataResult;
     }
 }

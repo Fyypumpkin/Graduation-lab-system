@@ -15,6 +15,7 @@ import LoginIndexStore from './stores/store/login/login-store'
 import RoleStore from './stores/store/common/role-store'
 import menuStore from './stores/store/menu/menu-store'
 import CommonStore from './stores/store/common/common-store'
+import image from './images/hdu.png'
 
 const {Content, Sider} = Layout
 startRouter(router, store)
@@ -145,9 +146,9 @@ class App extends Component {
               </Sider>
 
               {/* 主页右侧内容 */}
-              <Content style={{margin: '24px 16px 0'}}>
+              <Content style={{margin: '24px 16px 0', backgroundImage: {image}}}>
                 <div className="content-layout">
-                  <MobxRouter/>
+                  <MobxRouter />
                 </div>
 
                 <Layout><OpFooter/></Layout>

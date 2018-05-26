@@ -3,6 +3,7 @@ package cn.fyypumpkin.manage.lab.service;
 import cn.fyypumpkin.manage.lab.dto.CopyrightDTO;
 import cn.fyypumpkin.manage.lab.dto.CopyrightListDTO;
 import cn.fyypumpkin.manage.lab.repository.CopyrightRepository;
+import cn.fyypumpkin.manage.lab.request.CreateCopyrightRequest;
 import cn.fyypumpkin.manage.lab.request.GetCopyrightInfoRequest;
 import cn.fyypumpkin.manage.lab.request.GetCopyrightListRequest;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,13 @@ public class CopyrightService {
 
     public CopyrightDTO getCopyrightInfo(GetCopyrightInfoRequest request){
         return copyrightRepository.getCopyrightInfo(request);
+    }
+
+    public int delCopyright(Integer id){
+        return copyrightRepository.delCopyright(id);
+    }
+
+    public Boolean createCopyrightInfo(CreateCopyrightRequest request){
+        return copyrightRepository.createCopyrightInfo(request);
     }
 }

@@ -120,4 +120,89 @@
         <include refid="extend"/>
         where extend_key=#{key}
     </select>
+
+    <delete id="delCopyright">
+        delete from
+        <include refid="copyright"/>
+        where id=#{id}
+    </delete>
+
+    <delete id="delCopyrightOrigin">
+        delete from
+        <include refid="origin"/>
+        where origin_key=#{key}
+    </delete>
+
+    <delete id="delCopyrightExtend">
+        delete from
+        <include refid="extend"/>
+        where extend_key=#{key}
+    </delete>
+
+    <insert id="createExtendInfo">
+        insert into
+        <include refid="extend"/>
+        (extend_key,real_name,country, adress, type)
+        values
+        <foreach collection="list" item="list" index="index" separator=",">
+        (
+        #{list.extendKey},
+        #{list.realName},
+        #{list.country},
+        #{list.address},
+        #{list.type}
+        )
+        </foreach>
+    </insert>
+
+    <insert id="createOriginInfo">
+        insert into
+        <include refid="origin"/>
+        (extend_key,real_name,country, adress)
+        values
+        <foreach collection="list" item="list" index="index" separator=",">
+            (
+            #{list.originKey},
+            #{list.realName},
+            #{list.country},
+            #{list.address}
+            )
+        </foreach>
+    </insert>
+    <insert id="createCopyrightInfo">
+        insert into
+        <include refid="copyright"/>
+        (range,power,all_name, username,
+        simple_name,sort_no,complete_time,version,publish_time,dev_type,origin_key,extend_key,usage,apply_username,apply_phone,apply_address,apply_postcode,apply_id_no,apply_mail,apply_fax,extend_username,extend_phone,extend_address,extend_postcode,extend_id_no,extend_mail,extend_fax,att_url)
+        values (
+        #{request.range},
+        #{request.power},
+        #{request.allName},
+        #{request.username},
+        #{request.simpleName},
+        #{request.sortNo},
+        #{request.completeTime},
+        #{request.version},
+        #{request.publishTime},
+        #{request.devType},
+        #{request.originKey},
+        #{request.extendKey},
+        #{request.usage},
+        #{request.applyUsername},
+        #{request.applyPhone},
+        #{request.applyAddress},
+        #{request.applyPostcode},
+        #{request.applyIdNo},
+        #{request.applyMail},
+        #{request.applyFax},
+        #{request.extendUsername},
+        #{request.extendPhone},
+        #{request.extendAddress},
+        #{request.extendPostcode},
+        #{request.extendIdNo},
+        #{request.extendMail},
+        #{request.extendFax},
+        #{request.attUrl}
+        )
+    </insert>
 </mapper>

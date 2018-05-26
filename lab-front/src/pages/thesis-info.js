@@ -83,7 +83,7 @@ class ThesisInfo extends React.Component {
     const data = ThesisStore.getModalData
     if (ThesisStore.getModalAttr.status === 'edit') {
       if (data.id && data.username) {
-        if ((data.journalFrom !== 'none' && data.prove) || data.journalFrom === 'none') {
+        if ((data.journalFrom !== 'none') || data.journalFrom === 'none') {
           if (data.name && data.journalType && data.journalName && data.firstAuthor && data.publishTime) {
             Request.fetch({
               url: '/modifyThesisInfo',
@@ -95,10 +95,10 @@ class ThesisInfo extends React.Component {
                 journalName: data.journalName,
                 journalType: data.journalType,
                 publishTime: data.publishTime,
-                prove: data.prove,
+                prove: data.journalFrom !== 'none' ? data.prove ? data.prove : ThesisStore.getUrl.proveUrl : null,
                 firstAuthor: data.firstAuthor,
                 teleAuthor: data.teleAuthor,
-                journalSource: data.journalSource
+                journalSource: data.journalSource ? data.journalSource : ThesisStore.getUrl.sourceUrl
               },
               successFn(response) {
                 message.success(ThesisStore.getModalAttr.status === 'edit' ? '修改成功' : '添加成功')
@@ -117,7 +117,7 @@ class ThesisInfo extends React.Component {
       }
     } else {
       if (ThesisStore.getModalAttr.status === 'create') {
-        if ((data.journalFrom !== 'none' && data.prove) || data.journalFrom === 'none') {
+        if ((data.journalFrom !== 'none' && data.proveFile) || data.journalFrom === 'none') {
           if (data.name && data.journalType && data.journalName && data.firstAuthor && data.publishTime) {
             Request.fetch({
               url: '/createThesisInfo',
@@ -129,10 +129,10 @@ class ThesisInfo extends React.Component {
                 journalName: data.journalName,
                 journalType: data.journalType,
                 publishTime: data.publishTime,
-                prove: data.prove,
+                prove: data.journalFrom !== 'none' ? ThesisStore.getUrl.proveUrl : null,
                 firstAuthor: data.firstAuthor,
                 teleAuthor: data.teleAuthor,
-                journalSource: data.journalSource
+                journalSource: data.sourceFile.length > 0 ? ThesisStore.getUrl.sourceUrl : null
               },
               successFn(response) {
                 ThesisStore.resetModal()
@@ -153,6 +153,50 @@ class ThesisInfo extends React.Component {
   }
 
   render() {
+    const proveProps = {
+      action: '',
+      headers: {
+        'X-Requested-With': null
+      },
+      onRemove: (file) => {
+        const fileList = ThesisStore.getModalData.proveFile.slice()
+        const index = fileList.indexOf(file)
+        const newFileList = fileList.slice()
+        newFileList.splice(index, 1)
+        ThesisStore.setModalData({
+          proveFile: newFileList
+        })
+      },
+      beforeUpload: (file) => {
+        ThesisStore.setModalData({
+          proveFile: [...ThesisStore.getModalData.proveFile.slice(), file]
+        })
+        return false
+      },
+      fileList: ThesisStore.getModalData.proveFile.slice()
+    }
+    const sourceProps = {
+      action: '',
+      headers: {
+        'X-Requested-With': null
+      },
+      onRemove: (file) => {
+        const fileList = ThesisStore.getModalData.sourceFile.slice()
+        const index = fileList.indexOf(file)
+        const newFileList = fileList.slice()
+        newFileList.splice(index, 1)
+        ThesisStore.setModalData({
+          sourceFile: newFileList
+        })
+      },
+      beforeUpload: (file) => {
+        ThesisStore.setModalData({
+          sourceFile: [...ThesisStore.getModalData.sourceFile.slice(), file]
+        })
+        return false
+      },
+      fileList: ThesisStore.getModalData.sourceFile.slice()
+    }
     const IconText = ({type, text, onClick}) => (
       <span onClick={onClick}><Icon type={type} style={{marginRight: 8}}/>{text}</span>)
     return (<div className="thesis-info">
@@ -419,7 +463,7 @@ class ThesisInfo extends React.Component {
               <h4>上传论文原件(pdf,doc)</h4>
             </Col>
             <Col span={8} style={{marginLeft: '10px', marginBottom: '10px'}}>
-              <Upload>
+              <Upload {...sourceProps}>
                 <Button type={'primary'}>点击上传</Button>
               </Upload>
             </Col>
@@ -433,13 +477,13 @@ class ThesisInfo extends React.Component {
             </Col>}
             {ThesisStore.getModalData.journalFrom !== 'none' &&
             <Col span={8} style={{marginLeft: '10px', marginBottom: '10px'}}>
-              <Upload>
+              <Upload {...proveProps}>
                 <Button type={'primary'}>点击上传</Button>
               </Upload>
             </Col>}
             {ThesisStore.getModalData.prove && <Col span={6} style={{textAlign: 'right'}}>
               <a onClick={() => {
-                window.location.href = ''+ ThesisStore.getModalData.prove
+                window.location.href = '' + ThesisStore.getModalData.prove
               }}>下载原证明文件</a>
             </Col>}
             <Col span={20}>

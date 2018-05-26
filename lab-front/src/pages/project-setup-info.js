@@ -286,9 +286,9 @@ class ProjectSetupInfo extends React.Component {
         </Tabs.TabPane>
 
         <Tabs.TabPane tab={'上传立项申请书(可为空)'} key='3' disabled={SetupStore.getActiveKey !== '3'}>
-          <Row style={{display: 'flex'}}>
+          <Row style={{display: 'flex', marginBottom: '20px'}}>
             <Upload {...props}>
-              <Button style={{marginBottom: '20px', marginRght: '20px'}}>选择文件</Button>
+              <Button style={{marginBottom: '20px', marginRight: '20px'}}>选择文件</Button>
             </Upload>
           </Row>
           {SetupStore.getData.file && <Row style={{marginBottom: '20px'}}>

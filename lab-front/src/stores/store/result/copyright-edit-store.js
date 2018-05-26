@@ -46,6 +46,23 @@ class CopyrightEditStore {
 
   @observable url
 
+  @observable upUrl = 'http://www.cup.edu.cn/kjc/docs/20100407091053469893.doc'
+
+  @observable file = []
+
+  @action.bound
+  setFile(file) {
+    this.file = file
+  }
+
+  get getFile() {
+    return this.file
+  }
+
+  get getUpUrl() {
+    return this.upUrl
+  }
+
   @action.bound
   setUrl(url) {
     this.url = url
@@ -213,6 +230,7 @@ class CopyrightEditStore {
     }
     this.originMax = -1
     this.extendMax = -1
+    this.file = []
   }
 }
 

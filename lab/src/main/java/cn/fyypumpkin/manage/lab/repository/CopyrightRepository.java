@@ -6,9 +6,9 @@ import cn.fyypumpkin.manage.lab.dto.CopyrightListDTO;
 import cn.fyypumpkin.manage.lab.entity.Copyright;
 import cn.fyypumpkin.manage.lab.entity.Extend;
 import cn.fyypumpkin.manage.lab.entity.Origin;
-import cn.fyypumpkin.manage.lab.request.GetCopyrightInfoRequest;
-import cn.fyypumpkin.manage.lab.request.GetCopyrightListRequest;
+import cn.fyypumpkin.manage.lab.request.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -64,5 +64,28 @@ public class CopyrightRepository {
             setExtendFax(copyright.getExtendFax());
             setAttUrl(copyright.getAttUrl());
         }};
+    }
+
+    public int delCopyright(Integer id){
+        Copyright copyright = copyrightDao.getCopyrightById(id);
+        String extend = copyright.getExtendKey();
+        String origin = copyright.getOriginKey();
+        copyrightDao.delCopyrightOrigin(origin);
+        copyrightDao.delCopyrightExtend(extend);
+
+        return copyrightDao.delCopyright(id);
+    }
+
+    @Transactional
+    public Boolean createCopyrightInfo(CreateCopyrightRequest request){
+        List<ExtendRequest> extendList = request.getExtendRequestInfo();
+        List<OriginRequest> originList = request.getOriginRequestInfo();
+
+        copyrightDao.createExtendInfo(extendList);
+        copyrightDao.createOriginInfo(originList);
+
+        return copyrightDao.createCopyrightInfo(request) >= 1;
+
+
     }
 }

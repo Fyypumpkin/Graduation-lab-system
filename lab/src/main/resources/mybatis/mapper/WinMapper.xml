@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.WinDao">
+
+    <resultMap id="BaseResultMap" type="cn.fyypumpkin.manage.lab.entity.Win">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="win_name" property="winName"/>
+        <result column="win_inst" property="winInst"/>
+        <result column="win_rank" property="winRank"/>
+        <result column="win_time" property="winTime"/>
+    </resultMap>
+
+
+    <sql id="table">
+        win
+    </sql>
+
+    <sql id="insertCol">
+        (username, win_name, win_inst, win_rank, win_time)
+    </sql>
+
+
+    <sql id="allCols">
+        id, username, win_name, win_inst, win_rank, win_time
+    </sql>
+
+    <select id="getWinList" resultMap="BaseResultMap">
+        select
+        <include refid="allCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.winName != null">
+            and win_name like CONCAT(CONCAT('%', #{request.winName}), '%')
+        </if>
+        <if test="request.winRank != null">
+            and win_rank like CONCAT(CONCAT('%', #{request.winRank}), '%')
+        </if>
+        <if test="request.username != null">
+            and username like CONCAT(CONCAT('%', #{request.username}), '%')
+        </if>
+        order by id desc limit #{offset},#{pageSize}
+    </select>
+
+    <select id="countWin" resultType="int">
+        select count(*) from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.winName != null">
+            and win_name like CONCAT(CONCAT('%', #{request.winName}), '%')
+        </if>
+        <if test="request.winRank != null">
+            and win_rank like CONCAT(CONCAT('%', #{request.winRank}), '%')
+        </if>
+        <if test="request.username != null">
+            and username like CONCAT(CONCAT('%', #{request.username}), '%')
+        </if>
+    </select>
+
+    <delete id="delWin">
+        delete from
+        <include refid="table"/>
+        where id=#{id}
+    </delete>
+
+    <insert id="createWin">
+        insert into <include refid="table"/>
+        <include refid="insertCol"/>
+        values (
+        #{win.username},
+        #{win.winName},
+        #{win.winInst},
+        #{win.winRank},
+        #{win.winTime}
+        )
+    </insert>
+
+    <update id="updateWin">
+        update <include refid="table"/>
+        set username=#{win.username},
+        win_name=#{win.winName},
+        win_inst=#{win.winInst},
+        win_rank=#{win.winRank},
+        win_time=#{win.winTime}
+        where id=#{win.id}
+    </update>
+
+</mapper>

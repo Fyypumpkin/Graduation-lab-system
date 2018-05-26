@@ -97,11 +97,6 @@
         from
         <include refid="table"/>
         where 1=1
-        <if test="request.username != null">
-            or dev like CONCAT(CONCAT('%', #{request.username}), '%')
-            or test like CONCAT(CONCAT('%', #{request.username}), '%')
-            or username=#{request.username}
-        </if>
         <if test="request.name != null">
             and name like CONCAT(CONCAT('%', #{request.name}), '%')
         </if>
@@ -110,6 +105,9 @@
         </if>
         <if test="request.headPeople != null">
             and head_people=#{request.headPeople}
+        </if>
+        <if test="request.username != null">
+            and CONCAT(dev,test,username,head_people) like CONCAT(CONCAT('%', #{request.username}), '%')
         </if>
         order by id desc limit #{offset}, #{pageSize}
     </select>

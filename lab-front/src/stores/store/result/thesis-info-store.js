@@ -16,9 +16,16 @@ class ThesisInfoStore {
     publishTime: '',
     journalType: 'core',
     journalFrom: 'none',
-    prove: ''
+    prove: '',
+    proveFile: [],
+    sourceFile: []
   }
   @observable arrowDir = 'down'
+
+  @observable URL = {
+    proveUrl: 'http://gs.dhu.edu.cn/_upload/article/a9/ae/0a335aee42af9ad1c452269325e0/1d9f5d3f-1387-4e6b-a61e-80a19de47e10.pdf',
+    sourceUrl: 'http://www.cup.edu.cn/kjc/docs/20110706161811223040.doc'
+  }
 
   @observable advancedRetrieve = {
     all: true,
@@ -43,6 +50,10 @@ class ThesisInfoStore {
   }
 
   @observable data = []
+
+  get getUrl() {
+    return this.URL
+  }
 
   @action.bound
   setData(data) {
@@ -145,7 +156,9 @@ class ThesisInfoStore {
       publishTime: '',
       journalType: 'core',
       journalFrom: 'none',
-      prove: ''
+      prove: '',
+      proveFile: [],
+      sourceFile: []
     }
   }
 }

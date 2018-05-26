@@ -2,7 +2,7 @@
  * @author fyypumpkin on 2018/5/16.
  */
 import React from 'react'
-import {Select, Input, Button, Table, Checkbox, Spin} from 'antd'
+import {Select, Input, Button, Table, Checkbox, Spin, Badge} from 'antd'
 import {observer} from 'mobx-react'
 
 import '../themes/pages/project.css'
@@ -17,6 +17,12 @@ const statusEnums = {
   start: '进行中',
   stop: '已结束',
   hang: '已挂起'
+}
+
+const statusEnumsBadge = {
+  start: 'processing',
+  stop: 'error',
+  hang: 'warning'
 }
 
 @observer
@@ -49,6 +55,7 @@ class MyProject extends React.Component {
             prjName: item.name,
             id: item.id,
             prjStatus: statusEnums[item.status],
+            prjStatusOrigin: item.status,
             startTime: item.startTime,
             prjOwner: item.headPeople
           })
@@ -72,7 +79,13 @@ class MyProject extends React.Component {
   }, {
     title: '项目状态',
     key: 'prjStatus',
-    dataIndex: 'prjStatus'
+    dataIndex: 'prjStatus',
+    render: (text, record) => {
+      return (<div>
+        <Badge status={statusEnumsBadge[record.prjStatusOrigin]} />
+        <span>{text}</span>
+      </div>)
+}
   }, {
     title: '立项时间',
     key: 'startTime',
@@ -105,6 +118,7 @@ class MyProject extends React.Component {
           })
           MyProject.doQuery(Store.getSearchValue, Store.getPageInfo)
         }} style={{width: '100px', marginLeft: '10px', marginRight: '10px'}}>
+          <Select.Option value={null}>全部</Select.Option>
           <Select.Option value='start'>已启动</Select.Option>
           <Select.Option value='stop'>已结束</Select.Option>
           <Select.Option value='hang'>已挂起</Select.Option>

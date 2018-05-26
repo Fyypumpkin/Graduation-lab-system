@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.PatentDao">
+
+    <resultMap id="BaseResultMap" type="cn.fyypumpkin.manage.lab.entity.Patent">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="patent_no" property="patentNo"/>
+        <result column="notice_no" property="noticeNo"/>
+        <result column="ipc" property="ipc"/>
+        <result column="patent_intro" property="patentIntro"/>
+        <result column="url" property="url"/>
+    </resultMap>
+
+
+    <sql id="table">
+        patent
+    </sql>
+
+    <sql id="insertCol">
+        (username, name, patent_no, notice_no, ipc, patent_intro, url)
+    </sql>
+
+
+    <sql id="allCols">
+        id, username, name, patent_no, notice_no, ipc, patent_intro, url
+    </sql>
+
+    <select id="getPatentList" resultMap="BaseResultMap">
+        select
+        <include refid="allCols"/>
+        from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.name != null">
+            and name like CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.patentNo != null">
+            and patent_no like CONCAT(CONCAT('%', #{request.patentNo}), '%')
+        </if>
+        <if test="request.username != null">
+            and username like CONCAT(CONCAT('%', #{request.username}), '%')
+        </if>
+        order by id desc limit #{offset},#{pageSize}
+    </select>
+
+    <select id="countPatent" resultType="int">
+        select count(*) from
+        <include refid="table"/>
+        where 1=1
+        <if test="request.name != null">
+            and name like CONCAT(CONCAT('%', #{request.name}), '%')
+        </if>
+        <if test="request.patentNo != null">
+            and patent_no like CONCAT(CONCAT('%', #{request.patentNo}), '%')
+        </if>
+        <if test="request.username != null">
+            and username like CONCAT(CONCAT('%', #{request.username}), '%')
+        </if>
+    </select>
+
+    <delete id="delPatent">
+        delete from
+        <include refid="table"/>
+        where id=#{id}
+    </delete>
+
+    <insert id="createPatent">
+        insert into <include refid="table"/>
+        <include refid="insertCol"/>
+        values (
+        #{patent.username},
+        #{patent.name},
+        #{patent.patentNo},
+        #{patent.noticeNo},
+        #{patent.ipc},
+        #{patent.patentIntro},
+        #{patent.url}
+        )
+    </insert>
+
+    <update id="updatePatent">
+        update <include refid="table"/>
+        set username=#{patent.username},
+        name=#{patent.name},
+        patent_no=#{patent.patentNo},
+        notice_no=#{patent.noticeNo},
+        ipc=#{patent.ipc},
+        patent_intro=#{patent.patentIntro},
+        url=#{patent.url}
+        where id=#{patent.id}
+    </update>
+
+</mapper>

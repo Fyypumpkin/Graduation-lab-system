@@ -2,11 +2,12 @@
  * @author fyypumpkin on 2018/5/15.
  */
 import React from 'react'
-import {Collapse, Row, Col, Button, Radio, Input, Select, Spin, Upload} from 'antd'
+import {Collapse, Row, Col, Button, Radio, Input, Select, Spin, Upload, message} from 'antd'
 import {observer} from 'mobx-react'
 
 import DataStore from '../stores/store/result/copyright-edit-store'
 import store from '../routers/store'
+import router from '../routers/router/router-all'
 import Request from '../util/request'
 import CommonStore from '../stores/store/common/common-store'
 
@@ -107,11 +108,29 @@ class CopyrightEdit extends React.Component {
     })
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     EditStore.reset()
   }
 
   render() {
+    const props = {
+      action: '',
+      headers: {
+        'X-Requested-With': null
+      },
+      onRemove: (file) => {
+        const fileList = EditStore.getFile.slice()
+        const index = fileList.indexOf(file)
+        const newFileList = fileList.slice()
+        newFileList.splice(index, 1)
+        EditStore.setFile(newFileList)
+      },
+      beforeUpload: (file) => {
+        EditStore.setFile([...EditStore.getFile.slice(), file])
+        return false
+      },
+      fileList: EditStore.getFile.slice()
+    }
     const customPanelStyle = {
       background: '#f7f7f7',
       borderRadius: 4,
@@ -624,13 +643,32 @@ class CopyrightEdit extends React.Component {
               </Row> </Collapse.Panel>
           </Collapse>
           <div style={{textAlign: 'right', marginBottom: '20px', marginTop: '20px'}}>
-            {(this.status === 'modify') && <Upload><Button icon="upload" style={{marginTop: '20px'}}>重新上传著作权附件</Button></Upload>}
-            {(this.status === 'create') && <Upload><Button icon="upload" style={{marginTop: '20px'}}>上传著作权附件</Button></Upload>}
+            {(this.status === 'modify') &&
+            <Upload {...props}><Button icon="upload" style={{marginTop: '20px'}}>重新上传著作权附件</Button></Upload>}
+            {(this.status === 'create') &&
+            <Upload {...props}><Button icon="upload" style={{marginTop: '20px'}}>上传著作权附件</Button></Upload>}
             {(this.status === 'watch' || this.status === 'modify') &&
             <Button icon="file-text" style={{marginLeft: '10px'}} onClick={() => {
               window.location.href = EditStore.getUrl
             }}>下载原始附件</Button>}
-            {(this.status === 'create' || this.status === 'modify') && <Button type={'primary'} style={{marginLeft: '20px', marginTop: '20px'}}>提交</Button>}
+            {(this.status === 'create' || this.status === 'modify') &&
+            <Button loading={CommonStore.getNodeSpin.copyEditBtn} type={'primary'}
+                    style={{marginLeft: '20px', marginTop: '20px'}} onClick={() => {
+              if (this.status === 'modify') {
+                CommonStore.setNodeSpin({
+                  copyEditBtn: true
+                })
+                setTimeout(function () {
+                  message.success('修改成功')
+                  CommonStore.setNodeSpin({
+                    copyEditBtn: false
+                  })
+                  store.router.goTo(router.CopyrightInfo)
+                }, 2000)
+              } else {
+
+              }
+            }}>提交</Button>}
           </div>
         </div>
       </Spin>

@@ -10,7 +10,7 @@ import RoleStore from '../stores/store/common/role-store'
 
 import PersonalStore from '../stores/store/personal/personal-info-store'
 import Request from '../util/request'
-import CommonStore from "../stores/store/common/common-store";
+import CommonStore from '../stores/store/common/common-store'
 
 const sexEnum = {
   1: '男',
