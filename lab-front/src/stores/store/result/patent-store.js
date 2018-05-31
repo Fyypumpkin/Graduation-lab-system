@@ -3,8 +3,9 @@ import {observable, action} from 'mobx'
 class PatentStore {
   @observable searchValue = {
     name: '',
-    username: '',
-    patentNo: ''
+    username: null,
+    patentNo: '',
+    patentOriginNo: ''
   }
 
   @observable pageInfo = {
@@ -27,6 +28,7 @@ class PatentStore {
     patentNo: '',
     ipc: '',
     intro: '',
+    patentOriginNo: '',
     url: 'http://sist.ustc.edu.cn/_upload/article/files/44/3f/d0cf5e5746c095771de7d05e5347/P020160421357950637676.doc'
   }
 
@@ -93,6 +95,7 @@ class PatentStore {
       patentNo: '',
       ipc: '',
       intro: '',
+      patentOriginNo: '',
       url: 'http://sist.ustc.edu.cn/_upload/article/files/44/3f/d0cf5e5746c095771de7d05e5347/P020160421357950637676.doc'
     }
   }

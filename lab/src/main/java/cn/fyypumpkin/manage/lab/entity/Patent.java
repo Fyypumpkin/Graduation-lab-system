@@ -1,5 +1,7 @@
 package cn.fyypumpkin.manage.lab.entity;
 
+import java.util.Date;
+
 public class Patent {
     private Integer id;
     private String username;
@@ -9,6 +11,24 @@ public class Patent {
     private String ipc;
     private String patentIntro;
     private String url;
+    private String patentOriginNo;
+    private Date awardTime;
+
+    public Date getAwardTime() {
+        return awardTime;
+    }
+
+    public void setAwardTime(Date awardTime) {
+        this.awardTime = awardTime;
+    }
+
+    public String getPatentOriginNo() {
+        return patentOriginNo;
+    }
+
+    public void setPatentOriginNo(String patentOriginNo) {
+        this.patentOriginNo = patentOriginNo;
+    }
 
     public Integer getId() {
         return id;

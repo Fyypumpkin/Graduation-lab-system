@@ -2,7 +2,7 @@
  * @author fyypumpkin on 2018/5/17.
  */
 import React from 'react'
-import {Button, Collapse, Row, Col, Badge, Pagination, Input, Select, Spin, Tooltip, Modal, message} from 'antd'
+import {Button, Collapse, Row, Col, Badge, Pagination, Input, Select, Spin, Tooltip, Modal, message, Upload} from 'antd'
 import {observer} from 'mobx-react'
 import '../themes/pages/winning-info.css'
 
@@ -41,14 +41,16 @@ class WinningInfo extends React.Component {
         const data = response.data.data
         const list = []
         data instanceof Array && data.map(item => {
+          const startTime = new Date(item.winTime)
           list.push({
             id: item.id,
             winner: item.username,
             winnerDesc: RoleStore.getUserMap[item.username],
             rank: item.winRank,
             inst: item.winInst,
-            time: item.winTime,
-            name: item.winName
+            time: startTime.getFullYear() + '-' + (startTime.getMonth() + 1) + '-' + startTime.getDate(),
+            name: item.winName,
+            url: item.url
           })
         })
         Store.setData(list)
@@ -67,6 +69,28 @@ class WinningInfo extends React.Component {
   }
 
   render() {
+    const proveProps = {
+      action: '',
+      headers: {
+        'X-Requested-With': null
+      },
+      onRemove: (file) => {
+        const fileList = Store.getModalData.proveFile.slice()
+        const index = fileList.indexOf(file)
+        const newFileList = fileList.slice()
+        newFileList.splice(index, 1)
+        Store.setModalData({
+          proveFile: newFileList
+        })
+      },
+      beforeUpload: (file) => {
+        Store.setModalData({
+          proveFile: [...Store.getModalData.proveFile.slice(), file]
+        })
+        return false
+      },
+      fileList: Store.getModalData.proveFile.slice()
+    }
     return (<div className={'winning-info'}>
       <span>获奖名称</span>
       <Input style={{width: '200px', marginLeft: '10px', marginRight: '10px'}} value={Store.getSearchValue.name}
@@ -97,6 +121,7 @@ class WinningInfo extends React.Component {
           WinningInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
         }}
       >
+        <Select.Option value={null}>全部</Select.Option>
         {RoleStore.getUsers.slice().map((item) => {
           return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
         })}
@@ -126,7 +151,7 @@ class WinningInfo extends React.Component {
         })
       }}>新增</Button>}
       <Spin spinning={CommonStore.getNodeSpin.winning}>
-        <Collapse bordered={false} style={{marginTop: '20px'}}>
+        <Collapse bordered={false} style={{marginTop: '20px'}} defaultActiveKey={['0','1','2','3','4','5','6','7','8','9']}>
           {Store.getData.slice().map((item, index) => {
             return (
               <Panel header={<div><Row><Col span={15}><Badge status="success"/>{item.name}</Col><Col
@@ -166,10 +191,20 @@ class WinningInfo extends React.Component {
                         inst: item.inst,
                         rank: item.rank,
                         winner: item.winner,
+                        url: item.url,
+                        proveFile: [],
                         id: item.id
                       })
                     }}>编辑</a>
                   </Col>
+                  {item.url && <Col span={3} style={{textAlign: 'right'}}>
+                    <span>获奖证书：</span>
+                  </Col>}
+                  {item.url && <Col span={8}>
+                    <a onClick={() => {
+                      window.location.href = item.url
+                    }}>下载</a>
+                  </Col>}
                 </Row>}
               </Panel>)
           })}
@@ -203,14 +238,16 @@ class WinningInfo extends React.Component {
                     CommonStore.setNodeSpin({
                       winAddBtn: true
                     })
+                    const time = new Date(Store.getModalData.time.replace(/-/g, '/'))
                     if (Store.getModalData.status === 'create') {
                       const sentData = {
                         id: null,
                         username: Store.getModalData.winner,
                         winRank: Store.getModalData.rank,
                         winInst: Store.getModalData.inst,
-                        winTime: Store.getModalData.time,
-                        winName: Store.getModalData.name
+                        winTime: time,
+                        winName: Store.getModalData.name,
+                        url: Store.getModalData.proveFile.slice().length > 0 ? Store.getUrl : null
                       }
                       Request.fetch({
                         url: '/creteWin',
@@ -237,8 +274,9 @@ class WinningInfo extends React.Component {
                         username: Store.getModalData.winner,
                         winRank: Store.getModalData.rank,
                         winInst: Store.getModalData.inst,
-                        winTime: Store.getModalData.time,
-                        winName: Store.getModalData.name
+                        winTime: time,
+                        winName: Store.getModalData.name,
+                        url: Store.getModalData.proveFile.slice().length > 0 ? Store.getUrl : Store.getModalData.url
                       }
                       Request.fetch({
                         url: '/updateWin',
@@ -333,6 +371,18 @@ class WinningInfo extends React.Component {
                 }}/>
               </Tooltip>
             </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
+              获奖证书
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px', display: 'flex'}}>
+              <Upload {...proveProps}>
+                <Button>上传</Button>
+              </Upload>
+              {Store.getModalData.url && <a style={{marginLeft: '20px', paddingTop: '5px'}} onClick={() => {
+                window.location.href = Store.getModalData.url
+              }}>下载原证书</a>}
+            </Col>
+
           </Row>
         </div>
       </Modal>

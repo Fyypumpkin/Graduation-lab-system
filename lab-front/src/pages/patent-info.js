@@ -31,7 +31,8 @@ class PatentInfo extends React.Component {
         pageSize: pageInfo.pageSize,
         name: searchValue.name,
         username: searchValue.username,
-        patentNo: searchValue.patentNo
+        patentNo: searchValue.patentNo,
+        patentOriginNo: searchValue.patentOriginNo
       },
       successFn(response) {
         CommonStore.setNodeSpin({
@@ -44,7 +45,9 @@ class PatentInfo extends React.Component {
             id: item.id,
             name: item.name,
             ipc: item.ipc,
+            patentOriginNo: item.patentOriginNo,
             intro: item.patentIntro,
+            awardTime: new Date(item.awardTime).getFullYear() + '-' + (new Date(item.awardTime).getMonth() + 1) + '-' + new Date(item.awardTime).getDate(),
             noticeNo: item.noticeNo,
             patentNo: item.patentNo,
             url: item.url,
@@ -87,7 +90,7 @@ class PatentInfo extends React.Component {
     }
     return (<div className={'patent-info'}>
       <span>专利名称</span>
-      <Input style={{width: '200px', marginLeft: '10px', marginRight: '10px'}} placeholder={'专利名称'}
+      <Input style={{width: '180px', marginLeft: '10px', marginRight: '10px'}} placeholder={'专利名称'}
              value={Store.getSearchValue.name}
              onChange={(e) => {
                Store.setSearchValue({
@@ -116,12 +119,13 @@ class PatentInfo extends React.Component {
           console.log(value)
         }}
       >
+        <Select.Option value={null}>全部</Select.Option>
         {RoleStore.getUsers.slice().map((item) => {
           return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
         })}
       </Select>
       <span>申请号</span>
-      <Input style={{width: '200px', marginLeft: '10px', marginRight: '10px'}} value={Store.getSearchValue.patentNo}
+      <Input style={{width: '100px', marginLeft: '10px', marginRight: '10px'}} value={Store.getSearchValue.patentNo}
              onChange={(e) => {
                Store.setSearchValue({
                  patentNo: e.target.value
@@ -133,9 +137,23 @@ class PatentInfo extends React.Component {
              }}
              placeholder={'申请号'}
       />
+      <span>专利号</span>
+      <Input style={{width: '100px', marginLeft: '10px', marginRight: '10px'}}
+             value={Store.getSearchValue.patentOriginNo}
+             onChange={(e) => {
+               Store.setSearchValue({
+                 patentOriginNo: e.target.value
+               })
+               console.log(e.target.value)
+             }}
+             onPressEnter={() => {
+               PatentInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
+             }}
+             placeholder={'专利号'}
+      />
       <Button icon='search' type={'primary'} onClick={() => {
         PatentInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
-      }}>查询</Button>
+      }} style={{marginLeft: '20px'}}>查询</Button>
       {RoleStore.getRoleType >= 1 && <Button style={{float: 'right'}} icon='plus-circle-o' onClick={() => {
         Store.setModalData({
           visible: true,
@@ -176,13 +194,19 @@ class PatentInfo extends React.Component {
                 {item.patentNo ? item.patentNo : '无信息'}
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
+                专利号:
+              </Col>
+              <Col span={14} style={{marginLeft: '10px', marginBottom: '10px'}}>
+                {item.patentOriginNo ? item.patentOriginNo : '无信息'}
+              </Col>
+              <Col span={8} style={{textAlign: 'right'}}>
                 专利公开号:
               </Col>
               <Col span={14} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 {item.noticeNo ? item.noticeNo : '无信息'}
               </Col>
               <Col span={8} style={{textAlign: 'right'}}>
-                IPC分类:
+                专利领域:
               </Col>
               <Col span={14} style={{marginLeft: '10px', marginBottom: '10px'}}>
                 {item.ipc ? item.ipc : '无信息'}
@@ -213,14 +237,18 @@ class PatentInfo extends React.Component {
               patentNo: item.patentNo,
               ipc: item.ipc,
               intro: item.intro,
-              url: item.url
+              url: item.url,
+              patentOriginNo: item.patentOriginNo,
+              awardTime: item.awardTime
             })
           }}>编辑</a>]}>
             <List.Item.Meta
-              title={<a onClick={() => {
-                alert('查看')
-              }}>{item.title}</a>}
-              description={'专利名称：' + item.name}
+              title={<span>{item.name}</span>}
+              description={<div style={{display: 'grid'}}>
+                <span>专利名称：{item.name}</span>
+                <span>专利号：{item.patentOriginNo}</span>
+                <span>所在领域：{item.ipc}</span>
+              </div>}
             />
             <div>{'申请人：' + item.applyName}</div>
           </List.Item>
@@ -256,6 +284,8 @@ class PatentInfo extends React.Component {
                         noticeNo: Store.getModalData.noticeNo,
                         ipc: Store.getModalData.ipc,
                         patentIntro: Store.getModalData.intro,
+                        patentOriginNo: Store.getModalData.patentOriginNo,
+                        awardTime: new Date(Store.getModalData.awardTime.replace(/-/g, '/')),
                         url: Store.getModalData.file.length > 0 ? Store.getUrl : ''
                       }
                       console.log(sentData)
@@ -287,6 +317,8 @@ class PatentInfo extends React.Component {
                         noticeNo: Store.getModalData.noticeNo,
                         ipc: Store.getModalData.ipc,
                         patentIntro: Store.getModalData.intro,
+                        patentOriginNo: Store.getModalData.patentOriginNo,
+                        awardTime: new Date(Store.getModalData.awardTime.replace(/-/g, '/')),
                         url: Store.getModalData.url ? Store.getModalData.url : Store.getModalData.file.length > 0 ? Store.getUrl : ''
                       }
                       Request.fetch({
@@ -361,6 +393,16 @@ class PatentInfo extends React.Component {
               }}/>
             </Col>
             <Col span={8} style={{textAlign: 'right'}}>
+              专利号<span style={{color: 'red'}}> *</span>
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+              <Input value={Store.getModalData.patentOriginNo} placeholder={'专利号'} onChange={(e) => {
+                Store.setModalData({
+                  patentOriginNo: e.target.value
+                })
+              }}/>
+            </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
               专利公开号<span style={{color: 'red'}}> *</span>
             </Col>
             <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
@@ -371,10 +413,10 @@ class PatentInfo extends React.Component {
               }}/>
             </Col>
             <Col span={8} style={{textAlign: 'right'}}>
-              IPC分类
+              专利领域
             </Col>
             <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
-              <Input value={Store.getModalData.ipc} placeholder={'IPC分类'} onChange={(e) => {
+              <Input value={Store.getModalData.ipc} placeholder={'专利领域'} onChange={(e) => {
                 Store.setModalData({
                   ipc: e.target.value
                 })
@@ -387,6 +429,16 @@ class PatentInfo extends React.Component {
               <Input.TextArea rows={4} value={Store.getModalData.intro} placeholder={'专利简介'} onChange={(e) => {
                 Store.setModalData({
                   intro: e.target.value
+                })
+              }}/>
+            </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
+              专利获取时间<span style={{color: 'red'}}> *</span>
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+              <Input value={Store.getModalData.awardTime} placeholder={'获取时间'} onChange={(e) => {
+                Store.setModalData({
+                  awardTime: e.target.value
                 })
               }}/>
             </Col>

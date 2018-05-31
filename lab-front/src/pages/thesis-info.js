@@ -14,6 +14,10 @@ import CommonStore from '../stores/store/common/common-store'
 import Request from '../util/request'
 
 const ThesisStore = new DataStore()
+const typeEnums = {
+  core: '核心期刊',
+  nonCore: '非核心期刊'
+}
 
 @observer
 class ThesisInfo extends React.Component {
@@ -60,8 +64,13 @@ class ThesisInfo extends React.Component {
               id: item.id,
               title: item.name,
               avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              description: `作者: ${item.firstAuthor}, ${item.teleAuthor}`,
-              content: `期刊名：${item.journalName}, 期刊来源: ${item.journalFrom}, 期刊类型: ${item.journalType}`
+              description: `作者: ${item.firstAuthor}, ${item.teleAuthor}, ${item.otherAuthor ? item.otherAuthor : ''}`,
+              content: <div key={item.id}>
+                <span style={{marginRight: '30px'}}>期刊名：{item.journalName}</span>
+                <span style={{marginRight: '30px'}}>期刊来源：{item.journalFrom}</span>
+                <span style={{marginRight: '30px'}}>期刊类型：{typeEnums[item.journalType]}</span>
+                <span>年份：{item.year}</span>
+              </div>
             })
           })
           ThesisStore.setData(listData)
@@ -98,7 +107,10 @@ class ThesisInfo extends React.Component {
                 prove: data.journalFrom !== 'none' ? data.prove ? data.prove : ThesisStore.getUrl.proveUrl : null,
                 firstAuthor: data.firstAuthor,
                 teleAuthor: data.teleAuthor,
-                journalSource: data.journalSource ? data.journalSource : ThesisStore.getUrl.sourceUrl
+                journalSource: data.journalSource ? data.journalSource : ThesisStore.getUrl.sourceUrl,
+                otherAuthor: data.otherAuthor,
+                page: data.journalPage,
+                year: data.journalYear
               },
               successFn(response) {
                 message.success(ThesisStore.getModalAttr.status === 'edit' ? '修改成功' : '添加成功')
@@ -132,7 +144,10 @@ class ThesisInfo extends React.Component {
                 prove: data.journalFrom !== 'none' ? ThesisStore.getUrl.proveUrl : null,
                 firstAuthor: data.firstAuthor,
                 teleAuthor: data.teleAuthor,
-                journalSource: data.sourceFile.length > 0 ? ThesisStore.getUrl.sourceUrl : null
+                journalSource: data.sourceFile.length > 0 ? ThesisStore.getUrl.sourceUrl : null,
+                otherAuthor: data.otherAuthor,
+                page: data.journalPage,
+                year: data.journalYear
               },
               successFn(response) {
                 ThesisStore.resetModal()
@@ -319,8 +334,11 @@ class ThesisInfo extends React.Component {
                     journalSource: data.journalSource,
                     name: data.name,
                     prove: data.prove,
-                    publishTime: data.publishTime,
-                    username: data.username
+                    publishTime: new Date(data.publishTime).getFullYear() + '-' + (new Date(data.publishTime).getMonth() + 1) + '-' + new Date(data.publishTime).getDate(),
+                    username: data.username,
+                    otherAuthor: data.otherAuthor,
+                    journalPage: data.page,
+                    journalYear: data.year
                   })
                 }
               })
@@ -402,12 +420,42 @@ class ThesisInfo extends React.Component {
               }} placeholder="通讯作者"/>
             </Col>
             <Col span={8} style={{textAlign: 'right'}}>
+              <h4>其他作者</h4>
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+              <Input value={ThesisStore.getModalData.otherAuthor} onChange={(e) => {
+                ThesisStore.setModalData({
+                  otherAuthor: e.target.value
+                })
+              }} placeholder="其他作者，多人可用逗号隔开"/>
+            </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
               <h4>期刊名<span style={{color: 'red'}}> *</span></h4>
             </Col>
             <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
               <Input value={ThesisStore.getModalData.journalName} onChange={(e) => {
                 ThesisStore.setModalData({
                   journalName: e.target.value
+                })
+              }} placeholder="刊名"/>
+            </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
+              <h4>期刊页码<span style={{color: 'red'}}> *</span></h4>
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+              <Input value={ThesisStore.getModalData.journalPage} onChange={(e) => {
+                ThesisStore.setModalData({
+                  journalPage: e.target.value
+                })
+              }} placeholder="页码，用-隔开，如1-2"/>
+            </Col>
+            <Col span={8} style={{textAlign: 'right'}}>
+              <h4>期刊年份<span style={{color: 'red'}}> *</span></h4>
+            </Col>
+            <Col span={12} style={{marginLeft: '10px', marginBottom: '10px'}}>
+              <Input value={ThesisStore.getModalData.journalYear} onChange={(e) => {
+                ThesisStore.setModalData({
+                  journalYear: e.target.value
                 })
               }} placeholder="刊名"/>
             </Col>

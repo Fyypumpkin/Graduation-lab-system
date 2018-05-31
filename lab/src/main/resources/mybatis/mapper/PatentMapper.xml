@@ -12,6 +12,8 @@
         <result column="ipc" property="ipc"/>
         <result column="patent_intro" property="patentIntro"/>
         <result column="url" property="url"/>
+        <result column="award_time" property="awardTime"/>
+        <result column="patent_origin_no" property="patentOriginNo"/>
     </resultMap>
 
 
@@ -20,12 +22,12 @@
     </sql>
 
     <sql id="insertCol">
-        (username, name, patent_no, notice_no, ipc, patent_intro, url)
+        (username, name, patent_no, notice_no, ipc, patent_intro, url, patent_origin_no,award_time)
     </sql>
 
 
     <sql id="allCols">
-        id, username, name, patent_no, notice_no, ipc, patent_intro, url
+        id, username, name, patent_no, notice_no, ipc, patent_intro, url, patent_origin_no,award_time
     </sql>
 
     <select id="getPatentList" resultMap="BaseResultMap">
@@ -43,6 +45,9 @@
         <if test="request.username != null">
             and username like CONCAT(CONCAT('%', #{request.username}), '%')
         </if>
+        <if test="request.patentOriginNo != null">
+            and patent_origin_no like CONCAT(CONCAT('%', #{request.patentOriginNo}), '%')
+        </if>
         order by id desc limit #{offset},#{pageSize}
     </select>
 
@@ -58,6 +63,9 @@
         </if>
         <if test="request.username != null">
             and username like CONCAT(CONCAT('%', #{request.username}), '%')
+        </if>
+        <if test="request.patentOriginNo != null">
+            and patent_origin_no like  CONCAT(CONCAT('%', #{request.patentOriginNo}), '%')
         </if>
     </select>
 
@@ -77,7 +85,9 @@
         #{patent.noticeNo},
         #{patent.ipc},
         #{patent.patentIntro},
-        #{patent.url}
+        #{patent.url},
+        #{patent.patentOriginNo},
+        #{patent.awardTime}
         )
     </insert>
 
@@ -89,7 +99,9 @@
         notice_no=#{patent.noticeNo},
         ipc=#{patent.ipc},
         patent_intro=#{patent.patentIntro},
-        url=#{patent.url}
+        url=#{patent.url},
+        award_time= #{patent.awardTime},
+        patent_origin_no=#{patent.patentOriginNo}
         where id=#{patent.id}
     </update>
 

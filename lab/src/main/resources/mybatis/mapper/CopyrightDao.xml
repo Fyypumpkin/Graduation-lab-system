@@ -62,7 +62,7 @@
 
 
     <sql id="CopyrightListCols">
-        `id`,`username`,`all_name`, `usage`
+        `id`,`username`,`all_name`, `usage`, `version`
     </sql>
 
     <sql id="copyright">
@@ -142,7 +142,7 @@
     <insert id="createExtendInfo">
         insert into
         <include refid="extend"/>
-        (extend_key,real_name,country, adress, type)
+        (extend_key,real_name,country, address, type)
         values
         <foreach collection="list" item="list" index="index" separator=",">
         (
@@ -158,7 +158,7 @@
     <insert id="createOriginInfo">
         insert into
         <include refid="origin"/>
-        (extend_key,real_name,country, adress)
+        (origin_key,real_name,country, address)
         values
         <foreach collection="list" item="list" index="index" separator=",">
             (

@@ -14,7 +14,10 @@ class ProjectDetailStore {
     setUpPeople: '',
     headPeople: '',
     dev: '',
-    test: ''
+    test: '',
+    doingTime: '',
+    money: '',
+    moneyFrom: ''
   }
 
   @action.bound
@@ -41,7 +44,10 @@ class ProjectDetailStore {
       setUpPeople: '',
       headPeople: '',
       dev: '',
-      test: ''
+      test: '',
+      doingTime: '',
+      money: '',
+      moneyFrom: ''
     }
   }
 }

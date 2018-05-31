@@ -10,7 +10,7 @@ import DataStore from '../stores/store/project/project-setup-store'
 import RoleStore from '../stores/store/common/role-store'
 import '../themes/pages/project.css'
 import Request from '../util/request'
-import store from "../routers/store";
+import store from '../routers/store'
 
 const SetupStore = new DataStore()
 
@@ -18,6 +18,7 @@ const SetupStore = new DataStore()
 class ProjectSetupInfo extends React.Component {
   constructor() {
     super()
+    SetupStore.reset()
     SetupStore.setActiveKey('1')
     const params = {...store.router.params}
     if (params.prjId && params.type === 'edit') {
@@ -27,6 +28,8 @@ class ProjectSetupInfo extends React.Component {
         url: '/getPrjInfo/' + prjId,
         successFn(response) {
           const data = response.data.data
+          const completeTime = new Date(data.completeTime)
+          const doingTime = new Date(data.doingTime)
           SetupStore.setData({
             id: data.id,
             name: data.name,
@@ -39,8 +42,10 @@ class ProjectSetupInfo extends React.Component {
             dev: JSON.parse(data.dev),
             test: JSON.parse(data.test),
             file: data.file,
-            completeTime: data.completeTime,
-            status: data.status
+            completeTime: completeTime.getFullYear() + '-' + (completeTime.getMonth() + 1) + '-' + completeTime.getDate(),
+            doingTime: doingTime.getFullYear() + '-' + (doingTime.getMonth() + 1) + '-' + doingTime.getDate(),
+            status: data.status,
+            rank: data.rank
           })
         }
       })
@@ -98,7 +103,7 @@ class ProjectSetupInfo extends React.Component {
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目名称</h4>
               </Col>
-              <Col><Input value={SetupStore.getData.name} onChange={(e) => {
+              <Col><Input value={SetupStore.getData.name} placeholder={'项目的名称'} onChange={(e) => {
                 SetupStore.setData({
                   name: e.target.value
                 })
@@ -109,7 +114,7 @@ class ProjectSetupInfo extends React.Component {
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目简介</h4>
               </Col>
-              <Col><Input.TextArea value={SetupStore.getData.intro} onChange={(e) => {
+              <Col><Input.TextArea value={SetupStore.getData.intro} placeholder={'项目的简介'} onChange={(e) => {
                 SetupStore.setData({
                   intro: e.target.value
                 })
@@ -118,9 +123,28 @@ class ProjectSetupInfo extends React.Component {
 
             <Row style={{marginBottom: '30px'}}>
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>项目级别</h4>
+              </Col>
+              <Col span={3}>
+                <Select
+                  value={SetupStore.getData.rank}
+                  onSelect={(value) => {
+                    SetupStore.setData({
+                      rank: value
+                    })
+                  }}
+                >
+                  <Select.Option value='college'>院级</Select.Option>
+                  <Select.Option value='school'>校级</Select.Option>
+                  <Select.Option value='city'>市级</Select.Option>
+                  <Select.Option value='province'>省级</Select.Option>
+                  <Select.Option value='country'>国家级</Select.Option>
+                </Select>
+              </Col>
+              <Col span={3} offset={1} style={{marginRight: '20px', textAlign: 'right'}}>
                 <h4>项目状态</h4>
               </Col>
-              <Col>
+              <Col span={3}>
                 <Select
                   value={SetupStore.getData.status}
                   onSelect={(value) => {
@@ -129,9 +153,11 @@ class ProjectSetupInfo extends React.Component {
                     })
                   }}
                 >
-                  <Select.Option value={'start'}>{'启动'}</Select.Option>
-                  <Select.Option value={'stop'}>{'停止'}</Select.Option>
-                  <Select.Option value={'hang'}>{'挂起'}</Select.Option>
+                  <Select.Option value='start'>已立项</Select.Option>
+                  <Select.Option value='done'>已验收</Select.Option>
+                  <Select.Option value='stop'>已截止</Select.Option>
+                  <Select.Option value='doing'>在研</Select.Option>
+                  <Select.Option value='hang'>延期</Select.Option>
                 </Select>
               </Col>
             </Row>
@@ -183,7 +209,7 @@ class ProjectSetupInfo extends React.Component {
                 <h4>预估项目经费</h4>
               </Col>
               <Col>
-                <Input value={SetupStore.getData.money} onChange={(e) => {
+                <Input value={SetupStore.getData.money} placeholder={'预估经费'} onChange={(e) => {
                   SetupStore.setData({
                     money: e.target.value
                   })
@@ -196,7 +222,7 @@ class ProjectSetupInfo extends React.Component {
                 <h4>经费来源</h4>
               </Col>
               <Col>
-                <Input value={SetupStore.getData.moneyFrom} onChange={(e) => {
+                <Input value={SetupStore.getData.moneyFrom} placeholder={'经费的来源'} onChange={(e) => {
                   SetupStore.setData({
                     moneyFrom: e.target.value
                   })
@@ -206,10 +232,23 @@ class ProjectSetupInfo extends React.Component {
 
             <Row style={{marginBottom: '30px'}}>
               <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
-                <h4>交付时间</h4>
+                <h4>开始时间</h4>
               </Col>
               <Col>
-                <Input value={SetupStore.getData.completeTime} onChange={(e) => {
+                <Input value={SetupStore.getData.doingTime} placeholder={'项目开始时间'} onChange={(e) => {
+                  SetupStore.setData({
+                    doingTime: e.target.value
+                  })
+                }} style={{width: '150px'}}/>
+              </Col>
+            </Row>
+
+            <Row style={{marginBottom: '30px'}}>
+              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
+                <h4>截止时间</h4>
+              </Col>
+              <Col>
+                <Input value={SetupStore.getData.completeTime} placeholder={'项目截止时间'} onChange={(e) => {
                   SetupStore.setData({
                     completeTime: e.target.value
                   })
@@ -226,54 +265,96 @@ class ProjectSetupInfo extends React.Component {
 
         <Tabs.TabPane tab={'项目成员'} key='2' disabled={SetupStore.getActiveKey !== '2'}>
           <div>
-            <Row style={{marginBottom: '30px', marginTop: '30px'}}>
-              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
-                <h4>开发</h4>
-              </Col>
-              <Col>
-                <Select
-                  mode="tags"
-                  style={{width: '80%'}}
-                  filterOption={true}
-                  placeholder="开发人员"
-                  value={SetupStore.getData.dev.slice()}
-                  onChange={(value) => {
-                    console.log(value)
-                    SetupStore.setData({
-                      dev: value
-                    })
-                  }}
-                >
-                  {RoleStore.getUsers.slice().map((item) => {
-                    return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
-                  })}
-                </Select>
-              </Col>
-            </Row>
             <Row style={{marginBottom: '30px'}}>
-              <Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>
-                <h4>测试</h4>
+              <Col span={6}>
+                成员姓名
               </Col>
-              <Col>
-                <Select
-                  mode="tags"
-                  style={{width: '60%'}}
-                  placeholder="测试人员"
-                  value={SetupStore.getData.test.slice()}
-                  filterOption={true}
-                  onChange={(value) => {
-                    SetupStore.setData({
-                      test: value
-                    })
-                    console.log(value)
-                  }}
-                >
-                  {RoleStore.getUsers.slice().map((item) => {
-                    return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
-                  })}
-                </Select>
+              <Col span={10}>
+                成员负责事项
+              </Col>
+              <Col span={8}>
+                <Button style={{float: 'right'}} type={'primary'} onClick={() => {
+                  let temp = SetupStore.getData.dev
+                  temp.push({
+                    people: '',
+                    desc: ''
+                  })
+                  SetupStore.setData({
+                    dev: temp
+                  })
+                  console.log(SetupStore.getData.dev.slice())
+                }}>新增成员</Button>
               </Col>
             </Row>
+            {SetupStore.getData.dev.map((item, index) => {
+              return <Row style={{marginBottom: '30px', marginTop: '30px'}} key={index}>
+                <Col span={6}>
+                  <Select
+                    showSearch
+                    style={{width: '80%'}}
+                    filterOption={true}
+                    placeholder="人员"
+                    value={item.people}
+                    onChange={(value) => {
+                      console.log(value)
+                      let temp = SetupStore.getData.dev.slice()
+                      temp[index].people = value
+                      SetupStore.setData({
+                        dev: temp
+                      })
+                    }}
+                  >
+                    {RoleStore.getUsers.slice().map((item) => {
+                      return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
+                    })}
+                  </Select>
+                </Col>
+                <Col span={10}>
+                  <Input value={item.desc} onChange={(e) => {
+                    let temp = SetupStore.getData.dev.slice()
+                    temp[index].desc = e.target.value
+                    SetupStore.setData({
+                      dev: temp
+                    })
+                  }
+                  } placeholder={'填写项目中负责的事情'}/>
+                </Col>
+                <Col span={8}>
+                  <Button style={{float: 'right'}} icon={'delete'} type={'danger'} onClick={() => {
+                    let temp = SetupStore.getData.dev
+                    temp.splice(index, 1)
+                    SetupStore.setData({
+                      dev: temp
+                    })
+                  }}/>
+                </Col>
+              </Row>
+            })}
+
+            {/*<Row style={{marginBottom: '30px'}}>*/}
+            {/*<Col span={3} style={{marginRight: '20px', textAlign: 'right'}}>*/}
+            {/*<h4>测试</h4>*/}
+            {/*</Col>*/}
+            {/*<Col>*/}
+            {/*<Select*/}
+            {/*mode="tags"*/}
+            {/*style={{width: '60%'}}*/}
+            {/*placeholder="测试人员"*/}
+            {/*value={SetupStore.getData.test.slice()}*/}
+            {/*filterOption={true}*/}
+            {/*onChange={(value) => {*/}
+            {/*SetupStore.setData({*/}
+            {/*test: value*/}
+            {/*})*/}
+            {/*console.log(value)*/}
+            {/*}}*/}
+            {/*>*/}
+            {/*{RoleStore.getUsers.slice().map((item) => {*/}
+            {/*return (<Select.Option key={item.username}>{item.realName}</Select.Option>)*/}
+            {/*})}*/}
+            {/*</Select>*/}
+            {/*</Col>*/}
+            {/*</Row>*/}
             <Row>
               <Button onClick={() => {
                 SetupStore.setActiveKey('1')
@@ -315,14 +396,16 @@ class ProjectSetupInfo extends React.Component {
                   status: data.status,
                   username: data.username,
                   intro: data.intro,
-                  completeTime: data.completeTime,
-                  startTime: startTime,
+                  completeTime: new Date(Date.parse(data.completeTime.replace(/-/g, '/'))),
+                  startTime: new Date(Date.parse(startTime.replace(/-/g, '/'))),
+                  doingTime: new Date(Date.parse(data.doingTime.replace(/-/g, '/'))),
                   headPeople: data.headPeople,
                   dev: JSON.stringify(data.dev),
                   test: JSON.stringify(data.test),
                   file: data.file,
                   money: data.money,
-                  moneyFrom: data.moneyFrom
+                  moneyFrom: data.moneyFrom,
+                  rank: data.rank
                 },
                 successFn(response) {
                   message.success('新增完成')
@@ -340,13 +423,15 @@ class ProjectSetupInfo extends React.Component {
                   username: data.username,
                   intro: data.intro,
                   completeTime: data.completeTime,
-                  startTime: startTime,
+                  startTime: null,
+                  doingTime: '',
                   headPeople: data.headPeople,
                   dev: JSON.stringify(data.dev),
                   test: JSON.stringify(data.test),
                   file: data.file,
                   money: data.money,
-                  moneyFrom: data.moneyFrom
+                  moneyFrom: data.moneyFrom,
+                  rank: data.rank
                 },
                 successFn(response) {
                   message.success('修改成功')

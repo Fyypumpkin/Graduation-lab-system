@@ -18,7 +18,10 @@ class ThesisInfoStore {
     journalFrom: 'none',
     prove: '',
     proveFile: [],
-    sourceFile: []
+    sourceFile: [],
+    otherAuthor: '',
+    journalPage: '',
+    journalYear: ''
   }
   @observable arrowDir = 'down'
 
@@ -158,7 +161,10 @@ class ThesisInfoStore {
       journalFrom: 'none',
       prove: '',
       proveFile: [],
-      sourceFile: []
+      sourceFile: [],
+      otherAuthor: '',
+      journalPage: '',
+      journalYear: ''
     }
   }
 }

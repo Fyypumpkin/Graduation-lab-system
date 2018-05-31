@@ -16,16 +16,29 @@ import RoleStore from '../stores/store/common/role-store'
 
 const Store = new DataStore()
 const statusEnums = {
-  start: '进行中',
-  stop: '已结束',
-  hang: '已挂起'
+  start: '已立项',
+  stop: '已截止',
+  done: '已验收',
+  hang: '延期',
+  doing: '在研'
 }
 
 const statusEnumsBadge = {
-  start: 'processing',
+  start: 'default',
+  doing: 'processing',
   stop: 'error',
-  hang: 'warning'
+  hang: 'warning',
+  done: 'success'
 }
+
+const rankEnums = {
+  college: '院级',
+  school: '校级',
+  city: '市级',
+  province: '省级',
+  country: '国家级'
+}
+
 
 @observer
 class ProjectGroupInfo extends React.Component {
@@ -39,14 +52,26 @@ class ProjectGroupInfo extends React.Component {
     dataIndex: 'prjStatus',
     render: (text, record) => {
       return (<div>
-        <Badge status={statusEnumsBadge[record.prjStatusOrigin]} />
+        <Badge status={statusEnumsBadge[record.prjStatusOrigin]}/>
         <span>{text}</span>
       </div>)
     }
   }, {
+    title: '项目级别',
+    key: 'rank',
+    dataIndex: 'rank'
+  }, {
     title: '立项时间',
     key: 'startTime',
     dataIndex: 'startTime'
+  }, {
+    title: '启动时间',
+    key: 'doingTime',
+    dataIndex: 'doingTime'
+  }, {
+    title: '截止时间',
+    key: 'completeTime',
+    dataIndex: 'completeTime'
   }, {
     title: '项目负责人',
     key: 'prjOwner',
@@ -108,8 +133,11 @@ class ProjectGroupInfo extends React.Component {
             id: item.id,
             prjStatus: statusEnums[item.status],
             startTime: item.startTime,
-            prjOwner: item.headPeople,
-            prjStatusOrigin: item.status
+            prjOwner: RoleStore.getUserMap[item.headPeople] + '(' + item.headPeople + ')',
+            prjStatusOrigin: item.status,
+            completeTime: item.completeTime,
+            doingTime: item.doingTime,
+            rank: rankEnums[item.rank]
           })
         })
         Store.setData(table)
@@ -136,9 +164,11 @@ class ProjectGroupInfo extends React.Component {
           ProjectGroupInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
         }} style={{width: '100px', marginLeft: '10px', marginRight: '10px'}}>
           <Select.Option value={null}>全部</Select.Option>
-          <Select.Option value='start'>已启动</Select.Option>
-          <Select.Option value='stop'>已结束</Select.Option>
-          <Select.Option value='hang'>已挂起</Select.Option>
+          <Select.Option value='start'>启动</Select.Option>
+          <Select.Option value='doing'>在研</Select.Option>
+          <Select.Option value='done'>已验收</Select.Option>
+          <Select.Option value='stop'>已截止</Select.Option>
+          <Select.Option value='hang'>延期</Select.Option>
         </Select>
         <span>项目名称</span>
         <Input style={{width: '200px', marginLeft: '10px', marginRight: '10px'}} value={Store.getSearchValue.name}
@@ -160,6 +190,7 @@ class ProjectGroupInfo extends React.Component {
           style={{width: '100px', marginLeft: '10px', marginRight: '10px'}}
           showArrow={false}
           filterOption={true}
+          value={Store.getSearchValue.headPeople}
           onSelect={(value) => {
             Store.setSearchValue({
               headPeople: value
@@ -168,6 +199,7 @@ class ProjectGroupInfo extends React.Component {
             ProjectGroupInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
           }}
         >
+          <Select.Option value={null}>全部</Select.Option>
           {RoleStore.getUsers.slice().map((item) => {
             return (<Select.Option key={item.username}>{item.realName}</Select.Option>)
           })}

@@ -7,6 +7,33 @@ public class PrjDTO {
     private String status;
     private String startTime;
     private String headPeople;
+    private String doingTime;
+    private String completeTime;
+    private String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getDoingTime() {
+        return doingTime;
+    }
+
+    public void setDoingTime(String doingTime) {
+        this.doingTime = doingTime;
+    }
+
+    public String getCompleteTime() {
+        return completeTime;
+    }
+
+    public void setCompleteTime(String completeTime) {
+        this.completeTime = completeTime;
+    }
 
     public Integer getId() {
         return id;

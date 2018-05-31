@@ -6,6 +6,15 @@ public class GetPatentListRequest extends PageInfo {
     private String name;
     private String username;
     private String patentNo;
+    private String patentOriginNo;
+
+    public String getPatentOriginNo() {
+        return patentOriginNo;
+    }
+
+    public void setPatentOriginNo(String patentOriginNo) {
+        this.patentOriginNo = patentOriginNo;
+    }
 
     public String getName() {
         return name;

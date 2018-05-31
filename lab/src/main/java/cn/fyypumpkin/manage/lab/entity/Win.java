@@ -1,12 +1,23 @@
 package cn.fyypumpkin.manage.lab.entity;
 
+import java.util.Date;
+
 public class Win {
     private Integer id;
     private String username;
     private String winName;
     private String winInst;
-    private String winTime;
+    private Date winTime;
     private String winRank;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Integer getId() {
         return id;
@@ -40,11 +51,11 @@ public class Win {
         this.winInst = winInst;
     }
 
-    public String getWinTime() {
+    public Date getWinTime() {
         return winTime;
     }
 
-    public void setWinTime(String winTime) {
+    public void setWinTime(Date winTime) {
         this.winTime = winTime;
     }
 

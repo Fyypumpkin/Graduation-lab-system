@@ -3,7 +3,7 @@
  * @author fyypumpkin on 2018/5/8.
  */
 import React from 'react'
-import {Input, List, Checkbox, Button} from 'antd'
+import {Input, List, Checkbox, Button, message} from 'antd'
 import {observer} from 'mobx-react'
 
 import CommonStore from '../stores/store/common/common-store'
@@ -12,7 +12,6 @@ import store from '../routers/store'
 import router from '../routers/router/router-all'
 import Request from '../util/request';
 import DataStore from '../stores/store/result/copyright-info-store'
-import UserMng from "./user-mng";
 import RoleStore from "../stores/store/common/role-store";
 
 const Store = new DataStore()
@@ -96,7 +95,7 @@ class CopyrightInfo extends React.Component {
             Store.setPageInfo({
               page: page
             })
-            UserMng.doQuery(Store.getSearchValue, Store.getPageInfo)
+            CopyrightInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
           }
         }}
         className="demo-loadmore-list"
@@ -107,7 +106,17 @@ class CopyrightInfo extends React.Component {
           <List.Item
             actions={[<a disabled={(RoleStore.getRoleType < 1 && item.username !== localStorage.getItem('username'))}
                          onClick={() => {
-                           console.log('删除')
+                           Request.fetch({
+                             url: '/delCopyright',
+                             sentData: {
+                               id: parseInt(item.id),
+                               deleteable: parseInt(RoleStore.getRoleType)
+                             },
+                             successFn(response) {
+                               message.success('删除成功')
+                               CopyrightInfo.doQuery(Store.getSearchValue, Store.getPageInfo)
+                             }
+                           })
                          }}>删除</a>,
               <a disabled={(RoleStore.getRoleType < 1 && item.username !== localStorage.getItem('username'))}
                  onClick={() => {
@@ -119,7 +128,10 @@ class CopyrightInfo extends React.Component {
               title={<a onClick={() => {
                 store.router.goTo(router.CopyrightEdit, {copyEditId: item.id, status: 'watch'})
               }}>{item.allName}</a>}
-              description={item.usage.length > 50 ? item.usage.substring(0, 50) : item.usage}
+              description={<div style={{display: 'grid'}}>
+                <span>简介：{item.usage ? item.usage.length > 50 ? item.usage.substring(0, 50) : item.usage : ''}</span>
+                <span>软件版本号：{item.version}</span>
+              </div>}
             />
           </List.Item>
         )}

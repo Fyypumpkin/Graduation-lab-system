@@ -14,11 +14,16 @@ class ProjectSetupStore {
     labType: 'basic',
     money: '',
     moneyFrom: '',
-    dev: [],
+    dev: [{
+      people: '',
+      desc: ''
+    }],
     test: [],
     file: '',
     completeTime: '',
-    status: 'start'
+    doingTime: '',
+    status: 'start',
+    rank: 'college'
   }
 
   @observable uploadFileList = []
@@ -79,7 +84,8 @@ class ProjectSetupStore {
       test: [],
       file: '',
       completeTime: '',
-      status: 'start'
+      status: 'start',
+      rank: 'college'
     }
   }
 

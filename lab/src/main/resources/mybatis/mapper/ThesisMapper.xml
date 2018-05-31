@@ -14,6 +14,9 @@
         <result column="journal_from" property="journalFrom"/>
         <result column="publish_time" property="publishTime"/>
         <result column="prove" property="prove"/>
+        <result column="year" property="year"/>
+        <result column="page" property="page"/>
+        <result column="other_author" property="otherAuthor"/>
         <result column="journal_source" property="journalSource"/>
     </resultMap>
 
@@ -22,12 +25,12 @@
     </sql>
 
     <sql id="insertCol">
-        (username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source)
+        (username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source, year,page,other_author)
     </sql>
 
 
     <sql id="allCols">
-        id, username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source
+        id, username,name,first_author,tele_author,journal_name,journal_type,journal_from,publish_time,prove,journal_source, year,page,other_author
     </sql>
 
 
@@ -97,7 +100,10 @@
         journal_type=#{request.journalType},
         journal_from=#{request.journalFrom},
         prove=#{request.prove},
-        journal_source=#{request.journalSource}
+        journal_source=#{request.journalSource},
+        year=#{request.year},
+        page=#{request.page},
+        other_author=#{request.otherAuthor}
         where id=#{request.id}
     </update>
 
@@ -115,7 +121,10 @@
         #{request.journalFrom},
         #{request.publishTime},
         #{request.prove},
-        #{request.journalSource}
+        #{request.journalSource},
+        #{request.year},
+        #{request.page},
+        #{request.otherAuthor}
         )
     </insert>
 

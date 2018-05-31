@@ -3,15 +3,16 @@
  */
 import React from 'react'
 import ThesisInfo from '../../../pages/thesis-info'
-import { Route } from 'mobx-router'
+import {Route} from 'mobx-router'
 import ThesisDisplay from '../../../pages/thesis-display'
-import PatentInfo from "../../../pages/patent-info";
-import WinningInfo from "../../../pages/winning-info";
+import PatentInfo from '../../../pages/patent-info';
+import WinningInfo from '../../../pages/winning-info';
+import OutputInfo from '../../../pages/output-info';
 
 export default {
   ThesisInfo: new Route({
     path: '/page/thesisInfo',
-    component: <ThesisInfo />
+    component: <ThesisInfo/>
   }),
   ThesisDisplay: new Route({
     path: '/page/thesisDisplay',
@@ -24,5 +25,9 @@ export default {
   WinningInfo: new Route({
     path: '/page/winningInfo',
     component: <WinningInfo/>
+  }),
+  OutputInfo: new Route({
+    path: '/page/output',
+    component: <OutputInfo/>
   })
 }

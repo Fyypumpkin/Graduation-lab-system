@@ -144,6 +144,17 @@ class UserMng extends React.Component {
                             UserStore.setModalData({
                               visible: false
                             })
+                            Request.fetch({
+                              url: '/getAllUserList',
+                              successFn(response) {
+                                RoleStore.setUsers(response.data.data)
+                                const map = {}
+                                response.data.data instanceof Array && response.data.data.map(item => {
+                                  map[item.username] = item.realName
+                                })
+                                RoleStore.setUserMap(map)
+                              }
+                            })
                             UserMng.doQuery(UserStore.getSearchValue, UserStore.getPageInfo)
                           } else {
                             message.error(response.data.message)

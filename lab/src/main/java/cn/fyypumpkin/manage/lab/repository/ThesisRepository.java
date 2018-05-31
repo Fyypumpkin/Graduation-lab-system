@@ -32,6 +32,9 @@ public class ThesisRepository {
                 setTeleAuthor(item.getTeleAuthor());
                 setJournalFrom(item.getJournalFrom());
                 setJournalType(item.getJournalType());
+                setYear(item.getYear());
+                setOtherAuthor(item.getOtherAuthor());
+                setPage(item.getPage());
             }});
         });
         return result;

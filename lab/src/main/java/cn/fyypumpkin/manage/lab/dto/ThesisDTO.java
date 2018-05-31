@@ -17,6 +17,36 @@ public class ThesisDTO {
 
     private String journalType;
 
+    private String year;
+
+    private String otherAuthor;
+
+    private String page;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getOtherAuthor() {
+        return otherAuthor;
+    }
+
+    public void setOtherAuthor(String otherAuthor) {
+        this.otherAuthor = otherAuthor;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
     public String getJournalFrom() {
         return journalFrom;
     }

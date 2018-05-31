@@ -4,7 +4,7 @@ class WinningStore {
   @observable searchValue = {
     name: '',
     rank: '',
-    winner: ''
+    winner: null
   }
 
   @observable pageInfo = {
@@ -13,11 +13,19 @@ class WinningStore {
     pageSize: 10
   }
 
-  @observable data = [{winner: '傅垚尧', name: 'haha', inst: 'hahahahahahhahahahaha', rank: '国家级别', time: '2018-1-1'}]
+  @observable data = []
 
   @observable modalData = {
     visible: false,
-    status: 'create'
+    status: 'create',
+    proveFile: [],
+    url: ''
+  }
+
+  @observable url = 'http://www.gscat.cn:60/jxchg/jinshuyan/gs/pdf/%E8%8E%B7%E5%A5%96%E8%AF%81%E4%B9%A6%20.pdf'
+
+  get getUrl() {
+    return this.url
   }
 
   @action.bound
@@ -69,7 +77,9 @@ class WinningStore {
   resetModal() {
     this.modalData = {
       visible: false,
-      status: 'create'
+      status: 'create',
+      proveFile: [],
+      url: ''
     }
   }
 
@@ -78,7 +88,7 @@ class WinningStore {
     this.searchValue = {
       name: '',
       rank: '',
-      winner: ''
+      winner: null
     }
 
     this.pageInfo = {

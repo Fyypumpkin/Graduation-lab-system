@@ -10,6 +10,7 @@ import store from '../routers/store'
 import router from '../routers/router/router-all'
 import Request from '../util/request'
 import CommonStore from '../stores/store/common/common-store'
+import {observable} from "mobx/lib/mobx";
 
 const RadioGroup = Radio.Group
 const EditStore = new DataStore()
@@ -666,7 +667,69 @@ class CopyrightEdit extends React.Component {
                   store.router.goTo(router.CopyrightInfo)
                 }, 2000)
               } else {
+                CommonStore.setNodeSpin({
+                  copyEditBtn: true
+                })
+                let origin = []
+                EditStore.getOriginPowerInfo.slice().map(item => {
+                  origin.push({
+                    originKey: localStorage.getItem('username') + EditStore.getBasicInfo.sortNo + EditStore.getBasicInfo.version,
+                    realName: item.realName,
+                    address: item.address,
+                    country: item.country
+                  })
+                })
+                let extend = []
+                EditStore.getExtendPowerInfo.slice().map(item => {
+                  extend.push({
+                    extendKey: localStorage.getItem('username') + EditStore.getBasicInfo.sortNo + EditStore.getBasicInfo.version,
+                    realName: item.realName,
+                    address: item.address,
+                    country: item.country,
+                    type: item.type
+                  })
+                })
+                const data = {
+                  range: EditStore.getPowerRangeInfo.range,
+                  power: EditStore.getPowerRangeInfo.power,
+                  allName: EditStore.getBasicInfo.allName,
+                  username: localStorage.getItem('username'),
+                  simpleName: EditStore.getBasicInfo.simpleName,
+                  sortNo: EditStore.getBasicInfo.sortNo,
+                  completeTime: EditStore.getBasicInfo.completeTime,
+                  version: EditStore.getBasicInfo.version,
+                  publishTime: EditStore.getBasicInfo.publishTime,
+                  devType: EditStore.getBasicInfo.type,
+                  originKey: localStorage.getItem('username') + EditStore.getBasicInfo.sortNo + EditStore.getBasicInfo.version,
+                  extendKey: localStorage.getItem('username') + EditStore.getBasicInfo.sortNo + EditStore.getBasicInfo.version,
+                  usage: EditStore.getUsageInfo.desc,
+                  applyUsername: EditStore.getApplyInfo.name,
+                  applyPhone: EditStore.getApplyInfo.phone,
+                  applyAddress: EditStore.getApplyInfo.address,
+                  applyPostcode: EditStore.getApplyInfo.postcode,
+                  applyIdNo: EditStore.getApplyInfo.idNo,
+                  applyMail: EditStore.getApplyInfo.mail,
+                  applyFax: EditStore.getApplyInfo.fax,
+                  extendUsername: EditStore.getProxyInfo.name,
+                  extendPhone: EditStore.getProxyInfo.phone,
+                  extendAddress: EditStore.getProxyInfo.address,
+                  extendPostcode: EditStore.getProxyInfo.postcode,
+                  extendIdNo: EditStore.getProxyInfo.idNo,
+                  extendMail: EditStore.getProxyInfo.mail,
+                  extendFax: EditStore.getProxyInfo.fax,
+                  attUrl: EditStore.getFile.length > 0 ? EditStore.getUpUrl : null,
+                  originRequestInfo: origin,
+                  extendRequestInfo: extend
+                }
+                Request.fetch({
+                  url: '/createCopyrightInfo',
+                  sentData: data,
+                  successFn(response) {
 
+                  }
+                })
+
+                console.log(data)
               }
             }}>提交</Button>}
           </div>

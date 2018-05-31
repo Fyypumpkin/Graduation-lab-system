@@ -1,5 +1,7 @@
 package cn.fyypumpkin.manage.lab.request;
 
+import java.util.Date;
+
 public class ModifyThesisInfoRequest {
     private Integer id;
 
@@ -13,7 +15,7 @@ public class ModifyThesisInfoRequest {
 
     private String journalName;
 
-    private String publishTime;
+    private Date publishTime;
 
     private String journalType;
 
@@ -22,6 +24,36 @@ public class ModifyThesisInfoRequest {
     private String prove;
 
     private String journalSource;
+
+    private String year;
+
+    private String otherAuthor;
+
+    private String page;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getOtherAuthor() {
+        return otherAuthor;
+    }
+
+    public void setOtherAuthor(String otherAuthor) {
+        this.otherAuthor = otherAuthor;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
 
     public Integer getId() {
         return id;
@@ -71,11 +103,11 @@ public class ModifyThesisInfoRequest {
         this.journalName = journalName;
     }
 
-    public String getPublishTime() {
+    public Date getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(String publishTime) {
+    public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
     }
 

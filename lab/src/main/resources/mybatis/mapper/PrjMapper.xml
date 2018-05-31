@@ -10,12 +10,14 @@
         <result column="intro" property="intro"/>
         <result column="complete_time" property="completeTime"/>
         <result column="start_time" property="startTime"/>
+        <result column="doing_time" property="doingTime"/>
         <result column="status" property="status"/>
         <result column="head_people" property="headPeople"/>
         <result column="dev" property="dev"/>
         <result column="test" property="test"/>
         <result column="file" property="file"/>
         <result column="money" property="money"/>
+        <result column="rank" property="rank"/>
         <result column="lab_type" property="labType"/>
         <result column="money_from" property="moneyFrom"/>
     </resultMap>
@@ -26,7 +28,10 @@
         <result column="name" property="name"/>
         <result column="start_time" property="startTime"/>
         <result column="status" property="status"/>
+        <result column="rank" property="rank"/>
         <result column="head_people" property="headPeople"/>
+        <result column="doing_time" property="doingTime"/>
+        <result column="complete_time" property="completeTime"/>
     </resultMap>
 
 
@@ -35,7 +40,7 @@
     </sql>
 
     <sql id="insertCol">
-        (username, name, intro, complete_time, start_time, status, head_people, dev, test, file, money, money_from, lab_type)
+        (username, name, intro, complete_time, start_time, status, head_people, dev, test, file, money, money_from, lab_type, doing_time, rank)
     </sql>
 
 
@@ -44,7 +49,7 @@
     </sql>
 
     <sql id="dtoCols">
-        id,username,name,start_time,status,head_people
+        id,username,name,start_time,status,head_people,doing_time,complete_time, rank
     </sql>
 
 
@@ -67,7 +72,9 @@
         #{request.file},
         #{request.money},
         #{request.moneyFrom},
-        #{request.labType}
+        #{request.labType},
+        #{request.doingTime},
+        #{request.rank}
         );
     </insert>
 
@@ -79,7 +86,6 @@
         name=#{request.name},
         intro=#{request.intro},
         complete_time=#{request.completeTime},
-        start_time=#{request.startTime},
         status=#{request.status},
         head_people=#{request.headPeople},
         dev=#{request.dev},
@@ -87,7 +93,8 @@
         file=#{request.file},
         money=#{request.money},
         money_from=#{request.moneyFrom},
-        lab_type=#{request.labType}
+        lab_type=#{request.labType},
+        rank=#{request.rank}
         where id=#{request.id}
     </update>
 

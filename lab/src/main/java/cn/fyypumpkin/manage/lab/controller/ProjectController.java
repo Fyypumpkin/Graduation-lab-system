@@ -20,6 +20,7 @@ public class ProjectController {
     @Resource
     private ProjectService service;
 
+    // 修改完成
     @PostMapping("/createPrj")
     @ResponseBody
     public DataResult createPrj(@RequestBody CreateProjectRequest request) {
@@ -29,6 +30,7 @@ public class ProjectController {
         return dataResult;
     }
 
+    // 修改完成
     @PostMapping("/getPrjInfo/{id}")
     @ResponseBody
     public DataResult createPrj(@PathVariable("id") Integer id) {
@@ -57,7 +59,7 @@ public class ProjectController {
 
     @PostMapping("/delPrjInfo/{id}")
     @ResponseBody
-    public DataResult getPrjList(@PathVariable("id") Integer id) {
+    public DataResult delPrjInfo(@PathVariable("id") Integer id) {
         DataResult dataResult = new DataResult();
         dataResult.setData(service.delPrjInfoById(id));
         dataResult.setSuccess(true);

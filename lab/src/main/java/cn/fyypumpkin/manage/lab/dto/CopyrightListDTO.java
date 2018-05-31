@@ -5,6 +5,15 @@ public class CopyrightListDTO {
     private String allName;
     private String usage;
     private String username;
+    private String version;
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public Integer getId() {
         return id;

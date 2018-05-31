@@ -1,12 +1,15 @@
 package cn.fyypumpkin.manage.lab.entity;
 
+import java.util.Date;
+
 public class Project {
     private Integer id;
     private String username;
     private String name;
     private String intro;
-    private String completeTime;
-    private String startTime;
+    private Date completeTime;
+    private Date startTime;
+    private Date doingTime;
     private String status;
     private String headPeople;
     private String dev;
@@ -15,6 +18,40 @@ public class Project {
     private String money;
     private String moneyFrom;
     private String labType;
+    private String rank;
+
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public Date getCompleteTime() {
+        return completeTime;
+    }
+
+    public void setCompleteTime(Date completeTime) {
+        this.completeTime = completeTime;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getDoingTime() {
+        return doingTime;
+    }
+
+    public void setDoingTime(Date doingTime) {
+        this.doingTime = doingTime;
+    }
 
     public String getLabType() {
         return labType;
@@ -78,22 +115,6 @@ public class Project {
 
     public void setIntro(String intro) {
         this.intro = intro;
-    }
-
-    public String getCompleteTime() {
-        return completeTime;
-    }
-
-    public void setCompleteTime(String completeTime) {
-        this.completeTime = completeTime;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
     }
 
     public String getStatus() {

@@ -12,7 +12,7 @@ class Store {
   @observable searchValue = {
     status: null,
     name: '',
-    headPeople: '',
+    headPeople: null,
     mine: false
   }
 

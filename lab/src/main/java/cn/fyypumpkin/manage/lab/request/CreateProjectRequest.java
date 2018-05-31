@@ -1,11 +1,14 @@
 package cn.fyypumpkin.manage.lab.request;
 
+import java.util.Date;
+
 public class CreateProjectRequest {
     private String username;
     private String name;
     private String intro;
-    private String completeTime;
-    private String startTime;
+    private Date completeTime;
+    private Date startTime;
+    private Date doingTime;
     private String status;
     private String headPeople;
     private String dev;
@@ -14,9 +17,19 @@ public class CreateProjectRequest {
     private String money;
     private String moneyFrom;
     private String labType;
+    private String rank;
+
 
     public String getLabType() {
         return labType;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
     public void setLabType(String labType) {
@@ -71,20 +84,28 @@ public class CreateProjectRequest {
         this.intro = intro;
     }
 
-    public String getCompleteTime() {
+    public Date getCompleteTime() {
         return completeTime;
     }
 
-    public void setCompleteTime(String completeTime) {
+    public void setCompleteTime(Date completeTime) {
         this.completeTime = completeTime;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public Date getDoingTime() {
+        return doingTime;
+    }
+
+    public void setDoingTime(Date doingTime) {
+        this.doingTime = doingTime;
     }
 
     public String getStatus() {

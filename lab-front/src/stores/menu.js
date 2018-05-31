@@ -27,6 +27,13 @@ const MenuList = [{
     {id: '0503', title: '专利信息', icon: 'solution', router: 'PatentInfo'},
     {id: '0504', title: '获奖信息', icon: 'file-text', router: 'WinningInfo'}
   ]
+}, {
+  id: '06',
+  title: '导出管理',
+  icon: 'profile',
+  items: [
+    {id: '0601', title: '信息导出', icon: 'desktop', router: 'OutputInfo'}
+  ]
 }]
 
 export default MenuList

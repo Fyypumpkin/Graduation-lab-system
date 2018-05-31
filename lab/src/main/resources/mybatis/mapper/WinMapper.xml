@@ -10,6 +10,7 @@
         <result column="win_inst" property="winInst"/>
         <result column="win_rank" property="winRank"/>
         <result column="win_time" property="winTime"/>
+        <result column="url" property="url"/>
     </resultMap>
 
 
@@ -18,12 +19,12 @@
     </sql>
 
     <sql id="insertCol">
-        (username, win_name, win_inst, win_rank, win_time)
+        (username, win_name, win_inst, win_rank, win_time, url)
     </sql>
 
 
     <sql id="allCols">
-        id, username, win_name, win_inst, win_rank, win_time
+        id, username, win_name, win_inst, win_rank, win_time, url
     </sql>
 
     <select id="getWinList" resultMap="BaseResultMap">
@@ -73,7 +74,8 @@
         #{win.winName},
         #{win.winInst},
         #{win.winRank},
-        #{win.winTime}
+        #{win.winTime},
+        #{win.url}
         )
     </insert>
 
@@ -83,7 +85,8 @@
         win_name=#{win.winName},
         win_inst=#{win.winInst},
         win_rank=#{win.winRank},
-        win_time=#{win.winTime}
+        win_time=#{win.winTime},
+        url=#{win.url}
         where id=#{win.id}
     </update>
 
