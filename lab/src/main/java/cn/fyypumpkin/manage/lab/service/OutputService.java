@@ -8,7 +8,6 @@ import cn.fyypumpkin.manage.lab.request.export.OutputPrjRequest;
 import cn.fyypumpkin.manage.lab.request.export.OutputThesisRequest;
 import cn.fyypumpkin.manage.lab.request.export.OutputWinRequest;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

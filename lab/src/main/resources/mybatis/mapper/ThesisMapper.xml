@@ -61,7 +61,7 @@
         order by id desc limit #{offset},#{pageSize}
     </select>
 
-    <select id="thesisListCount" resultType="int">
+    <select id="thesisListCount" resultType="java.lang.Integer">
         select count(*) from
         <include refid="table"/>
         where 1=1

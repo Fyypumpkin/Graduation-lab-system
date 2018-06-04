@@ -145,13 +145,13 @@
         (extend_key,real_name,country, address, type)
         values
         <foreach collection="list" item="list" index="index" separator=",">
-        (
-        #{list.extendKey},
-        #{list.realName},
-        #{list.country},
-        #{list.address},
-        #{list.type}
-        )
+            (
+            #{list.extendKey},
+            #{list.realName},
+            #{list.country},
+            #{list.address},
+            #{list.type}
+            )
         </foreach>
     </insert>
 
@@ -172,8 +172,10 @@
     <insert id="createCopyrightInfo">
         insert into
         <include refid="copyright"/>
-        (range,power,all_name, username,
-        simple_name,sort_no,complete_time,version,publish_time,dev_type,origin_key,extend_key,usage,apply_username,apply_phone,apply_address,apply_postcode,apply_id_no,apply_mail,apply_fax,extend_username,extend_phone,extend_address,extend_postcode,extend_id_no,extend_mail,extend_fax,att_url)
+        (`range`,power,all_name, username,
+        simple_name,sort_no,complete_time,version,publish_time,dev_type,origin_key,extend_key
+        ,`usage`,apply_username,apply_phone,apply_address,apply_postcode,apply_id_no,apply_mail
+        ,apply_fax,extend_username,extend_phone,extend_address,extend_postcode,extend_id_no,extend_mail,extend_fax,att_url)
         values (
         #{request.range},
         #{request.power},

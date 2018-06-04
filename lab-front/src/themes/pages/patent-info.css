@@ -8,3 +8,7 @@
     margin-right: auto;
     padding: 20px;
 }
+
+.ant-popover {
+    width: 50%;
+}

@@ -68,7 +68,9 @@ class ThesisInfo extends React.Component {
               content: <div key={item.id}>
                 <span style={{marginRight: '30px'}}>期刊名：{item.journalName}</span>
                 <span style={{marginRight: '30px'}}>期刊来源：{item.journalFrom}</span>
+                <br />
                 <span style={{marginRight: '30px'}}>期刊类型：{typeEnums[item.journalType]}</span>
+                <span style={{marginRight: '30px'}}>页码：{item.page}</span>
                 <span>年份：{item.year}</span>
               </div>
             })

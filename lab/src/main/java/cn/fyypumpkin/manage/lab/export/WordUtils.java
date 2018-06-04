@@ -1,10 +1,8 @@
 package cn.fyypumpkin.manage.lab.export;
 
 
-import cn.fyypumpkin.manage.lab.dto.export.Prj;
 import cn.fyypumpkin.manage.lab.dto.export.PrjE;
 import cn.fyypumpkin.manage.lab.dto.export.PrjT;
-import com.alibaba.fastjson.JSONArray;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTcPr;
 
@@ -55,87 +53,82 @@ public class WordUtils {
             two.setFontSize(16);
 
             para = doc.createParagraph();
-            doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    项目名称：");
+            run.setText("    项目名称：");
             String content = lists.get(h).getName();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content + "\r");
+            run.setText(content);
 
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    项目简介：");
+            run.setText("    项目简介：");
             String content1 = lists.get(h).getIntro();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setFontFamily("仿宋");
             run.setBold(false);
             run.setFontSize(12);
-            run.setText(content1 + "\r");
+            run.setText(content1);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    立项日期：");
+            run.setText("    立项日期：");
             String content3 = lists.get(h).getStartTime();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content3 + "\r");
+            run.setText(content3);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    启动日期：");
+            run.setText("    启动日期：");
             String content4 = lists.get(h).getDoingTime();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content4 + "\r");
+            run.setText(content4);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    截止日期：");
+            run.setText("    截止日期：");
             String content5 = lists.get(h).getCompleteTime();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content5 + "\r");
+            run.setText(content5);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    项目经费：");
+            run.setText("    项目经费：");
             String content6 = lists.get(h).getMoney();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content6 + "\r");
+            run.setText(content6);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    经费来源：");
+            run.setText("    经费来源：");
             String content7 = lists.get(h).getMoneyFrom();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
@@ -152,41 +145,40 @@ public class WordUtils {
             two.setFontSize(16);
 
             para = doc.createParagraph();
-            doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    立项人：");
+            run.setText("    立项人：");
             String content8 = lists.get(h).getUsername();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content8 + "\r");
+            run.setText(content8);
 
-//            para = doc.createParagraph();
-//            doc.createParagraph();
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    项目负责人：");
+            run.setText("    项目负责人：");
             String content9 = lists.get(h).getHeadPeople();
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
-            run.setText(content9 + "\r");
+            run.setText(content9);
 
+            para = doc.createParagraph();
             run = para.createRun();
             run.setBold(true);
             run.setFontSize(15);
-            run.setText("\t\t" + "    其他成员信息：");
+            run.setText("    其他成员信息：");
             para.setAlignment(ParagraphAlignment.LEFT);//设置左对齐
             run.setBold(false);
             run.setFontFamily("仿宋");
             run.setFontSize(12);
 
-            doc.createParagraph();
+//            doc.createParagraph();
             //添加表格
             int rows = lists.get(h).getDev().size();
             XWPFTable table = doc.createTable(rows, 3);
@@ -225,18 +217,11 @@ public class WordUtils {
                     }
                 }
             }
+
+           doc.createParagraph();
+           doc.createParagraph();
+
         }
         return doc;
-//            String path = "/Users/fyypumpkin/project/Graduation/graduation-lab-system/lab/src/main/resources/test.doc";
-//            OutputStream os = new FileOutputStream(path);
-//            doc.write(os);
-//            if (os != null) {
-//                try {
-//                    os.close();
-//                    System.out.println("文件已输出！");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
     }
 }

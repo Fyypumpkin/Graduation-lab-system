@@ -644,11 +644,11 @@ class CopyrightEdit extends React.Component {
               </Row> </Collapse.Panel>
           </Collapse>
           <div style={{textAlign: 'right', marginBottom: '20px', marginTop: '20px'}}>
-            {(this.status === 'modify') &&
+            {(this.status === 'modify') && EditStore.getUrl &&
             <Upload {...props}><Button icon="upload" style={{marginTop: '20px'}}>重新上传著作权附件</Button></Upload>}
             {(this.status === 'create') &&
             <Upload {...props}><Button icon="upload" style={{marginTop: '20px'}}>上传著作权附件</Button></Upload>}
-            {(this.status === 'watch' || this.status === 'modify') &&
+            {(this.status === 'watch' || this.status === 'modify') && EditStore.getUrl &&
             <Button icon="file-text" style={{marginLeft: '10px'}} onClick={() => {
               window.location.href = EditStore.getUrl
             }}>下载原始附件</Button>}
@@ -725,7 +725,7 @@ class CopyrightEdit extends React.Component {
                   url: '/createCopyrightInfo',
                   sentData: data,
                   successFn(response) {
-
+                    store.router.goTo(router.CopyrightInfo)
                   }
                 })
 

@@ -86,6 +86,7 @@
         name=#{request.name},
         intro=#{request.intro},
         complete_time=#{request.completeTime},
+        doing_time=#{request.doingTime},
         status=#{request.status},
         head_people=#{request.headPeople},
         dev=#{request.dev},
@@ -119,7 +120,7 @@
         order by id desc limit #{offset}, #{pageSize}
     </select>
 
-    <select id="prjListCount" resultType="int">
+    <select id="prjListCount" resultType="java.lang.Integer">
         select count(*)
         from
         <include refid="table"/>
