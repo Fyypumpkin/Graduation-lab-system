@@ -3,41 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c04b5be3-ea77-4d90-a929-65a9bc1cf48b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/copyright-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/copyright-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/copyright-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/copyright-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/my-project-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-project-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/patent-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/patent-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project-group-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-group-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project-setup-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project-setup-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/thesis-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/thesis-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/user-mng.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user-mng.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/winning-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/winning-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/router/pages/result-mng-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/router/pages/result-mng-router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/project/project-detail-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/project/project-detail-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/project/project-info-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/project/project-info-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/project/project-setup-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/project/project-setup-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/result/patent-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/result/patent-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/result/thesis-info-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/store/result/winning-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/store/result/winning-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/CopyrightListDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/CopyrightListDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/PrjDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/PrjDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/ThesisDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/dto/ThesisDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Patent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Patent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Thesis.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Thesis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Win.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/entity/Win.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/repository/ThesisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/repository/ThesisRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/CreateProjectRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/CreateProjectRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/GetPatentListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/GetPatentListRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/ModifyThesisInfoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/request/ModifyThesisInfoRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/CopyrightDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/CopyrightDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/PatentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/PatentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/PrjMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/PrjMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/ThesisMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/ThesisMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/WinMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/resources/mybatis/mapper/WinMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/output-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/output-info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/export/ExcelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/export/ExcelUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,77 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="project-group-info.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/project-group-info.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="192" column="33" lean-forward="true" selection-start-line="192" selection-start-column="33" selection-end-line="192" selection-end-column="33" />
-              <folding>
-                <element signature="e#44#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project-info-store.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stores/store/project/project-info-store.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thesis-info.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/thesis-info.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2317">
-              <caret line="170" selection-start-line="170" selection-end-line="191" selection-end-column="5" />
-              <folding>
-                <element signature="e#43#68#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="patent-info.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/patent-info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
+            <state relative-caret-position="652">
               <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patent-store.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stores/store/result/patent-store.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="762">
-              <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project-detail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/project-detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="54" column="108" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="108" />
-              <folding>
-                <element signature="e#44#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result-mng-router.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routers/router/pages/result-mng-router.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#43#68#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -129,7 +34,7 @@
       <file leaf-file-name="winning-info.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/winning-info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1986">
+            <state relative-caret-position="2205">
               <caret line="157" column="45" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="45" />
               <folding>
                 <element signature="e#44#69#0" expanded="true" />
@@ -138,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="556">
-              <caret line="56" column="10" lean-forward="true" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+              <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -150,11 +55,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="winning-store.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stores/store/result/winning-store.js">
+      <file leaf-file-name="output-info.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/output-info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="2" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
+            <state relative-caret-position="666">
+              <caret line="333" column="22" lean-forward="true" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="export.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/export.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="741">
+              <caret line="77" column="46" lean-forward="true" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project-setup-info.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/project-setup-info.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="399" column="79" lean-forward="true" selection-start-line="399" selection-start-column="29" selection-end-line="399" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="output-info-store.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/stores/store/result/output-info-store.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="winning-info.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/themes/pages/winning-info.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="export-info.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/themes/pages/export-info.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="7" selection-start-column="7" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -193,9 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/routers/router/pages/thesis-info.js" />
-        <option value="$PROJECT_DIR$/src/themes/pages/thesis-info.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/stores/store/result/thesis-display-store.js" />
         <option value="$PROJECT_DIR$/src/themes/pages/thesis-info.css" />
         <option value="$PROJECT_DIR$/src/pages/thesis-display.js" />
@@ -210,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/routers/router/router-all.js" />
         <option value="$PROJECT_DIR$/src/routers/router/pages/project-info.js" />
         <option value="$PROJECT_DIR$/src/containers/platform/header.js" />
-        <option value="$PROJECT_DIR$/src/util/request.js" />
         <option value="$PROJECT_DIR$/src/stores/store/personal/personal-info-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/copyright-info-store.js" />
         <option value="$PROJECT_DIR$/src/stores/store/common/role-store.js" />
@@ -235,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/pages/thesis-info.js" />
         <option value="$PROJECT_DIR$/src/pages/project-detail.js" />
         <option value="$PROJECT_DIR$/src/stores/menu.js" />
-        <option value="$PROJECT_DIR$/src/pages/output-info.js" />
         <option value="$PROJECT_DIR$/src/routers/router/pages/result-mng-router.js" />
         <option value="$PROJECT_DIR$/src/pages/patent-info.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/patent-store.js" />
@@ -244,6 +200,11 @@
         <option value="$PROJECT_DIR$/src/pages/winning-info.js" />
         <option value="$PROJECT_DIR$/src/stores/store/result/winning-store.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/themes/pages/export-info.css" />
+        <option value="$PROJECT_DIR$/src/util/export.js" />
+        <option value="$PROJECT_DIR$/src/stores/store/result/output-info-store.js" />
+        <option value="$PROJECT_DIR$/src/pages/output-info.js" />
+        <option value="$PROJECT_DIR$/src/util/request.js" />
       </list>
     </option>
   </component>
@@ -276,6 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -370,11 +332,16 @@
               <item name="themes" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="lab-front" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab-front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -445,23 +412,25 @@
       <workItem from="1526724159164" duration="53500000" />
       <workItem from="1527486287503" duration="2361000" />
       <workItem from="1527519216750" duration="14142000" />
+      <workItem from="1527738876599" duration="39000" />
+      <workItem from="1527739184487" duration="12614000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170933000" />
+    <option name="totallyTimeSpent" value="183586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24345239" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23511904" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.1750524" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -488,26 +457,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/util/request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stores/store/personal/personal-info-store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routers/router/test/test-router.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routers/store.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/test/test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -563,13 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="1" selection-start-column="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/pages/winning-info.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -647,9 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10755">
           <caret line="728" column="19" selection-start-line="728" selection-start-column="19" selection-end-line="728" selection-end-column="19" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,22 +596,10 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/config-overrides.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,9 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
           <caret line="36" column="61" lean-forward="true" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
-          <folding>
-            <element signature="e#43#68#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -712,16 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/project-setup-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="803">
-          <caret line="250" column="83" selection-start-line="250" selection-start-column="83" selection-end-line="250" selection-end-column="83" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stores/store/result/copyright-info-store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -733,9 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,9 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="112" selection-end-column="43" />
-          <folding>
-            <element signature="e#52#77#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,9 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="75" column="22" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="22" />
-          <folding>
-            <element signature="e#44#69#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -766,17 +671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/output-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routers/router/pages/result-mng-router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="375">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#43#68#0" expanded="true" />
           </folding>
@@ -785,8 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/project-detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="54" column="108" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="108" />
+        <state relative-caret-position="630">
+          <caret line="54" column="108" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="108" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
           </folding>
@@ -795,7 +693,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/thesis-info.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2317">
+        <state relative-caret-position="2370">
           <caret line="170" selection-start-line="170" selection-end-line="191" selection-end-column="5" />
           <folding>
             <element signature="e#43#68#0" expanded="true" />
@@ -805,22 +703,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stores/store/result/patent-store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
+        <state relative-caret-position="1050">
           <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/patent-info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/project-group-info.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="192" column="33" lean-forward="true" selection-start-line="192" selection-start-column="33" selection-end-line="192" selection-end-column="33" />
+        <state relative-caret-position="2685">
+          <caret line="192" column="33" selection-start-line="192" selection-start-column="33" selection-end-line="192" selection-end-column="33" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
           </folding>
@@ -843,7 +734,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/winning-info.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1986">
+        <state relative-caret-position="2205">
           <caret line="157" column="45" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="45" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
@@ -854,9 +745,67 @@
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
-          <caret line="56" column="10" lean-forward="true" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+          <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/pages/winning-info.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/pages/export-info.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/patent-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/export.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/project-setup-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="399" column="79" lean-forward="true" selection-start-line="399" selection-start-column="29" selection-end-line="399" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stores/store/result/output-info-store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/output-info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="333" column="22" lean-forward="true" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="77" column="46" lean-forward="true" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

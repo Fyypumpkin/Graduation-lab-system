@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fyypumpkin.manage.lab.dao.OutputDao">
+
+    <resultMap id="UserMap" type="cn.fyypumpkin.manage.lab.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="sex" property="sex"/>
+        <result column="real_name" property="realName"/>
+        <result column="college" property="college"/>
+        <result column="phone" property="phone"/>
+        <result column="locked" property="locked"/>
+        <result column="role" property="role"/>
+        <result column="pass_wd" property="passWd"/>
+    </resultMap>
+
+    <resultMap id="UserDto" type="cn.fyypumpkin.manage.lab.dto.UserDTO">
+        <result column="username" property="username"/>
+        <result column="sex" property="sex"/>
+        <result column="real_name" property="realName"/>
+        <result column="college" property="college"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+    <sql id="user">
+        user
+    </sql>
+
+    <sql id="userDtoCols">
+        username, sex,real_name,college,phone
+    </sql>
+
+
+    <!--返回插入记录id-->
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+
+    <select id="getAllUserList" resultMap="UserDto">
+        select
+        <include refid="userDtoCols"/>
+        from
+        <include refid="user"/>
+        where 1=1
+    </select>
+
+    <select id="getPatentList" resultType="cn.fyypumpkin.manage.lab.dto.export.Patent">
+        select * from patent
+        where 1=1
+        <if test="request.name.length > 0 ">
+            and name=#{request.name}
+        </if>
+        <if test="request.people != null">
+            and username in (
+            <foreach collection="request.people" item="list" index="index" separator=",">
+                #{list}
+            </foreach>
+            )
+        </if>
+        <if test="request.start != null">
+            and award_time &gt; #{request.start}
+        </if>
+        <if test="request.stop != null">
+            and award_time &lt; #{request.stop}
+        </if>
+    </select>
+
+    <select id="getRealName" resultType="java.lang.String">
+        select real_name from user where username=#{username}
+    </select>
+
+    <select id="getPhone" resultType="java.lang.String">
+        select phone from user where username=#{username}
+    </select>
+
+    <select id="getWinList" resultType="cn.fyypumpkin.manage.lab.dto.export.Win">
+        select * from win
+        where 1=1
+        <if test="request.name.length > 0 ">
+            and win_name=#{request.name}
+        </if>
+        <if test="request.people != null">
+            and username in (
+            <foreach collection="request.people" item="list" index="index" separator=",">
+                #{list}
+            </foreach>
+            )
+        </if>
+        <if test="request.start != null">
+            and win_time &gt; #{request.start}
+        </if>
+        <if test="request.stop != null">
+            and win_time &lt; #{request.stop}
+        </if>
+    </select>
+
+    <select id="getThesisList" resultType="cn.fyypumpkin.manage.lab.dto.export.Thesis">
+        select * from thesis
+        where 1=1
+        <if test="request.name.length > 0 ">
+            and name=#{request.name}
+        </if>
+        <if test="request.author.length > 0 ">
+            and CONCAT(first_author, tele_author, other_author) like CONCAT("%",#{request.author},"%")
+        </if>
+        <if test="request.start != null">
+            and publish_time &gt; #{request.start}
+        </if>
+        <if test="request.stop != null">
+            and publish_time &lt; #{request.stop}
+        </if>
+    </select>
+
+    <select id="getPrjList" resultType="cn.fyypumpkin.manage.lab.dto.export.Prj">
+        select * from project
+        where 1=1
+        <if test="request.name.length > 0">
+            and name=#{request.name}
+        </if>
+        <if test="request.status != null">
+            and status=#{request.status}
+        </if>
+        <if test="request.headPeople != null">
+            and head_people=#{request.headPeople}
+        </if>
+        <if test="request.timeType == 'start'">
+            and start_time &gt; #{request.start}
+            and start_time &lt; #{request.stop}
+        </if>
+        <if test="request.timeType == 'done'">
+            and doing_time &gt; #{request.start}
+            and doing_time &lt; #{request.stop}
+        </if>
+        <if test="request.timeType == 'stop'">
+            and complete_time &gt; #{request.start}
+            and complete_time &lt; #{request.stop}
+        </if>
+    </select>
+
+</mapper>

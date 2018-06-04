@@ -8,7 +8,7 @@ import RoleStore from '../stores/store/common/role-store'
 import CommonStore from '../stores/store/common/common-store'
 
 export default class Request {
-  static fetch (fetchObj) {
+  static fetch(fetchObj) {
     let {successFn, sentData, url, handleSelf} = fetchObj
     url = 'http://' + window.location.host + url + '/'
     console.log(url)
@@ -38,14 +38,48 @@ export default class Request {
       let errorMsg = error.toString()
       if (error.response) {
         switch (error.response.status) {
-          case 502: errorMsg = '网络异常，无法请求至指定服务器'
+          case 502:
+            errorMsg = '网络异常，无法请求至指定服务器'
             break
-          case 504: errorMsg = '网关超时'
+          case 504:
+            errorMsg = '网关超时'
             break
         }
       }
       CommonStore.reset()
       Reminder.openNotification('内部错误', errorMsg, false, 'error')
     })
+  }
+
+  static exportData(fetchObj) {
+    let {successFn, sentData, url, fileName} = fetchObj
+    url = 'http://' + window.location.host + url + '/'
+    console.log(sentData, url)
+    axios({
+      method: 'post',
+      url: url,
+      data: sentData,
+      responseType: 'blob' // 表明返回服务器返回的数据类型
+    })
+      .then((res) => { // 处理返回的文件流
+        console.log(res)
+        const content = res.data
+        const blob = new Blob([content])
+        if ('download' in document.createElement('a')) { // 非IE下载
+          const elink = document.createElement('a')
+          elink.download = fileName
+          elink.style.display = 'none'
+          elink.href = URL.createObjectURL(blob)
+          document.body.appendChild(elink)
+          elink.click()
+          URL.revokeObjectURL(elink.href) // 释放URL 对象
+          document.body.removeChild(elink)
+        } else { // IE10+下载
+          navigator.msSaveBlob(blob, fileName)
+        }
+      })
+      .catch(function (err) {
+        Reminder.openNotification('导出失败', err.toString(), false, 'error')
+      })
   }
 }
