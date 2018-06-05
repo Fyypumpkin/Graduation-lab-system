@@ -18,22 +18,22 @@ public class CopyrightRepository {
     @Resource
     private CopyrightDao copyrightDao;
 
-    public List<CopyrightListDTO> getCopyrightList(GetCopyrightListRequest request){
+    public List<CopyrightListDTO> getCopyrightList(GetCopyrightListRequest request) {
         int offset = (request.getPage() - 1) * request.getPageSize();
         int pageSize = request.getPageSize();
         return copyrightDao.getCopyrightList(request, offset, pageSize);
     }
 
-    public int copyrightListCount(GetCopyrightListRequest request){
+    public int copyrightListCount(GetCopyrightListRequest request) {
         return copyrightDao.copyrightListCount(request);
     }
 
-    public CopyrightDTO getCopyrightInfo(GetCopyrightInfoRequest request){
+    public CopyrightDTO getCopyrightInfo(GetCopyrightInfoRequest request) {
         Copyright copyright = copyrightDao.getCopyrightById(request.getId());
         List<Origin> origins = copyrightDao.getOriginsByKey(copyright.getOriginKey());
         List<Extend> extendList = copyrightDao.getExtendsByKey(copyright.getExtendKey());
 
-        return new CopyrightDTO(){{
+        return new CopyrightDTO() {{
             setId(copyright.getId());
             setUsername(copyright.getUsername());
             setAllName(copyright.getAllName());
@@ -66,7 +66,7 @@ public class CopyrightRepository {
         }};
     }
 
-    public int delCopyright(Integer id){
+    public int delCopyright(Integer id) {
         Copyright copyright = copyrightDao.getCopyrightById(id);
         String extend = copyright.getExtendKey();
         String origin = copyright.getOriginKey();
@@ -77,12 +77,16 @@ public class CopyrightRepository {
     }
 
     @Transactional
-    public Boolean createCopyrightInfo(CreateCopyrightRequest request){
+    public Boolean createCopyrightInfo(CreateCopyrightRequest request) {
         List<ExtendRequest> extendList = request.getExtendRequestInfo();
         List<OriginRequest> originList = request.getOriginRequestInfo();
 
-        copyrightDao.createExtendInfo(extendList);
-        copyrightDao.createOriginInfo(originList);
+        if (extendList.size() > 0) {
+            copyrightDao.createExtendInfo(extendList);
+        }
+        if (originList.size() > 0) {
+            copyrightDao.createOriginInfo(originList);
+        }
 
         return copyrightDao.createCopyrightInfo(request) >= 1;
 

@@ -266,12 +266,12 @@ class CopyrightEdit extends React.Component {
               {EditStore.getOriginPowerInfo.map((item, index) => {
                 return <Row key={index}>
                   <Col span={3} style={{textAlign: 'right'}}>
-                    <span>名称(姓名)：</span>
+                    <span>名称：</span>
                   </Col>
-                  <Col span={2}>
+                  <Col span={4}>
                     {(this.status === 'watch' || this.status === 'null') && <span>{item.realName}</span>}
                     {(this.status === 'create' || this.status === 'modify') &&
-                    <Input style={{marginBottom: '10px'}} placeholder='姓名' value={item.realName} onChange={(e) => {
+                    <Input style={{marginBottom: '10px'}} placeholder='姓名/名称' value={item.realName} onChange={(e) => {
                       EditStore.setOriginPowerInfo({
                         ...EditStore.getOriginPowerInfo[index],
                         realName: e.target.value
@@ -355,12 +355,12 @@ class CopyrightEdit extends React.Component {
                     </Select>}
                   </Col>
                   <Col span={3} offset={1} style={{textAlign: 'right'}}>
-                    <span>名称（姓名）：</span>
+                    <span>名称：</span>
                   </Col>
-                  <Col span={2}>
+                  <Col span={3}>
                     {(this.status === 'watch' || this.status === 'null') && <span>{item.realName}</span>}
                     {(this.status === 'create' || this.status === 'modify') &&
-                    <Input style={{marginBottom: '10px'}} placeholder='姓名' value={item.realName} onChange={(e) => {
+                    <Input style={{marginBottom: '10px'}} placeholder='姓名/名称' value={item.realName} onChange={(e) => {
                       EditStore.setExtendPowerInfo({
                         ...EditStore.getExtendPowerInfo[index],
                         realName: e.target.value
@@ -455,7 +455,8 @@ class CopyrightEdit extends React.Component {
                   <span>姓名：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.name}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getApplyInfo.name ? EditStore.getApplyInfo.name : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{width: '150px'}} placeholder='姓名' value={EditStore.getApplyInfo.name}
                          onChange={(e) => {
@@ -468,7 +469,8 @@ class CopyrightEdit extends React.Component {
                   <span>电话：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.phone}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getApplyInfo.phone ? EditStore.getApplyInfo.phone : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '150px'}} placeholder='电话'
                          value={EditStore.getApplyInfo.phone} onChange={(e) => {
@@ -482,7 +484,8 @@ class CopyrightEdit extends React.Component {
                   <span>地址：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.address}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getApplyInfo.address ? EditStore.getApplyInfo.address : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input placeholder='地址' value={EditStore.getApplyInfo.address} onChange={(e) => {
                     EditStore.setApplyInfo({
@@ -495,7 +498,7 @@ class CopyrightEdit extends React.Component {
                 </Col>
                 <Col span={8}>
                   {(this.status === 'watch' || this.status === 'null') &&
-                  <span>{EditStore.getApplyInfo.postcode}</span>}
+                  <span>{EditStore.getApplyInfo.postcode ? EditStore.getApplyInfo.postcode : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '90px'}} placeholder='邮编'
                          value={EditStore.getApplyInfo.postcode} onChange={(e) => {
@@ -509,7 +512,8 @@ class CopyrightEdit extends React.Component {
                   <span>身份证号：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.idNo}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getApplyInfo.idNo ? EditStore.getApplyInfo.idNo : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{width: '200px'}} placeholder='身份证' value={EditStore.getApplyInfo.idNo}
                          onChange={(e) => {
@@ -522,7 +526,8 @@ class CopyrightEdit extends React.Component {
                   <span>E-Mail：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.mail}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getApplyInfo.mail ? EditStore.getApplyInfo.mail : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '150px'}} placeholder='邮箱'
                          value={EditStore.getApplyInfo.mail} onChange={(e) => {
@@ -538,7 +543,8 @@ class CopyrightEdit extends React.Component {
                 <Col span={8}>
                   {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getApplyInfo.fax}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
-                  <Input style={{width: '150px'}} placeholder='传真' value={EditStore.getApplyInfo.fax} onChange={(e) => {
+                  <Input style={{width: '150px'}} placeholder='传真'
+                         value={EditStore.getApplyInfo.fax ? EditStore.getApplyInfo.fax : '空'} onChange={(e) => {
                     EditStore.setApplyInfo({
                       fax: e.target.value
                     })
@@ -552,7 +558,8 @@ class CopyrightEdit extends React.Component {
                   <span>姓名：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.name}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.name ? EditStore.getProxyInfo.name : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{width: '150px'}} placeholder='姓名' value={EditStore.getProxyInfo.name}
                          onChange={(e) => {
@@ -565,7 +572,8 @@ class CopyrightEdit extends React.Component {
                   <span>电话：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.phone}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.phone ? EditStore.getProxyInfo.phone : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '150px'}} placeholder='电话'
                          value={EditStore.getProxyInfo.phone} onChange={(e) => {
@@ -579,7 +587,8 @@ class CopyrightEdit extends React.Component {
                   <span>地址：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.address}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.address ? EditStore.getProxyInfo.address : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input placeholder='地址' value={EditStore.getProxyInfo.address} onChange={(e) => {
                     EditStore.setProxyInfo({
@@ -592,7 +601,7 @@ class CopyrightEdit extends React.Component {
                 </Col>
                 <Col span={8}>
                   {(this.status === 'watch' || this.status === 'null') &&
-                  <span>{EditStore.getProxyInfo.postcode}</span>}
+                  <span>{EditStore.getProxyInfo.postcode ? EditStore.getProxyInfo.postcode : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '90px'}} placeholder='邮编'
                          value={EditStore.getProxyInfo.postcode} onChange={(e) => {
@@ -606,7 +615,8 @@ class CopyrightEdit extends React.Component {
                   <span>身份证号：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.idNo}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.idNo ? EditStore.getProxyInfo.idNo : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{width: '200px'}} placeholder='身份证' value={EditStore.getProxyInfo.idNo}
                          onChange={(e) => {
@@ -619,7 +629,8 @@ class CopyrightEdit extends React.Component {
                   <span>E-Mail：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.mail}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.mail ? EditStore.getProxyInfo.mail : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{marginBottom: '10px', width: '150px'}} placeholder='邮箱'
                          value={EditStore.getProxyInfo.mail} onChange={(e) => {
@@ -633,7 +644,8 @@ class CopyrightEdit extends React.Component {
                   <span>传真：</span>
                 </Col>
                 <Col span={8}>
-                  {(this.status === 'watch' || this.status === 'null') && <span>{EditStore.getProxyInfo.fax}</span>}
+                  {(this.status === 'watch' || this.status === 'null') &&
+                  <span>{EditStore.getProxyInfo.fax ? EditStore.getProxyInfo.fax : '空'}</span>}
                   {(this.status === 'create' || this.status === 'modify') &&
                   <Input style={{width: '150px'}} placeholder='传真' value={EditStore.getProxyInfo.fax} onChange={(e) => {
                     EditStore.setProxyInfo({

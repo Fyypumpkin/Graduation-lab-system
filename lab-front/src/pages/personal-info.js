@@ -150,11 +150,11 @@ class PersonalInfo extends React.Component {
           }}/> : <span>{PersonalStore.getPersonalInfo.userGroup}</span>}</h3>
       </div>
       <div className="personal-info" style={{marginTop: '20px', display: 'flex'}}>
-        <a style={{marginRight: '20px', marginLeft: '30px', paddingTop: '5px'}}>查看所在项目</a>
-        <a style={{marginRight: '20px', paddingTop: '5px'}}>查看论文</a>
-        <a style={{marginRight: '20px', paddingTop: '5px'}}>查看著作权</a>
-        <a style={{marginRight: '20px', paddingTop: '5px'}}>查看获奖信息</a>
-        <a style={{paddingTop: '5px'}}>查看专利</a>
+        {/*<a style={{marginRight: '20px', marginLeft: '30px', paddingTop: '5px'}}>查看所在项目</a>*/}
+        {/*<a style={{marginRight: '20px', paddingTop: '5px'}}>查看论文</a>*/}
+        {/*<a style={{marginRight: '20px', paddingTop: '5px'}}>查看著作权</a>*/}
+        {/*<a style={{marginRight: '20px', paddingTop: '5px'}}>查看获奖信息</a>*/}
+        {/*<a style={{paddingTop: '5px'}}>查看专利</a>*/}
         <Button type="primary" style={{display: 'block', marginLeft: 'auto'}} onClick={() => {
           const params = {...store.router.params}
           const username = params.username ? params.username : RoleStore.getUsername ? RoleStore.getUsername : localStorage.getItem('username')
@@ -175,7 +175,7 @@ class PersonalInfo extends React.Component {
               message.success('修改成功')
             }
           })
-        }}>确认修改</Button>
+        }}>修改</Button>
       </div>
       </Spin>
     </div>)

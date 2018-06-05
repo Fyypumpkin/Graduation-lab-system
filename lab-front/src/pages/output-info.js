@@ -324,7 +324,7 @@ class OutputInfo extends React.Component {
               sentData = {
                 name: Store.getSearchValue.prj.name,
                 status: Store.getSearchValue.prj.status,
-                timeType: Store.getSearchValue.prj.timeType,
+                timeType: Store.getSearchValue.prj.disable ? Store.getSearchValue.prj.timeType : null,
                 headPeople: Store.getSearchValue.prj.headPeople,
                 start: Store.getSearchValue.prj.disable ? new Date(Date.parse(Store.getSearchValue.prj.time[0].replace(/-/g, '/'))) : null,
                 stop: Store.getSearchValue.prj.disable ? new Date(Date.parse(Store.getSearchValue.prj.time[1].replace(/-/g, '/'))) : null,
