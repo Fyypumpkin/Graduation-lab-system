@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c04b5be3-ea77-4d90-a929-65a9bc1cf48b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/copyright-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/copyright-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/output-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/output-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/personal-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/personal-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/config/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/SocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/SocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/TailLogThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/TailLogThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab/src/main/java/cn/fyypumpkin/manage/lab/controller/ExportController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -417,12 +411,12 @@
       <workItem from="1527486287503" duration="2361000" />
       <workItem from="1527519216750" duration="14142000" />
       <workItem from="1527738876599" duration="39000" />
-      <workItem from="1527739184487" duration="17507000" />
+      <workItem from="1527739184487" duration="17512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188479000" />
+    <option name="totallyTimeSpent" value="188484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />

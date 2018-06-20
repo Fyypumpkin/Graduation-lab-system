@@ -134,7 +134,6 @@ public class ExportController {
             bos = new BufferedOutputStream(out);
             byte[] buff = new byte[2048];
             int bytesRead;
-            // Simple read/write loop.
             while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
                 bos.write(buff, 0, bytesRead);
             }
